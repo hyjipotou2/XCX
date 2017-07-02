@@ -1,0 +1,30 @@
+/* mains 主体内容*/
+.mains{width:auto;right:5px;bottom:20px;height:auto;position:absolute;left:217px;top:55px; border:1px solid #f1f1f1; border-radius:5px;}
+/*表格*/
+table{max-width:100%;background-color:transparent;table-layout: fixed; position:relative;}
+th{text-align:center;}
+table thead tr{ background:#f1f1f1;}
+table tbody tr{ background:none;line-height:35px;}
+table tbody tr td{background:none;max-width:30px;text-overflow: ellipsis; -moz-text-overflow:ellipsis;overflow: hidden;  
+white-space: nowrap;}
+table tbody tr.Active{background:#d61d2e; cursor:pointer;}
+table tbody tr:hover td{background:none;}
+td{text-align:center;}
+/*mains2*/
+.mains2{width:84%; height:18%; border:1px solid #f1f1f1; border-radius:5px; position:absolute;left:15.5%;bottom:8px; }
+/*mains2 第一版块*/
+
+
+
+
+/*媒体检测*/
+@media screen and (min-width:1600px){
+.mains{width:84%;height:75%;position:absolute;left:15.5%;top:55px;}
+.mains2{width:84%; height:15%;position:absolute;left:15.5%;}
+.money1 input{ margin-left:10px; }
+.money1 ul li:nth-child(1){margin-right:120px;}
+.money1 ul li:nth-child(3){margin-left:220px; margin-top: -5px; }
+.money1 ul li:nth-child(4){ margin-top:-5px; margin-left:120px;}
+.money2 ul li{float:left; margin-left:40px;}
+}
+/*媒体检测结束*/

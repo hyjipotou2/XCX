@@ -1,0 +1,64 @@
+.main-sidebar{background:#1a1a1a; height:100%;position:absolute;top:0;left:0;min-height:100%;width:15%;z-index:810; min-width:200px;
+min-width:210px;}
+.sidebar{height:auto;background:#1a1a1a; }
+.sidebar-menu{list-style:none;padding:0;background-color:#1a1a1a;}
+.sidebar-menu>li{position:relative;margin:0;padding:0;}
+/*菜单栏*/
+.sidebar-menu>li>a{padding:12px 5px 12px 30px;display:block;color:#eee;}
+/*图标外围*/
+.sidebar-menu>li>a>.fa{width:20px; padding-top:4px;}
+/*click  and  hover */
+.sidebar-menu>li.active>a,.sidebar-menu>li:hover>a{color:#fff;background:#d61d2e;}
+/*下拉菜单treeview-menu*/
+.sidebar-menu>li>.treeview-menu{background:#2c3b41}
+.sidebar-menu>li .badge,.sidebar-menu>li .label{margin-top:3px;margin-right:15px}
+.sidebar-menu li.header{line-height:45px;padding:2px 25px 0px 25px;font-size:16px;color:#fff; border-bottom: 3px solid #d61d2e; min-width: 200px;}
+.sidebar-menu li>a>.fa-angle-left{width:auto;height:auto;padding:0;margin-right:10px;margin-top:3px}
+.sidebar-menu li.active>a>.fa-angle-left{transform:rotate(-90deg)}
+.sidebar-menu li.active>.treeview-menu{display:block}
+.sidebar-menu a{color:#b8c7ce;text-decoration:none}
+.sidebar-menu .treeview-menu{display:none;list-style:none;padding:0;margin:0;padding-left:0px}
+.sidebar-menu .treeview-menu .treeview-menu{padding-left:20px}
+.sidebar-menu .treeview-menu>li{margin:0}
+.sidebar-menu .treeview-menu>li>a{padding:10px 5px 10px 30px;display:block;font-size:14px;color:#8aa4af}
+.sidebar-menu .treeview-menu>li>a>.fa{width:20px}
+.sidebar-menu .treeview-menu>li>a>.fa-angle-down,.sidebar-menu .treeview-menu>li>a>.fa-angle-left{width:auto}
+.sidebar-menu .treeview-menu>li.active>a,.sidebar-menu .treeview-menu>li>a:hover{color:#fff; background:#d61d2e;}
+/*logo*/
+.logo1{ width:25px; height:25px;margin-left:25px; margin-top:14px; margin-right:10px;
+	background-image:url(../images/logo.png); background-repeat:no-repeat; background-size:contain; float:left;}
+/*statment 脚注*/
+.startment{z-index:811; display:block;}
+.startment ol{ text-align:left;  height:20px; margin-top:25%; margin-left: -10px;}
+.startment ol li {float: left; margin-right:10px; color:#eee; cursor:pointer; font-size: 12px;}
+.startment ol li:hover{color:#fff;}
+
+
+
+.file-input{
+  line-height:30px;
+  position:relative;
+  margin-top:10px;
+  display: inline-block;
+}
+.file-input .input-container{
+  width:100px;
+  height:30px;
+  text-align:center;
+  background:#3879d9;
+  color:#fff;
+  border-radius:3px;
+}
+.file-input input{
+  position:absolute;
+  left:0;
+  top:0;
+  opacity:0;
+}
+.file-input #name{
+  position:absolute;
+  left:100px;
+  top:0;
+  font-size:12px;
+  color:#666;
+}
