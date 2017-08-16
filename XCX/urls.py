@@ -30,9 +30,17 @@ url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': setti
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', views.login),
     url(r'^goods/', views.goods),
-url(r'^orders/', views.goods),
+    url(r'^orders/', views.orders),
     url(r'^imageupapi/', views.imageUpApi),
     url(r'^getform/',views.getForm),
+    url(r'^wxlogin/', views.wxLogin),
+    url(r'^userinfo/', views.userInfo),
+url(r'^cartlist/', views.cartList),
+url(r'^addcartlist/', views.addCartList),
+url(r'^deletecart/', views.deleteCart),
+url(r'^onlogin/', views.onLogin),
+
+
 
 
 

@@ -208,18 +208,18 @@
             <div class="col-md-8">
                 <ul class="nav nav-pills order-status-ul">
                     <li role="presentation" class="active"><a href="javascript:;">全部</a></li>
-                    <li data-status="0" role="presentation"><a href="javascript:;">待付款</a></li>
-                    <li data-status="1" role="presentation"><a href="javascript:;">待发货</a></li>
-                    <li data-status="2"><a href="javascript:;">待收货</a></li>
-                    <li data-status="6" role="presentation"><a href="javascript:;">已完成</a></li>
-                    <li data-status="7" role="presentation"><a href="javascript:;">已关闭</a></li>
+                    <li data-state="0" role="presentation"><a href="javascript:;">待付款</a></li>
+                    <li data-state="1" role="presentation"><a href="javascript:;">待发货</a></li>
+                    <li data-state="2"><a href="javascript:;">待收货</a></li>
+                    <li data-state="3" role="presentation"><a href="javascript:;">已完成</a></li>
+                    <li data-state="-1" role="presentation"><a href="javascript:;">已关闭</a></li>
                 </ul>
             </div>
 
         </div>
         <div class="order-content-body">
             <div class="order-list-head clearfix">
-                <div class="col-md-3">商品</div>
+                <div class="col-md-3" style="text-align: start;padding-left: 30px;">商品</div>
                 <div class="col-md-1">单价: 元</div>
                 <div class="col-md-1">数量</div>
                 <div class="col-md-4">买家信息</div>
@@ -293,6 +293,7 @@
     </div>
     <div class="fen">
         <div id="page"></div>
+
 
 
     </div>

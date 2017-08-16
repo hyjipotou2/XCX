@@ -7,6 +7,11 @@ String.prototype.format = function(args) {
                     var reg = new RegExp("({" + key + "})", "g");
                     result = result.replace(reg, args[key]);
                 }
+                else
+                {
+                    var reg = new RegExp("({" + key + "})", "g");
+                    result = result.replace(reg,"");
+                }
             }
         }
         else {

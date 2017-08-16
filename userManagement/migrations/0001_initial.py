@@ -17,14 +17,22 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=255, verbose_name='\u540d\u79f0')),
+                ('secret', models.CharField(max_length=255, verbose_name='secret', blank=True)),
+                ('modDateTime', models.DateTimeField(auto_now=True, verbose_name='\u6700\u540e\u4fee\u6539\u65e5\u671f')),
+                ('createDateTime', models.DateTimeField(auto_now_add=True, verbose_name='\u521b\u5efa\u65e5\u671f')),
             ],
         ),
         migrations.CreateModel(
             name='AppletUser',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('phone', models.CharField(max_length=255, verbose_name='\u624b\u673a')),
-                ('passWord', models.CharField(max_length=255, verbose_name='\u5bc6\u7801')),
+                ('openid', models.CharField(max_length=255)),
+                ('session', models.CharField(max_length=255, blank=True)),
+                ('modDateTime', models.DateTimeField(auto_now=True, verbose_name='\u6700\u540e\u4fee\u6539\u65e5\u671f')),
+                ('createDateTime', models.DateTimeField(auto_now_add=True, verbose_name='\u521b\u5efa\u65e5\u671f')),
+                ('phone', models.CharField(max_length=255, verbose_name='\u624b\u673a', blank=True)),
+                ('passWord', models.CharField(max_length=255, verbose_name='\u5bc6\u7801', blank=True)),
+                ('cart', models.CharField(default=b'[]', max_length=255, verbose_name='\u8d2d\u7269\u8f66')),
                 ('applet', models.ForeignKey(to='userManagement.Applet')),
             ],
         ),
@@ -33,9 +41,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('standard', models.CharField(max_length=255, verbose_name='\u89c4\u683c', blank=True)),
-                ('name', models.CharField(max_length=255, verbose_name='\u5546\u54c1\u540d')),
+                ('goodsName', models.CharField(max_length=255, verbose_name='\u5546\u54c1\u540d')),
                 ('isAlive', models.BooleanField(verbose_name='\u662f\u5426\u4e0a\u67b6\u9500\u552e')),
-                ('SalesVolume', models.IntegerField(default=0, verbose_name='\u9500\u91cf')),
+                ('salesVolume', models.IntegerField(default=0, verbose_name='\u9500\u91cf')),
                 ('price', models.FloatField(verbose_name='\u4ef7\u683c')),
                 ('thumbnail', models.ImageField(upload_to=b'images', max_length=255, verbose_name='\u7f29\u7565\u56fe', blank=True)),
                 ('productDetails', models.ImageField(upload_to=b'images', max_length=255, verbose_name='\u5546\u54c1\u8be6\u60c5', blank=True)),
@@ -43,7 +51,7 @@ class Migration(migrations.Migration):
                 ('modDateTime', models.DateTimeField(auto_now=True, verbose_name='\u6700\u540e\u4fee\u6539\u65e5\u671f')),
                 ('createDateTime', models.DateTimeField(auto_now_add=True, verbose_name='\u521b\u5efa\u65e5\u671f')),
                 ('freeShipping', models.BooleanField(default=False, verbose_name='\u90ae\u8d39')),
-                ('Postage', models.FloatField(default=0.0, verbose_name='\u90ae\u8d39')),
+                ('postage', models.FloatField(default=0.0, verbose_name='\u90ae\u8d39')),
                 ('applet', models.ForeignKey(to='userManagement.Applet')),
             ],
         ),
@@ -52,7 +60,14 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('image', models.ImageField(max_length=255, upload_to=b'images')),
-                ('goodsImageForeignKey', models.ForeignKey(to='userManagement.Goods')),
+                ('goodsImageForeignKey', models.ForeignKey(blank=True, to='userManagement.Goods', null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='GoodsType',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('goodsType', models.CharField(max_length=255, verbose_name='\u5206\u7c7b')),
             ],
         ),
         migrations.CreateModel(
@@ -72,6 +87,7 @@ class Migration(migrations.Migration):
             name='Order',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('deliveryName', models.CharField(max_length=255, verbose_name='\u6536\u83b7\u4eba\u540d\u79f0', blank=True)),
                 ('deliveryPosition', models.CharField(max_length=255, verbose_name='\u9001\u8d27\u4f4d\u7f6e', blank=True)),
                 ('modDateTime', models.DateTimeField(auto_now=True, verbose_name='\u6700\u540e\u4fee\u6539\u65e5\u671f')),
                 ('createDateTime', models.DateTimeField(auto_now_add=True, verbose_name='\u521b\u5efa\u65e5\u671f')),
@@ -86,11 +102,16 @@ class Migration(migrations.Migration):
             name='OrderGoods',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('prderGoodsnumber', models.IntegerField(verbose_name='\u6570\u91cf')),
+                ('orderGoodsnumber', models.IntegerField(verbose_name='\u6570\u91cf')),
                 ('totalPrice', models.FloatField(default=0.0, verbose_name='\u603b\u4ef7')),
                 ('goods', models.ForeignKey(to='userManagement.Goods')),
                 ('orderForeignKey', models.ForeignKey(blank=True, to='userManagement.Order', null=True)),
             ],
+        ),
+        migrations.AddField(
+            model_name='goods',
+            name='goodsType',
+            field=models.ForeignKey(blank=True, to='userManagement.GoodsType', null=True),
         ),
         migrations.AddField(
             model_name='applet',

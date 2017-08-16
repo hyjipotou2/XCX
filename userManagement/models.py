@@ -4,6 +4,10 @@ from django.db.models import signals
 from django.dispatch import receiver
 # Create your models here.
 from django.contrib.auth.models import User
+import requests
+
+
+
 
 class GoodsType(models.Model):
     goodsType=models.CharField(u'分类',max_length=255)
@@ -68,13 +72,30 @@ class ManageUser(models.Model):
 
 class Applet(models.Model):
     name=models.CharField(u'名称', max_length=255)
+    appletId=models.CharField(u"ID",max_length=255,blank=True)
+    secret=models.CharField(u"secret",max_length=255,blank=True)
+    modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
+    createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
+
     appletManageUser=models.ForeignKey(ManageUser)
 
 
 class AppletUser(models.Model):
     applet=models.ForeignKey(Applet)
-    phone=models.CharField(u"手机",max_length=255)
-    passWord=models.CharField(u"密码",max_length=255)
+    openid=models.CharField(max_length=255)
+    session=models.CharField(max_length=255,blank=True)
+    xcxSession=models.CharField(max_length=255,blank=True)
+    modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
+    createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
+    phone=models.CharField(u"手机",max_length=255,blank=True)
+    passWord=models.CharField(u"密码",max_length=255,blank=True)
+    gender =models.CharField(max_length=255,blank=True)
+    city = models.CharField(max_length=255,blank=True)
+    province = models.CharField(max_length=255,blank=True)
+    country =models.CharField(max_length=255,blank=True)
+    avatarUrl = models.CharField(max_length=255,blank=True)
+    nickname=models.CharField(max_length=255,blank=True)
+    cart=models.CharField(u'购物车',max_length=255,default="[]")
     def __unicode__(self):
         return self.phone
 
@@ -85,7 +106,7 @@ class AppletUser(models.Model):
 
 class OrderGoods(models.Model):
     goods = models.ForeignKey(Goods)
-    prderGoodsnumber = models.IntegerField(u'数量')
+    orderGoodsnumber = models.IntegerField(u'数量')
     orderForeignKey = models.ForeignKey('Order', null=True, blank=True)
     totalPrice = models.FloatField(u'总价', default=0.0)
 
@@ -95,6 +116,7 @@ class OrderGoods(models.Model):
 
 
 class Order(models.Model):
+    deliveryName=models.CharField(u'收获人名称',max_length=255,blank=True)
     deliveryPosition = models.CharField(u'送货位置', max_length=255,blank=True)
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)

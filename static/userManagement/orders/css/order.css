@@ -11,3 +11,37 @@ table tbody tr td {
 .order-list-head>div{
     text-align: center;
 }
+.order-body div{
+    text-align: center;
+}
+.order-head {
+    background-color: #E3F5F9;
+    padding: 10px;
+    text-align: left;
+    font-size: 12px;
+}
+.order-head > div {
+    display: inline-block;
+    margin-right: 30px;
+    margin-left: 14px;
+}
+.order-body {
+    background-color: #f8f8f8;
+    padding: 10px;
+    margin-right: 0;
+}
+.order-list-body li {
+    margin-top: 10px;
+}
+.order-list-head {
+    background-color: #f8f8f8;
+    margin: 10px 1px 10px 1px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #eee;
+}
+.page-content-header {
+    position: relative;
+    padding: 5px 0;
+    background: #f4f9fd;
+}

@@ -174,7 +174,7 @@ function setGoodsData(data, tbody, page) {
             "<td class='td'>" + i.salesVolume + "</td>" +
             "<td class='td'>" + i.stock + "</td>" +
 
-            '<td><span class="edit-data" title="编辑"><img src="http://1251027630.cdn.myqcloud.com/1251027630/zhichi_frontend/static/webapp/images/edit.png"></span><span class="delete-data"><img src="http://1251027630.cdn.myqcloud.com/1251027630/zhichi_frontend/static/webapp/images/delete.png"></span></td>' +
+            '<td><span class="edit-data" title="编辑"><img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp/images/edit.png"></span><span class="delete-data"><img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp/images/delete.png"></span></td>' +
 
 
             '<td><input type="checkbox" class="if-show"' + checked + '></td>' + +"</tr>"
