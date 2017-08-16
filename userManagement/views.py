@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
 from django.template.context import RequestContext
-from django_filters.rest_framework import DjangoFilterBackend
 
 from userManagement.models import *
 from XCX import settings

@@ -40,7 +40,7 @@ INSTALLED_APPS = (
 'bootstrap_toolkit',
 'userManagement',
 'rest_framework',
-    'django_filters'
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,6 +113,3 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 STATIC_URL = '/static/'
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
-}
