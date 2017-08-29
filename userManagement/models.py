@@ -1,12 +1,8 @@
 #coding:utf-8
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver
-# Create your models here.
-from django.contrib.auth.models import User
-import requests
-
-
 
 
 class GoodsType(models.Model):
@@ -26,7 +22,7 @@ class Goods(models.Model):
     goodsName = models.CharField(u'商品名', max_length=255)
 
 
-    isAlive=models.BooleanField(u'是否上架销售')
+    isAlive=models.BooleanField(u'是否上架销售',default=True)
     salesVolume=models.IntegerField(u"销量",default=0)
     price = models.FloatField(u'价格')
     thumbnail = models.ImageField(u'缩略图', upload_to='images', max_length=255, blank=True)
@@ -142,6 +138,16 @@ class GoodsImage(models.Model):
         return self.image.name
 
 
-
+class Address(models.Model):
+    appletUserForeign = models.ForeignKey(AppletUser)
+    name=models.CharField(u"姓名",max_length=255)
+    detailAddress=models.CharField(u"地址",max_length=255,blank=True)
+    contact=models.CharField(u'电话',max_length=255,blank=True)
+    province=models.CharField(u'省',max_length=255,blank=True)
+    city=models.CharField(u'市',max_length=255,blank=True)
+    district=models.CharField(u'区',max_length=255,blank=True)
+    countyName=models.CharField(u'国',max_length=255,blank=True)
+    def __unicode__(self):
+        return self.name
 
 

@@ -1,6 +1,6 @@
-from userManagement import views
 from rest_framework import routers
-from django.contrib.auth.views import login, logout
+
+from userManagement import views
 
 """XCX URL Configuration
 
@@ -24,6 +24,7 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'goods',views.GoodsViewSet)
 router.register(r'order',views.OrderViewSet)
+router.register(r'address',views.AddressViewSet)
 urlpatterns = [
 url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
     url(r'^api/', include(router.urls)),

@@ -1,9 +1,13 @@
 #coding=utf-8
-from django.contrib.auth.models import User, Group
-from models import *
-from rest_framework import serializers
 
-from django.shortcuts import render_to_response,render,get_object_or_404
+from django.shortcuts import get_object_or_404
+from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
+
+from models import *
+import views
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
@@ -76,7 +80,9 @@ class OrderGoodsSerializers(serializers.ModelSerializer):
 class AppletUserSerializers(serializers.ModelSerializer):
     class Meta:
         model=AppletUser
-        exclude=('passWord','openid',"session")
+        fields = "__all__"
+
+
 class OrderSerializers(serializers.ModelSerializer):
 
 
@@ -88,8 +94,12 @@ class OrderSerializers(serializers.ModelSerializer):
     def create(self, validated_data):
         totalPrice = 0.0
         goodsOrders = self.initial_data.get("orderGoods",None)
-        order = Order.objects.create(**validated_data)
+        session=self.initial_data.get("session_key",None)
+        appletUser = views.get_appleUser_or_permissionDenied(session)
+        order = Order.objects.create(userForeignKey=appletUser,**validated_data)
 
+        if goodsOrders is None or len(goodsOrders)<=0:
+            raise ValidationError(u"商品列表不能为空")
         for goodsOrder in goodsOrders:
             goods = get_object_or_404(Goods, id=goodsOrder["id"])
             orderGoodstotalPrice = goods.price * goodsOrder["num"]
@@ -108,6 +118,17 @@ class OrderSerializers(serializers.ModelSerializer):
     class Meta:
         depth=1
         model=Order
-        fields="__all__"
+        exclude=("userForeignKey",)
 
 
+class AddressSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+
+        session_key=self.initial_data.get("session_key",None)
+        appletUser=views.get_or_permissionDenied(AppletUser,xcxSession=session_key)
+        address = Address.objects.create(appletUserForeign=appletUser,**validated_data)
+        return address
+    class Meta:
+        model = Address
+
+        exclude =("appletUserForeign",)
