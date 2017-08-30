@@ -7,6 +7,6 @@ install:
 after_success:
  - export SSHPASS=$DEPLOY_PASS
  - sshpass -e ssh  -o stricthostkeychecking=no root@121.42.35.75 "cd /var/www/XCX && git pull &&touch reload"
-env:
+ env:
   global:
     secure: Iu+dJM5AsxgRScim0EzfnYxoukUglld6iY8DA6g/jmI/e0slIgWscmN6sZ9dpGVCCHE+edy71Bj3RBCNN6DejjsjkcfDYT3w4BFBf6Rg772aHX0LdVUTLyG6rv0/ATvAz+3dCmVH0buBSV3jmJoZnCnxy/jW/AZf8N3OoKPocphzaK/SfoMoupLqbBKabTQicRVY1oOk6ULKoSP5xFJUZ7gDt39ThJju+4zp4oq+VtSMV/YMfQf290OjmAfQhYNNnUB4pC+QwwNs3//RiG9JCMpKK6fhKHNZMpLPhDm2plZJOWu8IaMuX53z5lyumqUT0IG0s8TZycPcMUJ495srNy8TSfXH52G2twetLWm7v0P4jTSMBzxabxqeDKGQstPnZ+Xi5t17VMNYEdq8uLK6yW0WF/7maAG6iLjmC0orWnkB+s2w9mc7u1ZqQ5avjavaVx9Dd0u4vkktN0QbKD3XfCa00Do7kWy5dVTMvH8g93yGg187UAs7XAqB0f+jWL3uCm+Qp9ptvmaaMCerSMNNd/moz717AhD/gGOjwig4t0U/WErha5idNk0mVNfGVYdo9YkRA7wrYK+BmVe624/p4E1SozTp2Y9ZV7Q7j9Xm9ag/pz1GlIcMktxcJbj/mJwpfIZ2DwPEucMdWIldLNczTwkkh2MPTVb4L59PY9CYqxg=
