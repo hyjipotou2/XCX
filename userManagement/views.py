@@ -77,7 +77,6 @@ class GoodsViewSet(viewsets.ModelViewSet):
 def goods(request):
     if request.method == 'GET':
         id = request.GET.get("id", 1)
-
         goods_set = get_object_or_404(Applet, id=id).goods_set
 
         List = json.dumps(serializers.GoodsSerializer(goods_set, many=True, context={'request': request}).data)
