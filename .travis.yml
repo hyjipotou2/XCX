@@ -6,10 +6,10 @@ install:
 - sudo apt-get install sshpass -y
 after_success:
 - export SSHPASS=$DEPLOY_PASSWORD
-- echo $DEPLOY_PASSWORD
+
 - sshpass -e ssh  -o stricthostkeychecking=no root@121.42.35.75 "cd /var/www/XCX &&
   git pull &&touch reload"
-- echo $SSHPASS
+
 env:
   global:
     secure: APcz/dbL2vy2cwPCjYTMKDd86An1b3v8OYtvEfBJTJ7qynDjSGj3eHSdLtrdL61ioM8bkbUqMSBU3NcgHzJ4KA5dDCcxMiGuMR4JOB1NWTKYF3KIWn8nfYwDJ110QO63oyvB+cdReij2cKrm1FJfxtUnB+G3VueNI39o4oC4UFGsLtP2nneF0WqSdyOpjAYLBcyilB4v/tN1YHuKK16HPm8MUI5S2jZQ41QwRD2IKCkNXLH+V3GKyrXIFqKyN2O81aOMm5fvQuIUyNCTUeUtg+oJ2QoZoSaePagjwar1g5Hn55ywBGd6u7ZNyKe1+1xjQDJ1aIbEWQiFV/G90szmciLBDkRQXxQ/UZNoJOdz9qrOZTtLvBqjkdrZikltKU0yLNreDXQqrc+H5/eIo7ZTNUXv6qAv78+AqCQMKCsd32W3Pf7lq+pmoWpvBklGBWLQ9wCWJa3GQD1QWaZJ7bCdL/J41IsmqOez6CIeutZN8E67EgpTgod8EZRFG7vEmcrhQt+FjsM3QbQECGNRl7f5vfuJb9FSKZxQz8X4Lo4aIKvOSat2V+iOfiNe3YkPA0OY5EeNrZnlTPGTYj8zqszvU29OWSFSTmIF1KrxcaCJ9d6qpO0hhFiVpcYz68izFxUdvCdaiiSPsL1OMEaW3FybxUmHktylNwDqPZHE/QbZUYw=
