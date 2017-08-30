@@ -2,11 +2,13 @@ language: python
 python: '2.7'
 script: python manage.py test
 install:
- - pip install -r requirements.txt
- - sudo apt-get install sshpass -y
+- pip install -r requirements.txt
+- sudo apt-get install sshpass -y
 after_success:
- - export SSHPASS=$DEPLOY_PASS
- - sshpass -e ssh  -o stricthostkeychecking=no root@121.42.35.75 "cd /var/www/XCX && git pull &&touch reload"
+- export SSHPASS=$DEPLOY_PASSWORD
+- sshpass -e ssh  -o stricthostkeychecking=no root@121.42.35.75 "cd /var/www/XCX &&
+  git pull &&touch reload"
+- echo SSHPASS
 env:
   global:
-    secure: Iu+dJM5AsxgRScim0EzfnYxoukUglld6iY8DA6g/jmI/e0slIgWscmN6sZ9dpGVCCHE+edy71Bj3RBCNN6DejjsjkcfDYT3w4BFBf6Rg772aHX0LdVUTLyG6rv0/ATvAz+3dCmVH0buBSV3jmJoZnCnxy/jW/AZf8N3OoKPocphzaK/SfoMoupLqbBKabTQicRVY1oOk6ULKoSP5xFJUZ7gDt39ThJju+4zp4oq+VtSMV/YMfQf290OjmAfQhYNNnUB4pC+QwwNs3//RiG9JCMpKK6fhKHNZMpLPhDm2plZJOWu8IaMuX53z5lyumqUT0IG0s8TZycPcMUJ495srNy8TSfXH52G2twetLWm7v0P4jTSMBzxabxqeDKGQstPnZ+Xi5t17VMNYEdq8uLK6yW0WF/7maAG6iLjmC0orWnkB+s2w9mc7u1ZqQ5avjavaVx9Dd0u4vkktN0QbKD3XfCa00Do7kWy5dVTMvH8g93yGg187UAs7XAqB0f+jWL3uCm+Qp9ptvmaaMCerSMNNd/moz717AhD/gGOjwig4t0U/WErha5idNk0mVNfGVYdo9YkRA7wrYK+BmVe624/p4E1SozTp2Y9ZV7Q7j9Xm9ag/pz1GlIcMktxcJbj/mJwpfIZ2DwPEucMdWIldLNczTwkkh2MPTVb4L59PY9CYqxg=
+    secure: LnJL6lJl+OWmvL0GS8/E0Wzlsj+ToAHeaDylvlIVO3RdCXiLx9zsJgcsgMsYNb782cUHcX+HsTYLbC4D/iSnjPRrmMiZ+JKNlicWeNoDBivhU27nmq/fKJnRXAOn/26EsmMEj9+hcOWIEapVNte4sAh13sI/AXLYeFLh0k5lVv2UPfqDKzBXsmc2cH7JmnOdSGKChQpNK/ub+QiqYb2hjQD5IRlv1lNZY8bTl+1m7U2wKg2kWEkaYDd8xiOqtOp93OkO6S0B2wmhQSc3Mj1n8DgHDr8sXWH1x6lwrqlk1h5PxriKBjFRxFiLhFttoY6538JBC9oy+x363j3l0aS1kNocC4b5aLL6uYmxmHELhn18NbIWZqLqrdSyUuQwXCt9qDQaQ6F6hQ9EGnjIc6Pm7mYF4ymDeuPz7hhXQ5aCRgMo4YyRgukGelTjqe6GaxZAGVmlZNiXALSD/nQGZzqH/smB9cg8BlhBzSgp+YR9vUqVfSkfXa3FQmvnlJH8nwMJ5B2XDot824uhesMrx4tgZg4qQuc2JlvCzviRKDAB65iTQyo3yLKAqF4lx2lDS+gw39FGnN3Nx9WioKe73J9y2+D3lAAAtajg+RS5oSFN8DycX7Ok+ds2zyg5DoCIo//GulB8PCF2z3SrTqWjHcjCNJNb5Ca/1nKGSEY0s7Hm4Pk=
