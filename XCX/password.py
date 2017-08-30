@@ -1,2 +1,0 @@
-USER='root'
-PASSWORD='xhgm19111010'
