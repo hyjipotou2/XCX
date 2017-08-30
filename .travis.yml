@@ -2,8 +2,8 @@ language: python
 python: '2.7'
 script: python manage.py test
 install: 
- -pip install -r requirements.txt
- -apt-get install sshpass
+ - pip install -r requirements.txt
+ - sudo apt-get install sshpass -y
 after_success:
  - export SSHPASS=$DEPLOY_PASS
  - sshpass -e ssh  -o stricthostkeychecking=no root@121.42.35.75 "cd /var/www/XCX && git pull &&touch reload"
