@@ -1,4 +1,11 @@
 language: python
-python: "2.7"
+python: '2.7'
 script: python manage.py test
 install: pip install -r requirements.txt
+before_install:
+- openssl aes-256-cbc -K $encrypted_c3c88e7c7235_key -iv $encrypted_c3c88e7c7235_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - echo -e "Host 121.42.35.75\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+after_success:
+- ssh root@121.42.35.75 -p xhgm19111010 'cd /var/www/XCX && git pull && touch reload'
