@@ -6,6 +6,7 @@ install:
  - sudo apt-get install sshpass -y
 after_success:
  - export SSHPASS=$DEPLOY_PASS
+ - echo sshpass -e ssh  -o stricthostkeychecking=no root@121.42.35.75 "cd /var/www/XCX && git pull &&touch reload"
  - sshpass -e ssh  -o stricthostkeychecking=no root@121.42.35.75 "cd /var/www/XCX && git pull &&touch reload"
 env:
   global:
