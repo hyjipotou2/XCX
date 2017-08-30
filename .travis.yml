@@ -8,4 +8,4 @@ after_success:
 - export SSHPASS=$DEPLOY_PASSWORD
 - sshpass -e ssh  -o stricthostkeychecking=no root@121.42.35.75 "cd /var/www/XCX &&
   git pull &&touch reload"
-- echo SSHPASS
+- echo $SSHPASS
