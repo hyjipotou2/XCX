@@ -8,7 +8,7 @@ from django.test import RequestFactory
 from django.test import TestCase
 from rest_framework.test import APIRequestFactory, APIClient
 
-from XCX.settings import STATICFILES_DIRS
+from XCX.settings import STATIC_ROOT
 from models import *
 import views
 class XcxApiTests(TestCase):
@@ -41,7 +41,7 @@ class XcxApiTests(TestCase):
         self.assertEqual(responsePost.status_code, 200)
         self.assertEqual(responsePostDelete.status_code, 200)
     def test_imageup(self):
-        imageuri=STATICFILES_DIRS[0]+"/userManagement/public/images/1.jpg"
+        imageuri=STATIC_ROOT+"/userManagement/public/images/1.jpg"
         with open(imageuri) as fp:
             responsePost = self.client.post(reverse(views.imageUpApi),
                                             {"image1":fp,"image2":fp})
