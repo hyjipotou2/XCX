@@ -41,7 +41,7 @@ class XcxApiTests(TestCase):
         self.assertEqual(responsePost.status_code, 200)
         self.assertEqual(responsePostDelete.status_code, 200)
     def test_imageup(self):
-        imageuri=STATIC_ROOT+"/userManagement/public/images/1.jpg"
+        imageuri=STATIC_ROOT+"/userManagement/public/images/topLogo.jpg"
         with open(imageuri) as fp:
             responsePost = self.client.post(reverse(views.imageUpApi),
                                             {"image1":fp,"image2":fp})

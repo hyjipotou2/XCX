@@ -38,21 +38,18 @@ def login(request):
         form = LoginForm()
         return render_to_response('userManagement/login.html', RequestContext(request, {'form': form, }))
     else:
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = request.POST.get('username', '')
-            password = request.POST.get('password', '')
-            user = auth.authenticate(username=username, password=password)
-            if user is not None and user.is_active:
-                auth.login(request, user)
 
-                return HttpResponseRedirect(request.GET.get("next_to", '/goods/'))
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        user = auth.authenticate(username=username, password=password)
+        if user is not None and user.is_active:
+            auth.login(request, user)
 
-            else:
-                return render_to_response('userManagement/login.html',
-                                          RequestContext(request, {'form': form, 'password_is_wrong': True}))
+            return HttpResponseRedirect(request.GET.get("next_to", '/index/'))
+
         else:
-            return render_to_response('userManagement/login.html', RequestContext(request, {'form': form, }))
+            return render_to_response('userManagement/login.html',
+                                      RequestContext(request, {'password_is_wrong': True}))
 
 
 class GoodsViewSet(viewsets.ModelViewSet):
@@ -85,6 +82,17 @@ def goods(request):
         # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
 
         return render(request, 'userManagement/goodsManagement.html', {'List': List, "AddGoodsForm": AddGoodsForm})
+
+@login_required
+def index(request):
+    if request.method == 'GET':
+        xcxSet=request.user.manageuser.applet_set.all()
+
+
+        # FormSet = inlineformset_factory(Goods, GoodsImage, extra=2,fields="__all__",fk_name="goodsImageForeignKey")
+        # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
+
+        return render(request, 'userManagement/index.html')
 
 
 @login_required

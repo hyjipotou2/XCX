@@ -1,0 +1,62 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+ul,li{
+	list-style: none;
+}
+a{color: #000;text-decoration: none;}
+.news-footer-wrap{
+	background: #2b2b2b;
+	height: 200px;
+}
+.news-footer{
+	width: 1300px;
+	margin: 0 auto;
+	height: 200px;
+}
+.news-footer .company-logo{
+	float: left;
+	width: 320px;
+	height: 143px;
+	padding-top: 57px;
+}
+.news-footer .company-info{
+	float: left;
+	width: 660px;
+	height: 154px;
+	padding-top: 46px;
+	text-align: center;
+	line-height: 36px;
+	font-size: 16px;
+	color: #828282;
+}
+.news-footer .company-info a{
+	color: #828282;
+}
+.footer-nav-list .nav-item-border{
+	border-left: 2px solid #7d7d7d;
+	height: 12px;
+	display: inline-block;
+}
+.footer-nav-list a{
+	padding: 0 10px;
+}
+.news-footer .company-ewma{
+	float: left;
+	width: 320px;
+	height: 170px;
+	padding-top: 30px;
+	position: relative;
+}
+.news-footer .company-ewma img{
+	float: right;
+}
+.news-footer .company-ewma span{
+	position: absolute;
+  font-size: 16px;
+  color: #828282;
+  top: 160px;
+  right: -3px;
+}

@@ -28,10 +28,13 @@ router.register(r'order',views.OrderViewSet)
 router.register(r'address',views.AddressViewSet)
 urlpatterns = [
 url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
+url(r'^static/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.STATIC_ROOT}),
+
     url(r'^api/', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', views.login),
     url(r'^goods/', views.goods),
+    url(r'^index/', views.index),
     url(r'^orders/', views.orders),
     url(r'^imageupapi/', views.imageUpApi),
     url(r'^getform/',views.getForm),
