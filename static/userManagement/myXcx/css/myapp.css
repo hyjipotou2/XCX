@@ -211,14 +211,14 @@ body {
   height: 208px;
 }
 .app-container .info .info-top .tool-show {
-  display: none;
+
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 4px;
+  width: 30%;
   height: 208px;
-  background-color: rgba(0,0,0,0.6);
-  z-index: 9;
+
+
 }
 .btn_bar {
   position: absolute;
@@ -873,4 +873,16 @@ body {
   border-left: 10px solid #fff;
   border-bottom: 5px solid transparent;
   filter:drop-shadow(1px 1px 1px #656474)
+}
+.nav_item
+{
+  height: 30px;
+  line-height: 30px;
+  border:1px solid white;
+  border-radius: 3px;
+  margin: 5px;
+  display: block;
+  cursor:pointer;
+  color: white;
+
 }

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)http://www.jisuapp.cn/index.php?r=pc/Webapp/ShowAppPackPage&type=1&_app_id=hCe7c66xGc -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>即速应用 | 小程序打包</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	
+	<meta name="keywords" content="活动汇,微活动,咫尺活动,微页,咫尺网络,微杂志,微邀请函,喜帖,电子邀请函,H5应用,APP,微场景,场景应用,微场景制作,场景应用制作">
+	<link rel="shortcut icon" href="http://cdn.jisuapp.cn/zhichi_frontend/static/common/images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../static/userManagement/public/css/common.css">
+	<link rel="stylesheet" href="../../static/userManagement/setting/css/jquery.Jcrop.min.css">
+	<link rel="stylesheet" href="../../static/userManagement/setting/css/webuploader.css">
+	<!-- <link rel="stylesheet" href="../../../zhichi_frontend/static/webapp/css/small_program_pack.css"> -->
+	<style>
+		html {
+			font-size: 62.5%;
+			margin: 0;
+		}
+		body {
+			margin: 0;
+			font-family: Arial, '微软雅黑', 'Microsoft Yahei';
+			font-size: 1.4rem;
+			font-weight: 300;
+			background: #f6f6f6;
+			color: #4d4e53;
+		}
+		.pack-wrap {
+			width: 1000px;
+			height: 680px;
+			margin:  10px auto;
+			background: #fff;
+		}
+		.pack-title {
+			padding: 45px 0;
+			font-size: 24px;
+			text-align: center;
+			color: #59607b;
+		}
+		.pack-status {
+			position: relative;
+			width: 620px;
+			height: 60px;
+			margin: 0 auto;
+			color: #59607b;
+		}
+		.pack-status-1,
+		.pack-status-2,
+		.pack-status-3 {
+			position: absolute;
+			top: 0;
+			font-size: 14px;
+			text-align: center;
+		}
+		.pack-status-1 > span,
+		.pack-status-2 > span,
+		.pack-status-3 > span {
+			display: inline-block;
+			margin-bottom: 5px;
+		}
+		.pack-status-1 {
+			left: 10px;
+		}
+		.pack-status-2 {
+			width: 70px;
+			margin-left: -35px;
+			left: 50%;
+		}
+		.pack-status-3 {
+			right: 0;
+		}
+		.status-rectangle {
+		    position: absolute;
+		    top: 33px;
+		    right: 35px;
+		    width: 270px;
+		    height: 8px;
+		    background-color: #e4e4e4;
+		}
+		.status-circule {
+			position: absolute;
+    		left: 50%;
+    		margin-left: -13px;
+		    width: 26px;
+		    height: 26px;
+		    border-radius: 50%;
+		    background: #d6d6d6;
+		    z-index: 1;
+		}
+		.pack-status .active {
+			color: #f8b551;
+		}
+		.pack-status .active .status-circule {
+			background: #f8b551;
+		}
+		.pack-status .active .status-rectangle {
+			background: #f8b551;
+		}
+		.pack-content {
+			width: 620px;
+		    margin: 0 auto;
+		}
+		.pack-content-1 {
+			width: 540px;
+			margin: 40px auto 0;
+		}
+		.pack-content-1 .text-tip {
+			margin-bottom: 30px;
+			color: #b2b2b4;
+			font-size: 12px;
+			text-align: center;
+		}
+		.pack-content-1 .text-tip span {
+			color: #000;
+		}
+		.pack-content-2 {
+			display: none;
+			width: 350px;
+			margin: 40px auto 0;
+		}
+		.pack-content-2 .text-tip {
+			margin-bottom: 30px;
+			color: #59607b;
+			font-size: 14px;
+			text-align: center;
+		}
+		.pack-content-2 .loading {
+			width: 200px;
+		    height: 200px;
+		    margin: 0 auto;
+		    /*background: #f8f8f8;*/
+		}
+		.pack-content-2 .loading img {
+		    display: block;
+		    width: 100px;
+		    height: auto;
+		    padding: 80px 0 0 50px;
+		}
+		.pack-content-2 .loading p {
+			margin-top: 40px;
+		    color: #59607b;
+			font-size: 14px;
+			text-align: center;
+		}
+		.pack-content-3 {
+			display: none;
+			width: 350px;
+			margin: 40px auto 0;
+		}
+		.pack-content-3 .text-tip {
+			margin-bottom: 10px;
+			color: rgb(68,229,144);
+			font-size: 14px;
+			text-align: center;
+		}
+		.pack-content-3 .qrcode {
+			display: block;
+			margin: 0 auto;
+			width: 150px;
+			height: 150px;
+		}
+		.pack-content-3 .text-row {
+			margin-top: 10px;
+			margin-bottom: 30px;
+			text-align: center;
+			font-size: 14px;
+		}
+		.pack-content-3 .download {
+			/*display: block;
+				margin: 0 auto;
+				margin-top: 20px;
+				text-align: center;
+				color: #FDB400;
+				font-size: 16px;*/
+			margin-right: 10px;
+		}
+		.item {
+			margin-bottom: 20px;
+		}
+		.item .upload-logo {
+			display: inline-block;
+		}
+		.item .upload-logo > p {
+			margin: 10px 0 0;
+			color: #d6d6d6;
+		}
+		.item .upload-img {
+			position: relative;
+			width: 90px;
+			height: 90px;
+			cursor: pointer;
+		}
+		.item .upload-img img {
+			display: inline-block;
+			width: 90px;
+			height: 90px;
+			border: 1px solid #e4e4e4;
+		}
+		.item .upload-img p {
+			position: absolute;
+		    bottom: 0;
+		    left: 1px;
+		    margin: 0;
+		    width: 100%;
+		    line-height: 24px;
+		    height: 24px;
+		    color: #fff;
+		    text-align: center;
+		    background: rgba(10,10,10,0.5);
+		}
+		.item input,
+		select[name="small_program-type"] {
+			width: 220px;
+			height: 25px;
+			padding: 0 5px;
+			margin-top: 2.5px;
+			line-height: 25px;
+			border: 1px solid #e4e4e4;
+			border-radius: 3px;
+			font-size: 14px;
+		}
+		.item-text {
+			position: relative;
+			display: inline-block;
+			width: 180px;
+			height: 32px;
+			line-height: 32px;
+			font-size: 14px;
+			text-align: left;
+			vertical-align: top;
+		}
+		.item-text::after {
+			content: '*';
+			position: absolute;
+			top: 3px;
+			left: -10px;
+			color: red;
+		}
+		.btn-panel {
+			margin-top: 30px;
+			text-align: center;
+		}
+		.btn-panel .next-btn {
+			display: inline-block;
+			width: 110px;
+			height: 34px;
+			line-height: 34px;
+			background-color: #FDB400;
+			border-radius: 5px;
+			font-size: 14px;
+			color: #fff;
+			cursor: pointer;
+		}
+		.goto-domain-config {
+				display: inline-block;
+				margin: 9px 0;
+				height: 12px;
+				font-size: 12px;
+				line-height: 12px;
+				cursor: pointer;
+		}
+		.no-register-text {
+			margin-top: 40px;
+			font-size: 14px;
+			text-align: center;
+		}
+		.no-register-text a {
+			color: #FDB400;
+			cursor: pointer;
+			margin-left: 10px;
+		}
+		.question-mark {
+				display: inline-block;
+				position: relative;
+				top: -1px;
+				width: 14px;
+				height: 14px;
+				border: 1px solid #4d4e53;
+				margin-left: 5px;
+				line-height: 14px;
+				border-radius: 50%;
+				font-size: 12px;
+				text-align: center;
+				vertical-align: middle;
+				cursor: pointer;
+		}
+		.icon-qq {
+			display: inline-block;
+			width: 18px;
+			height: 18px;
+			background: url(http://cdn.jisuapp.cn/zhichi_frontend/static/webapp/images/icon-qq.svg);
+			background-size: 100%;
+			vertical-align: middle;
+			margin-left: 5px;
+		}
+		#goto-qq-group {
+			color: #119cfd;
+			cursor: pointer;
+		}
+		#pc3-tip-text {
+			font-size: 12px;
+			color: #666;
+		}
+		.goto-domain-config .config-tip {
+			color: #fa5151;
+		}
+		.item-text-type{
+			position: relative;
+			display: inline-block;
+			width: 180px;
+			height: 32px;
+			line-height: 32px;
+			font-size: 14px;
+			text-align: left;
+			vertical-align: top;
+		}
+		.item p{
+			text-align: center;
+			padding: 15px 0px 0px;
+			color: #AAA;
+			font-size: 12px;
+			padding-left: 136px;
+		}
+		#goto-wechat-audit{
+			display: none;
+		}
+	</style>
+	<script src="../../static/userManagement/setting/js/jquery-2.1.4.min.js"></script>
+<style type="text/css">#videoTapeCtxM{display:block;width:auto;text-align:center;border-top:1px solid grey;box-shadow:5px 5px 5px #555;background-color:white;}#videoTapeCtxM a{border:1px solid grey;border-top:none;display:block;color:blue;width:auto;cursor:hand;margin:0px;padding:0px 3px 0px 3px;}#videoTapeCtxM a:hover{background-color:#AAA;}</style></head>
+<body class="webapp" a="" chromeextension:video-tape="true">
+	    
+	<link rel="stylesheet" href="../../static/userManagement/public/css/nav.css">
+	<script type="text/javascript" src="../../static/userManagement/setting/js/cookie.js"></script>
+	
+		<div class="nav-wrap">
+			<div class="nav-logo nav-logo-img">
+				<h1>微信小程序</h1>
+			</div>
+			<ul class="top-menu">
+				<li class="menu-one">
+					<a href="http://www.jisuapp.cn/index.php?r=pc/Index/homePage" target="_blank" rel="nofollow">微页</a>
+				</li>
+				<li class="menu-one">
+					<a href="http://www.jisuapp.cn/index.php?r=oauth2/forumAuthOrize&amp;referer=http%3a%2f%2fbbs.zhichiwangluo.com%2fforum.php%3fgid%3d83" target="_blank" rel="nofollow">开发论坛</a>
+				</li>
+				<li class="menu-one">
+					<a class="serve" href="http://www.jisuapp.cn/index.php?r=pc/Webapp/ShowAppPackPage&amp;type=1&amp;_app_id=hCe7c66xGc#">服务<span class="serve_ico"></span></a>					
+					<ul style="width: 100%">
+						<li class="menu-two"><a href="http://www.jisuapp.cn/intro/" target="_blank">功能介绍</a></li>
+						<!--li class="menu-two"><a href="/index.php?r=pc/index/agency&is_app=1" target="_blank">成为代理</a></li-->
+						<li class="menu-two"><a href="http://www.jisuapp.cn/agents/" target="_blank">成为代理</a></li>
+						<li class="menu-two check_login" data="/index.php?r=pc/IndexNew/WechatSubmit">服务支持</li>
+						<!--li class="menu-two"><a href="/index.php?r=pc/Index/MediaReport" target="_blank">媒体报导</a></li-->
+						<li class="menu-two"><a href="http://www.jisuapp.cn/news/" target="_blank">媒体报导</a></li>
+						<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/AgentSearch/showAgentList&amp;is_app=1" target="_blank">代理查询</a></li>
+						<li class="menu-two"><a href="http://www.jisuapp.cn/match/" target="_blank">设计大赛</a></li>
+					</ul>
+				</li>
+				<li class="menu-one">
+					<!--a href="/index.php?r=pc/Index/appcase" target="_blank">案例</a-->
+					<a href="http://www.jisuapp.cn/cases/" target="_blank">案例</a>
+					<ul style="display: none;">
+						<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/Index/appcase" target="_blank">webApp</a></li>
+					</ul>
+				</li>
+				<li class="menu-one">
+					<!--a href="/index.php?r=pc/Webapp/exclusive" target='_blank'>官方定制</a-->
+					<a href="http://www.jisuapp.cn/exclusive/" target="_blank">官方定制</a>
+				</li>
+				<li class="menu-one check_login" data="/index.php?r=pc/Webapp/myapp">
+					应用管理
+				</li>
+				<li class="menu-one">
+					<!-- <a href="/index.php?r=pc/Webapp/AppTpl">小程序制作</a> -->
+					<a href="http://www.jisuapp.cn/make/">小程序制作</a>
+				</li>
+				<li class="menu-one">
+					<a href="http://www.jisuapp.cn/index.php?r=pc/index/AppHome">首页</a>
+				</li>
+			</ul>
+			<div class="nav-login">
+									<div class="menu-one nav-center">
+						<a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1"><img class="nav-img" src="../../static/userManagement/setting/img/57cac3e61af0856611d5eb756e4b4eb5_o.jpg">
+													杨子玉
+																								</a>
+						<ul is_designer="-1">
+							<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">个人中心</a></li>
+							
+														<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/agent/showindex&amp;is_app=1">代理管理</a></li>
+														<!-- <li class="menu-two"><a href="/index.php?r=pc/Designer/ShowApply&is_app=1">设计师</a></li> -->
+														<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=Login/logout&amp;is_app=1" onclick="setCookie(&#39;pc_pw&#39;,&#39;&#39;, 24);">退出</a></li>
+						</ul>
+					</div>
+					<!-- <div class="massage"><a href="/index.php?r=pc/IndexNew/showInform&is_app=1" title="通知中心"><img id="massageImg" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc/index/img/message_enter.png" onmousemove="enter(this)" onmouseout="leave(this)" alt=""></a>
+					</div> -->
+							</div>
+		</div>
+
+<script type="text/javascript">
+	var is_login = $('body').attr('is_login');
+	$('.check_login').click(function(){
+		var href = $(this).attr('data');
+		if (is_login == 0) {
+			//$('.lr-mask').show('slow');
+			$(".nav-lglogin").trigger("click");
+		}else{
+			window.location.href = href;
+		}
+	});
+	
+</script>
+
+	<script src="../../static/userManagement/setting/js/nav.js"></script>
+	<link rel="stylesheet" href="../../static/userManagement/setting/css/app_login_reg.css">
+
+	<script type="text/javascript" src="../../static/userManagement/setting/js/jquery.md5.js"></script>
+	<script type="text/javascript" src="../../static/userManagement/setting/js/cookie.js"></script>
+	<script type="text/javascript" src="../../static/userManagement/setting/js/app_login_reg.js"></script>
+	<div class="lr-mask" id="login_wrap" user_token="9e6cf0db558721b169b6942c46fa8542">
+		<div class="lr" id="login-panel">
+			<div class="lr-left">
+				<div class="reg-wrap">
+					<img src="../../static/userManagement/setting/img/toreg.png">
+					<div class="to-reg">注册</div>
+				</div>
+				<div class="login-wrap">
+					<img src="../../static/userManagement/setting/img/tologin.png">
+					<div class="to-login">登录</div>
+				</div>
+			</div><div class="lr-right">
+				<div class="login-info-wrap" style="padding-top: 34px;">
+					<div class="title">登录<span>(个人/企业账号)</span></div>
+					<input style="margin-top: 60px;" id="login-username" type="text" placeholder="邮箱/手机号" class="long-input">
+					<input style="margin-top: 20px;" id="login-password" type="password" placeholder="请输入6-20位密码" class="long-input">
+					<div class="Rempw"><input type="checkbox" id="remberPw" checked=""><label for="remberPw">记住密码</label><span class="forgetPw">忘记密码</span></div>
+					<div id="login-btn" class="login-btn">登录</div>
+					<p style="padding: 10px 0;">还没有账号？<span class="reg-now">免费注册</span></p>
+					<div style="margin-top: 10px;"><span class="cross-Line"></span><span style="margin: 0 10px;font-size: 16px;">第三方账号登录</span><span class="cross-Line"></span></div>
+					<div class="img-qq">
+						<a class="login-wx" href="javascript:;"><img title="微信" src="../../static/userManagement/setting/img/wx.png"></a>
+						<a class="login_qq" href="http://www.zhichiwangluo.com/index.php?r=Login/qLogin"><img title="QQ" src="../../static/userManagement/setting/img/qq.png"></a>
+						<!-- <a class="login_wd" href="/index.php?r=Login/wdlogin"><img title="微店" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc2/index/images/wd.png"></a>
+						<a class="login_qq" href="/index.php?r=login/WMLogin"><img title="微盟" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc2/index/images/weimob.png"></a> -->
+						<a class="login_qq" href="http://www.jisuapp.cn/index.php?r=login/WBLogin"><img title="微博" src="../../static/userManagement/setting/img/wb.png"></a>
+					</div>
+				</div>
+				<div class="wx-login">
+					<div class="title">微信登录</div>
+					<img class="code-img" src="http://www.jisuapp.cn/index.php?r=pc/Webapp/ShowAppPackPage&amp;type=1&amp;_app_id=hCe7c66xGc">
+					<p style="text-align: center;"><span class="cross-Line"></span>微信扫码登录<span class="cross-Line"></span></p>
+					<p class="account-login" style="margin-top: 30px;text-align: center;color: #3091f2;cursor: pointer;">返回账号登陆</p>
+				</div>
+				<div class="reg-info-wrap">
+					<div class="reg-type"><span class="active">个人注册</span><span>企业注册</span></div>
+					<div class="person-reg">
+						<img class="code-img" src="http://www.jisuapp.cn/index.php?r=pc/Webapp/ShowAppPackPage&amp;type=1&amp;_app_id=hCe7c66xGc" alt="">
+						<p style="text-align: center;"><span style="width:55px;" class="cross-Line"></span><span style="margin: 0 5px;">微信扫码注册</span><span style="width:55px;" class="cross-Line"></span></p>
+						
+						<div class="perfit-info">
+							<input style="margin-top: 60px;" type="text" id="perfit-phone" placeholder="手机号" class="long-input">
+							<input type="password" placeholder="密码" id="perfit-pw1" class="long-input">
+							<input type="password" placeholder="确认密码" id="perfit-pw2" class="long-input">
+							<input type="text" placeholder="验证码" id="perfit-pic-code" style="width:70px;vertical-align: top;margin-top: 12px;"><div class="getPicCode" style="display: inline-block;margin-top: 7px;"><img class="pic-code" src="../../static/userManagement/setting/img/index.php"><span>看不清，换一张</span></div>
+							<input type="text" placeholder="短信验证码" id="perfit-code" style="width: 177px"><span class="getPerfitCode">获取验证码</span>
+							<input type="text" placeholder="邀请码，可不填" id="perfit-invite" class="long-input">
+							<div class="login-btn" id="perfit-info">完善</div>
+						</div>
+					</div>
+					<div class="company-reg">
+						<input type="text" id="reg-fullname" placeholder="企业名称" class="long-input"><!-- <label class="necessary">*</label> -->
+						<input type="text" id="reg-phone" placeholder="手机号" class="long-input"><img style="width: 20px;vertical-align: middle;margin-left: 10px;" id="reg-phone-exist"><!-- <label class="necessary">*</label> -->
+						<input type="password" class="reg-password long-input" placeholder="密码"><!-- <label class="necessary">*</label> -->
+						<input type="password" class="reg-conpassword long-input" placeholder="确认密码"><!-- <label class="necessary">*</label> -->
+						<input type="text" placeholder="验证码" id="pic-code" style="width:70px;vertical-align: top;margin-top: 12px;"><div class="getPicCode" style="display: inline-block;margin-top: 7px;"><img class="pic-code" src="../../static/userManagement/setting/img/index.php"><span>看不清，换一张</span></div>
+						<input type="text" id="phone-code" placeholder="短信验证码" class="short-input" style="margin-top: 15px;width: 146px;"><span class="getPhoneCode">获取验证码</span>
+						<select id="reg-company-type">
+							<option value="政府机构">政府机构</option>
+							<option value="微信">微信</option>
+							<option value="传媒广告">传媒广告</option>
+							<option value="电商">电商</option>
+							<option value="餐饮">餐饮</option>
+							<option value="家具">家具</option>
+							<option value="IT">IT</option>
+							<option value="教育">教育</option>
+							<option value="房地产">房地产</option>
+							<option value="服装">服装</option>
+							<option value="婚庆">婚庆</option>
+							<option value="娱乐">娱乐</option>
+							<option value="旅游">旅游</option>
+							<option value="汽车">汽车</option>
+							<option value="美容">美容</option>
+							<option value="摄影">摄影</option>
+							<option value="公益">公益</option>
+							<option value="金融">金融</option>
+						</select>
+						<div><select id="province-select"><option disabled="" selected="">选择省</option></select><select id="city-select"><option disabled="" selected="">选择市</option></select><select id="area-select"><option disabled="" selected="">选择区</option></select></div>
+						<div style="margin-top: 15px;"><input id="inviteCode" class="short-input" placeholder="邀请码，可不填"><span class="reg-btn">注册</span></div>
+					</div>
+				</div>
+				<div class="findBackPw">
+					<div class="title"><span class="findtype" type="phone">手机找回</span><span class="changetype">通过邮箱找回</span></div>
+					<div class="findByPhone">
+						<div><input style="margin-top: 60px;width: 265px;" id="by-phone" type="text" class="account long-input" placeholder="注册手机号"><img style="width: 20px;vertical-align: middle;margin-left: 10px;" id="find-phone-exist"></div>
+						<input type="text" id="phone-code-input" class="short-input" placeholder="短信验证码"><span class="get-Phone-Code">获取验证码</span>
+						<input type="password" id="PnewPw1" class="long-input" placeholder="新密码">
+						<input type="password" id="PnewPw2" class="long-input" placeholder="确认密码">
+						<input type="text" placeholder="验证码" id="findby-pic-code" style="width:70px;vertical-align: top;margin-top: 12px;"><div class="getPicCode" style="display: inline-block;margin-top: 7px;"><img class="pic-code" src="../../static/userManagement/setting/img/index.php"><span>看不清，换一张</span></div>
+						<div style="margin-top: 25px;" id="findByPhoneReset" class="login-btn">确认</div>
+						<p class="login-now" style="margin-top: 30px;text-align: center;color: #3091f2;cursor: pointer;">我想起来了，去登录 &gt;</p>
+					</div>
+					<div class="findByEmail" style="display: none;">
+						<input style="margin-top: 60px;" id="by-email" type="text" class="account long-input" placeholder="绑定邮箱">
+						<input type="text" id="email-code-input" class="short-input" placeholder="邮箱验证码"><span class="getCode">获取验证码</span>
+						<input type="password" id="EnewPw1" class="long-input" placeholder="新密码">
+						<input type="password" id="EnewPw2" class="long-input" placeholder="确认密码">
+						<div style="margin-top: 25px;" id="findByEmailReset" class="login-btn">确认</div>
+						<p class="login-now" style="margin-top: 30px;text-align: center;color: #3091f2;cursor: pointer;">我想起来了，去登录 &gt;</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    	<div class="pack-wrap">
+		<div class="pack-title">打包小程序</div>
+		<div class="pack-status">
+			<div class="pack-status-1 active">
+				<span>小程序信息</span>
+				<div class="status-circule"></div>
+			</div>
+			<div class="pack-status-2">
+				<span>打包中</span>
+				<div class="status-rectangle"></div>
+				<div class="status-circule"></div>
+			</div>
+			<div class="pack-status-3">
+				<span>打包完成</span>
+				<div class="status-rectangle"></div>
+				<div class="status-circule"></div>
+			</div>
+		</div>
+		<div class="pack-content">
+			<!-- <div class="pack-content-1">
+				<div class="text-tip">您的用户将看到以下应用信息，确保他们都填写正确</div>
+				<div class="item">
+					<label class="item-text">小程序Logo</label>
+					<div class="upload-logo">
+						<div class="upload-img">
+							<img id="sp-logo" src="" alt="">
+							<p>更换logo</p>
+						</div>
+						<p class="upload-text">建议尺寸: 192x192</p>
+					</div>
+				</div>
+				<div class="item">
+					<label class="item-text">小程序名称</label>
+					<input id="sp-name" type="text">
+				</div>
+				<div class="item">
+					<label class="item-text">小程序简介</label>
+					<input id="sp-desc" type="text">
+				</div>
+				<div class="btn-panel">
+					<div id="to-status2-btn" class="next-btn">打包</div>
+				</div>
+			</div> -->
+			<div class="pack-content-1">
+				<div class="text-tip">请在 <span>“微信公众平台 - 小程序 - 设置 - 开发设置”</span> ，填写以下信息</div>
+				<div class="item">
+					<label class="item-text">图片LOGO</label>
+					<input type="file" id="file"  onchange="filechange(event)">
+
+
+					<span class="question-mark">?</span>
+				</div>
+               <div class="item">
+					<label class="item-text">小程序名称</label>
+					<input id="sp-app-id" type="text">
+					<span class="question-mark">?</span>
+				</div>
+                <div class="item">
+					<label class="item-text">AppID(小程序ID)</label>
+					<input id="sp-app-id" type="text">
+					<span class="question-mark">?</span>
+				</div>
+				<div class="item">
+					<label class="item-text">AppSecret(小程序密钥)</label>
+					<input id="sp-app-secret" type="text">
+					<span class="question-mark">?</span>
+				</div>
+				<div class="item">
+					<label class="item-text">服务器配置</label>
+					<div class="goto-domain-config">
+						<span style="color: #AAA;">小程序域名配置</span>
+						<span class="config-tip">（ 请配置为https://xcx.yibangbang99.com ）</span>
+						<span class="question-mark">?</span>
+					</div>
+				</div>
+
+
+				<div class="no-register-text">我还没有注册微信小程序<a href="https://mp.weixin.qq.com/" target="_blank">去注册&gt;&gt;&gt;</a></div>
+				<div class="btn-panel">
+					<div id="to-status2-btn" class="next-btn">打包</div>
+				</div>
+			</div>
+			<div class="pack-content-2">
+				<div class="text-tip">打包中...</div>
+				<div class="loading">
+					<img src="../../static/userManagement/setting/img/sp-loading.gif">
+					<p>正在生成中...</p>
+				</div>
+			</div>
+			<div class="pack-content-3">
+				<div class="text-tip"><span></span>打包成功</div>
+				<img class="qrcode" src="http://www.jisuapp.cn/index.php?r=pc/Webapp/ShowAppPackPage&amp;type=1&amp;_app_id=hCe7c66xGc" alt="">
+				<p id="pc3-tip-text" class="text-row"></p>
+				<p class="text-row">最新功能体验、高端用户交流，请加<a id="goto-qq-group" href="https://jq.qq.com/?_wv=1027&amp;k=41dET5G"><span class="icon-qq"></span>QQ群</a></p>
+				<div class="btn-panel">
+					<a class="next-btn download">点击下载</a>
+					<div id="goto-wechat-audit" class="next-btn">去微信审核</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	// 提示框 $.tooltip
+	(function($){
+		// 提示框组件 author: anle
+		$.tooltip = function(ops){
+		    var ops = $.extend({
+		            html    : '',
+		            delay   : 2000,
+		            callback: null
+		        }, ops);
+		    var obj = null,
+		        text= ops.html,
+		        html= '<div id="tool_tip" style="position:fixed; max-width:300px; z-index:9999999; top:0;'
+		            + ' left:0; opacity:1; padding:40px 60px; background:rgba(0,0,0,0.7);'
+		            + 'color:#fff; border-radius:8px; text-align:center; font-size:18px; font-weight:bold">'
+		            + text +'</div>';
+
+		    $('#tool_tip').remove();
+		    obj = $(html).appendTo('body');
+		    obj.css({'-webkit-transform': 'translate(-50%, -50%)', transform : 'translate(-50%, -50%)',
+		             left:'50%', top:'50%'});
+
+		    setTimeout(function(){
+		        obj.animate({
+		            opacity : 0
+		        }, 500, 'linear', function(){
+		            obj.remove();
+		            $.isFunction(ops.callback) && ops.callback();
+		        });
+		    }, ops.delay);
+		};
+		var defaultSettings = {
+		  width            : 300,
+		  height           : 'auto',
+		  minHeight        : 150,
+		  title            : '',
+		  shadow           : true,
+		  close            : null,
+		  btnText          : '确定',
+		  submit           : null
+		};
+		$.fn.zDialog = function(options) {
+		  return this.each(function() {
+		    var _dialog = $(this).find('.zhichi-content'),
+		        settings = $.extend({}, defaultSettings, options),
+		        marginLeft = -settings.width/2,
+		        marginTop = -settings.height/2,
+		        titleObject = $('<header class="zhichi-title"><span class="zhichi-title-content">'+settings.title+'</span></header>'),
+		        closeObject = $('<span class="zhichi-close"></span>');
+
+		    (!settings.shadow) && _dialog.parent().css('background-color','transparent');
+
+		    _dialog.css({
+		      'width'      : settings.width,
+		      'height'     : settings.height,
+		      'min-height' : settings.minHeight,
+		      'margin-left': marginLeft,
+		      'margin-top' : marginTop
+		    });
+
+		    closeObject.appendTo(titleObject);
+		    titleObject.prependTo(_dialog);
+		    if( $.isFunction(settings.submit) ){
+		      $('<span class="zhichi-submit-btn">'+settings.btnText+'</span>').appendTo(_dialog).click(function(event) {
+		        settings.submit();
+		      });
+		    }
+		    closeObject.click(function(event) {
+		      $.isFunction(settings.close) && settings.close();
+		      _dialog.parent().hide('slow');
+		    });
+		  });
+		}
+	})(jQuery);
+
+	$(function(){
+        
+		initialize();
+		
+		// 初始化
+		function initialize() {
+			spInfo();
+			bindEvents();
+		}
+		// 加载小程序信息
+		function spInfo(){
+			$.ajax({
+				url: '/index.php?r=pc/webAppMgr/GetXcxSecret',
+				data: {
+					app_id: GetQueryString('_app_id'),
+				},
+				type: 'get',
+				dataType: 'json',
+				success: function(data){
+					if(data.status !== 0) { 
+						alertTip(data.data); 
+						return; 
+					}
+					var info = data.data;
+						$('#sp-app-id').val(info.xcx_app_id);
+						$('#sp-app-secret').val(info.xcx_app_secret);
+						getCategoryList(info.category_id);		
+				}
+			});
+		}
+		//获取分类
+		function getCategoryList(category_id){
+        $.ajax({
+          url:"/index.php?r=pc/AppRecommend/GetCategoryList",
+          type:"GET",
+          data:{},
+          dataType:"JSON",
+          success:function(data){
+            if(data.status != 0){
+              alertTip(data.data);
+              return;
+            }
+            var str = '<option value="-1">请选择</option>';
+            $.each(data.data,function(index,ele){
+              str+='<option value="'+ele.id+'">'+ele.name+'</option>'
+            });
+            var tempselect = $("select[name='small_program-type']");
+            tempselect.html("").html(str);
+            if(category_id != 0 && category_id != undefined){
+					tempselect.val(category_id);
+				}else{
+					tempselect.val(-1);
+				}
+          },
+          error:function(data){
+            alertTip(data.data);
+          }
+        });
+      }
+		// 绑定事件
+		function bindEvents(){
+			// 打包按钮
+			$("#to-status2-btn").on("click", function() {
+				// 设置 小程序信息
+				var $btn = $('#to-status2-btn'),
+					spAppId = $('#sp-app-id').val().trim(),
+					spAppSecret = $('#sp-app-secret').val().trim(),
+					category_id = $("select[name='small_program-type']").val();
+
+				if($btn.hasClass('js-requesting')){
+					return;
+				}
+				if(!spAppId){
+					alertTip('请输入AppID(小程序ID)');
+					$('#sp-app-id').focus();
+					return;
+				}
+				if(!spAppSecret){
+					alertTip('请输入AppSecret(小程序密钥)');
+					$('#sp-app-secret').focus();
+					return;
+				};
+				if (!1) {
+					if (confirm('是否到会员套餐页面购买套餐')) {
+						window.open('/index.php?r=pc/Index/appVipPacket')
+					}
+						// $('#payment-cover-win').show();
+						// $('.payment-t input[data-ty="0"]').trigger('click');
+						// $('#person-vip-version li').eq(0).trigger('click');
+						// return;
+				}
+				var param = {
+					app_id: GetQueryString('_app_id'),
+					xcx_app_id: spAppId,
+					xcx_app_secret: spAppSecret
+				};
+				if(category_id == -1){
+						param.category_id = "";
+				}else{
+					param.category_id = category_id;
+				}
+
+				$btn.addClass('js-requesting');
+				$.ajax({
+					url: '/index.php?r=pc/webAppMgr/RemarkXcxSecret',
+					type: 'get',
+					data: param,
+					dataType: 'json',
+					success: function(data){
+						if (data.status !== 0) {
+							alertTip(data.data); 
+							return; 
+						}
+						// alertTip('提交小程序信息成功', 1000);
+						$btn.removeClass('js-requesting');
+						$btn = null;
+					  	$(".pack-status-2").addClass("active");
+						$(".pack-content-2").show().siblings().hide();
+						spPack();// 进行打包 等待后台返回 下载地址
+					},
+					error: function(data){
+					  $btn.removeClass('js-requesting');
+					  $btn = null;
+					}
+				});
+
+			});
+			// 抢先体验按钮
+			$("#goto-experience-btn").on('click', function(){
+				var dialogContent = '<div style="text-align:center;margin: 35px 0;font-size: 14px;color: #000;">您没有填写完成小程序信息，会导致部分功能体验受限</div><div style="text-align:center;margin:20px 0 6px;"><div id="goto-write-btn" style="display:inline-block;width:80px;font-size:14px;height:30px;line-height:30px;background:#FDB400;color:#fff;border-radius:3px;margin-right: 10px;cursor:pointer;">返回填写</div><div id="goto-pack-btn" style="display:inline-block;width:80px;font-size:14px;height:30px;line-height:30px;background:#FDB400;color:#fff;border-radius:3px;cursor:pointer;">直接打包</div></div>';
+				app_tip_modal_dialog('提示信息', dialogContent);
+				$('.dialog-mask').on('click', '#goto-write-btn', function(){
+					$('.dialog-close-btn').trigger('click');
+				}).on('click', '#goto-pack-btn', function(){
+					$('.dialog-close-btn').trigger('click');
+				  	$(".pack-status-2").addClass("active");
+					$(".pack-content-2").show().siblings().hide();
+					spPack();// 进行打包 等待后台返回 下载地址
+				});
+			})
+			$('.question-mark, .goto-domain-config').on('click', function(){
+				window.open('http://bbs.zhichiwangluo.com/forum.php?mod=viewthread&tid=11605');
+			});
+			$('#goto-wechat-audit').on('click', function(){
+				window.open('https://mp.weixin.qq.com/');
+			})
+		}
+		// 进行小程序打包
+		function spPack(){
+			$.ajax({
+				url: '/index.php?r=pc/AppData/detail',
+		        data: {
+		          app_id: GetQueryString('_app_id'),
+					},
+					type: 'get',
+					dataType: 'json',
+					success: function(data){
+						if(data.status !== 0) { 
+							alertTip(data.data); 
+							return; 
+						}
+						var info = data.data;
+						$('.pack-content-3 #pc3-tip-text').text('扫描可预览');
+						$('.pack-content-3 .qrcode').attr('src', info.qrcode);
+					}
+			});
+			// 获取下载链接
+			$.ajax({
+				url: '/index.php?r=WebappPack/pack',
+				data: {
+					app_id: GetQueryString('_app_id'),
+				},
+				type: 'get',
+				dataType: 'json',
+				success: function(data){
+					if(data.status !== 0){ 
+						alertTip(data.data);
+						$('.pack-content-2 .text-tip').css("font-size", "24px").text("打包失败，请重新刷新页面");
+						$('.pack-content-2 .loading').css("display", "none");
+						return; 
+					}
+					$('.pack-content-3 .download').attr('href', data.data);
+		          	$(".pack-status-3").addClass("active");
+					$(".pack-content-3").show().siblings().hide();
+				},
+				error: function(data){
+					$('.pack-content-2 .text-tip').css("font-size", "24px").text("打包失败，请重新刷新页面");
+					$('.pack-content-2 .loading').css("display", "none");
+				}
+			});
+		}
+
+		/* 引用函数 */
+    	// 获取地址栏对应参数
+    	function GetQueryString(name, string){
+		  var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		  var r = (string || window.location.search.substr(1)).match(reg);
+		  if(r!=null){
+		    return  unescape(r[2]);
+		  }
+		  return '';
+		}
+		
+		// app 提示信息 模态框 函数
+		function app_tip_modal_dialog(title, content) {
+			var dialogHtml = '<style>.dialog-mask{display:block;position:fixed;z-index: 99999;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);}.dialog-panel{width: 450px;height: 210px;background-color: #fff;border-radius: 5px;color: #78809f;position: absolute;left: 50%;top: 50%;margin-left: -225px;margin-top: -110px;overflow: hidden;}.dialog-title{background-color:#F0F0F0;line-height:50px;padding-left: 20px;font-size: 18px;color: #000;}.dialog-close-btn{display: inline-block;width: 35px;height: 35px;text-align: center;line-height: 35px;cursor: pointer;position: absolute;top: 7px;right: 7px;font-size: 35px;}.dialog-content{padding: 0 50px;}</style>'
+				+'<div class="dialog-mask"><div class="dialog-panel"><div class="dialog-title">'+title+'<span class="dialog-close-btn">×</span></div><div class="dialog-content">'+content+'</div></div></div>';
+
+			dialogHtml = $(dialogHtml);
+
+			$(dialogHtml).find('.dialog-close-btn').click(function(event){
+				$(dialogHtml).remove();
+			});
+			$('body').append(dialogHtml);
+		}
+	});
+	// 提示弹窗函数
+		function alertTip(html, callback, delay) {
+				$.tooltip({
+						'html'    : html || '',
+						'delay'   : $.isNumeric(callback) ? callback : (delay ? delay : 1500),
+						'callback': $.isFunction(callback) ? callback : null
+				});
+		}
+</script>
+
+</body></html>

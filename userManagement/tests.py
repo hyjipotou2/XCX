@@ -8,7 +8,7 @@ from django.test import RequestFactory
 from django.test import TestCase
 from rest_framework.test import APIRequestFactory, APIClient
 
-from XCX.settings import STATIC_ROOT
+from XCX.settings import STATICFILES_DIRS, BASE_DIR
 from models import *
 import views
 class XcxApiTests(TestCase):
@@ -18,7 +18,7 @@ class XcxApiTests(TestCase):
         cls.xcxSession=views.getSession()
         cls.user=User.objects.create_user(username="test",password="test")
         #cls.manageUser=ManageUser.objects.create(user=cls.user,name="name")
-        cls.applet = Applet.objects.create(appletManageUser=cls.user.manageuser)
+        cls.applet = Applet.objects.create(appletManageUser=cls.user.manageuser,name="d",description="dssfs")
         cls.appletUser = AppletUser.objects.create(openid="sdasd", applet=cls.applet,xcxSession=cls.xcxSession)
         cls.goods=Goods.objects.create(applet=cls.applet,goodsName="test",price=11.6)
         cls.goods2 = Goods.objects.create(applet=cls.applet, goodsName="test", price=11.6)
@@ -41,7 +41,7 @@ class XcxApiTests(TestCase):
         self.assertEqual(responsePost.status_code, 200)
         self.assertEqual(responsePostDelete.status_code, 200)
     def test_imageup(self):
-        imageuri=STATIC_ROOT+"/userManagement/public/images/topLogo.jpg"
+        imageuri=STATICFILES_DIRS[0]+"/userManagement/public/images/topLogo.jpg"
         with open(imageuri) as fp:
             responsePost = self.client.post(reverse(views.imageUpApi),
                                             {"image1":fp,"image2":fp})
@@ -70,6 +70,13 @@ class XcxApiTests(TestCase):
         responsePost3 = self.APIclint.post("/api/order/", json.dumps({"session_key": self.xcxSession,"orderGoods":[]
                                                         }),format='json')
         self.assertEqual(responsePost3.status_code, 400)
+    def test_Zip(self):
+        import getShopApp
+        import os
+        shop=getShopApp.xcx(self.applet.id,self.applet.name,self.applet.description,"uuuuuuu")
+        shop.getZipUrl()
+        self.assertTrue( os.path.exists(os.path.join(BASE_DIR,"media","app",str(self.applet.id)+".zip")))
+
 
 
 

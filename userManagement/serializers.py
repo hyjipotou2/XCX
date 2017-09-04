@@ -132,3 +132,9 @@ class AddressSerializer(serializers.ModelSerializer):
         model = Address
 
         exclude =("appletUserForeign",)
+class AppletSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Applet
+
+        exclude =("appletId","secret","appletManageUser")

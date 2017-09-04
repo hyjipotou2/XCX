@@ -1,0 +1,160 @@
+<view class="app">
+<template name="zcBreakline">
+  <view class="element breakline" style="{{data.style}}"></view>
+</template>
+<view class="ele-container">
+  <template is="zcBreakline" data="{{data:breakline1}}"></template>
+</view>
+<template name="zcClassify">
+  <view class="element classify {{ 'classify-mode'+data.customFeature.mode }}" style="{{data.style}}">
+    <scroll-view scroll-x="true" data-color="red" data-index="0" data-event-params="{{data.eventParams}}" catchtap="{{data.eventHandler}}">
+      <block wx:for="{{data.content}}" wx:for-index="idx" wx:for-item="itemName">
+        <block wx:if="{{idx==data.customFeature.selected}}">
+          <block wx:if="{{data.customFeature.mode==1}}">
+            <view class="classify-item selected" data-event-params="{{itemName.eventParams}}" catchtap="{{itemName.eventHandler}}" style="color:{{data.customFeature.selectedColor}}"><text>{{itemName.text}}</text><i class="underline" style="border-color:{{data.customFeature.selectedColor}}"></i></view>
+          </block>
+          <block wx:else>
+            <view class="classify-item selected" data-event-params="{{itemName.eventParams}}" catchtap="{{itemName.eventHandler}}" style="color:{{data.customFeature.selectedColor}}"><text style="background-color:{{data.customFeature.selectedColor}}">{{itemName.text}}</text></view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class="classify-item" data-event-params="{{itemName.eventParams}}" catchtap="{{itemName.eventHandler}}"><text>{{itemName.text}}</text></view>
+        </block>
+      </block>
+    </scroll-view>
+  </view>
+</template>
+<view class="ele-container">
+  <template is="zcBreakline" data="{{data:breakline3}}"></template>
+</view>
+<template name="zcGoodsList4">
+  <scroll-view class="element goods-list scroll-ele"
+               data-param="{{data.param}}"
+               data-compid="goods_list4"
+               data-type="goods-list"
+               style='{{data.style}}'
+               scroll-y="true"
+               lower-threshold="10"
+               data-curpage="{{data.curpage}}"
+               bindscrolltolower="goodsScrollFunc">
+    <view class="js-list-container {{data.customFeature.mode == 2? 'third-goods-list': ''}}" data-list-index="0">
+      <view class="goods-list-item background-ele router js-to-detail {{data.customFeature.mode == 1? 'double-goods-list': ''}}"
+            wx:for="{{data.goods_data}}" data-id="{{item.id}}" style="{{data.list_style}}" data-contact="{{data.customFeature.ifUseContact}}" data-goods-type="1"
+            catchtap="turnToGoodsDetail"
+            >
+        <view class="inner-content">
+          <image class="list-img" src="{{item.thumbnail}}" style="{{data.img_style}}" mode="aspectFit"></image>
+          <view class="title-container" style="width: {{data.title_width.width}};">
+            <view class="title">{{item.goodsName}}</view>
+            <view style="width: {{data.title_width.width}}">
+              <text class="price">¥ {{item.price}}</text>
+              <text wx:if="{{ !data.customFeature.isHideSales && (!data.customFeature.isShoppingCart || data.customFeature.mode != 1 || data.customFeature.form != 'goods')}}" class="sales">销量：{{item.salesVolume}}</text>
+              <label wx:if="{{data.customFeature.isShoppingCart && (data.customFeature.form == 'goods'||data.customFeature.form == 'tostore')}}" class="addShoppingcart ico-moon icon-addshoppingcart" data-id="{{item.id}}" catchtap="showAddShoppingcart"></label>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+<view class="ele-container">
+  <template is="zcGoodsList4" data="{{data:goods_list4}}"></template>
+</view>
+<view id="payDialog" class="page-dialog-wrap page-addshoppingcart-dialog" hidden="{{ !addShoppingCartShow }}">
+  <view class="page-bottom-dialog">
+    <view class="page-bottom-content">
+      <view class="pay-close-dialog page-dialog-close" bindtap="hiddeAddShoppingcart">×</view>
+      <view class="dialog-block-item">
+        <view class="thumb">
+          <image class="pay-goods-cover" src="{{ goodsInfo.cover }}"></image>
+        </view>
+        <view class="pay-goods-baseinfo">
+          <view class="pay-goods-title ellipsis">{{ goodsInfo.title }}</view>
+          <view class="pay-goods-price clearfix">
+            <view class="pay-current-price">¥ {{ selectGoodsModelInfo.price }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="dialog-block-item" hidden="{{ !goodsInfo.model_items.length }}">
+        <view class="pay-goods-models" scroll-y="true">
+          <view wx:for="{{ goodsInfo.model }}" wx:for-item="model" wx:for-index="modelIndex">
+            <text style="vertical-align:middle;">{{ model.name }}：</text>
+            <label class="pills-list">
+              <label wx:for="{{ model.subModelName }}"
+                     wx:for-item="name"
+                     data-model-index="{{ modelIndex }}"
+                     data-submodel-index="{{ index }}"
+                     class="subModel {{ selectGoodsModelInfo.models[modelIndex] == model.subModelId[index] ? 'select' : '' }}"
+                     data-submodel-id="{{ model.subModelId[index] }}" bindtap="selectGoodsSubModel">{{ name }}</label>
+            </label>
+          </view>
+        </view>
+      </view>
+      <view class="dialog-block-item">
+        <view class="clearfix">
+          <text style="display:inline-block;vertical-align:sub;">数量：</text>
+          <view class="pull-right">
+            <label wx:if="{{ goodsInfo.goods_type != 3 }}">库存 <text class="pay-goods-stock">{{ selectGoodsModelInfo.stock }}</text></label>
+            <view class="quantity">
+              <label class="minus {{ selectGoodsModelInfo.buyCount <= 1 ? 'disabled' : '' }}"></label>
+              <input class="pay-buy-count" type="text" class="txt" value="{{ selectGoodsModelInfo.buyCount }}" bindinput="inputBuyCount" />
+              <label class="plus {{ selectGoodsModelInfo.buyCount >= selectGoodsModelInfo.stock ? 'disabled' : '' }}"></label>
+              <view class="response-area response-area-minus" bindtap="clickGoodsMinusButton"></view>
+              <view class="response-area response-area-plus" bindtap="clickGoodsPlusButton"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="pay-add-to-shoppingcart" bindtap="sureAddToShoppingCart">加入购物车</view>
+    </view>
+  </view>
+</view>
+<view id="tostorePayDialog" class="page-dialog-wrap page-addshoppingcart-dialog" hidden="{{ !addTostoreShoppingCartShow }}" bindtap="hiddeAddShoppingcart">
+  <view class="page-bottom-dialog" catchtap="stopPropagation">
+    <view class="page-bottom-content">
+      <view class="pay-close-dialog page-dialog-close" bindtap="hiddeAddShoppingcart">×</view>
+      <view class="dialog-block-item">
+        <view class="pay-goods-baseinfo">
+          <view class="pay-goods-title ellipsis">{{ goodsInfo.title }}</view>
+        </view>
+      </view>
+      <view class="dialog-block-item" hidden="{{ !goodsInfo.model_items.length }}">
+        <view class="pay-goods-models" scroll-y="true">
+          <view wx:for="{{ goodsInfo.model }}" wx:for-item="model" wx:for-index="modelIndex">
+            <text style="vertical-align:middle;float: left;margin-top: 9px;">{{ model.name }}：</text>
+            <label class="pills-list">
+              <label wx:for="{{ model.subModelName }}"
+                     wx:for-item="name"
+                     data-model-index="{{ modelIndex }}"
+                     data-submodel-index="{{ index }}"
+                     class="subModel {{ selectGoodsModelInfo.models[modelIndex] == model.subModelId[index] ? 'select' : '' }}"
+                     data-submodel-id="{{ model.subModelId[index] }}" bindtap="selectGoodsSubModel">{{ name }}</label>
+            </label>
+          </view>
+        </view>
+      </view>
+      <view class="dialog-block-item">
+          <view class="pay-goods-price clearfix">
+            <view class="pay-current-price pull-left" style="font-size: 16px;">¥ {{ selectGoodsModelInfo.price }}</view>
+          <view class="pull-right">
+            <label wx:if="{{ goodsInfo.goods_type != 3 }}">库存 <text class="pay-goods-stock">{{ selectGoodsModelInfo.stock }}</text></label>
+            <view class="quantity">
+              <label class="minus {{ selectGoodsModelInfo.buyCount <= 0 ? 'disabled' : '' }}"></label>
+              <text class="pay-buy-count" class="txt" style="margin:auto 10px;">{{ selectGoodsModelInfo.buyTostoreCount }}</text>
+              <label class="plus {{ selectGoodsModelInfo.buyCount >= selectGoodsModelInfo.stock ? 'disabled' : '' }}"></label>
+              <view class="response-area response-area-minus" bindtap="clickTostoreMinusButton"></view>
+              <view class="response-area response-area-plus" bindtap="clickTostorePlusButton"></view>
+            </view>
+          </view>
+        </view>
+        <view style="text-align:left;font-size:12px;margin-top:10px;padding-left:30px;color:#ffcc01;">{{businesssTimeString}}</view>
+      </view>
+      <view class="toStore-bottom-nav">
+    <view class="bottom-nav-detail" catchtap="goToShoppingCart"><label class="icon-shoppingcart ico-moon"><label wx:if="{{ cartGoodsNum != 0 }}" class="toStore-cart-tip">{{ cartGoodsNum }}</label></label><text style="color: #ff7223;">¥ {{ cartGoodsTotalPrice }}</text></view>
+    <view class="bottom-nav-ready {{ cartGoodsNum == 0 ? 'disabled': '' }} {{tostoreTypeFlag ? '' :'disabled'}}" bindtap="getValidateTostore">选好了</view>
+  </view>
+    </view>
+  </view>
+</view>
+
+</view>

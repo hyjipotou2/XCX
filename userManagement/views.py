@@ -82,27 +82,41 @@ def goods(request):
         # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
 
         return render(request, 'userManagement/goodsManagement.html', {'List': List, "AddGoodsForm": AddGoodsForm})
-
 @login_required
-def index(request):
+def setting(request):
     if request.method == 'GET':
-        xcxSet=request.user.manageuser.applet_set.all()
+        id = request.GET.get("id", 1)
+        applet = get_object_or_404(Applet, id=id)
 
+        List = json.dumps(serializers.AppletSerializer(applet, many=False, context={'request': request}).data)
 
         # FormSet = inlineformset_factory(Goods, GoodsImage, extra=2,fields="__all__",fk_name="goodsImageForeignKey")
         # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
 
-        return render(request, 'userManagement/index.html')
+        return render(request, 'userManagement/setting.html', {'List': List})
+
+@login_required
+def index(request):
+    if request.method == 'GET':
+        xcx_set=request.user.manageuser.applet_set.all()
+        xcx_list = serializers.AppletSerializer(xcx_set, many=True, context={'request': request}).data
+        for i in range(0,len(xcx_list)):
+            xcx_list[i]["createDateTime"]=xcx_set[i].createDateTime
+            xcx_list[i]["modDateTime"] = xcx_set[i].modDateTime
+
+
+        return render(request, 'userManagement/index.html',{"applet_list":xcx_list})
 
 
 @login_required
 def orders(request):
     if request.method == 'GET':
         id = request.GET.get("id", 1)
-        raise
 
-        # FormSet = inlineformset_factory(Goods, GoodsImage, extra=2,fields="__all__",fk_name="goodsImageForeignKey")
-        # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
+
+
+        
+        
 
         return render(request, 'userManagement/ordersManagement.html')
 
@@ -423,4 +437,5 @@ def get_or_permissionDenied(klass, *args, **kwargs):
         raise PermissionDenied()
 def get_appleUser_or_permissionDenied(session_key):
     return get_or_permissionDenied(AppletUser,xcxSession=session_key)
+
 
