@@ -409,13 +409,10 @@ $(function(){
 	$('form').submit(function(event) {
 		event.preventDefault();
 	});
-	getPicCode();
-	$('.getPicCode').on('click', getPicCode);
+
 });
 
-function getPicCode(){
-	$('.pic-code').attr('src', '/index.php?r=Login/GetIdentifyCode&i=' +parseInt(Math.random() * 10000000))
-}
+
 
 function cookieLogin(username,password){
 	$.ajax({

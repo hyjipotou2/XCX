@@ -18,6 +18,7 @@ from rest_framework import viewsets
 
 import serializers
 from forms import *
+from userManagement.getShopApp import Xcx
 
 
 def getSession():
@@ -94,6 +95,36 @@ def setting(request):
         # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
 
         return render(request, 'userManagement/setting.html', {'List': List})
+    if request.method == 'POST':
+        id = request.POST.get("id", 1)
+        applet = get_object_or_404(Applet, id=id)
+        image=request.FILES.get("imageLogo")
+        XcxName=request.POST.get("XcxName")
+        AppId=request.POST.get("AppId")
+        AppSecret=request.POST.get("AppSecret")
+        Description = request.POST.get("description","小程序应用")
+        applet.name=XcxName
+        applet.appletId=AppId
+        applet.secret=AppSecret
+        applet.image=image
+        applet.description=Description
+        applet.save()
+        imageurl="http://"+request.get_host()+applet.image.url
+        xcxObj=Xcx(applet.id,applet.name,applet.description,imageurl)
+        dict={}
+        dict["url"]=xcxObj.getZipUrl()
+        return  JsonResponse(dict,safe=False)
+
+
+
+
+
+
+
+
+
+
+
 
 @login_required
 def index(request):

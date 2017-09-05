@@ -68,7 +68,7 @@ App({
         'content-type': 'application/json'
       },
       success: function(res) {
-        if(res.statusCode && (res.statusCode <= 200 ||res.statusCode >= 299) ){
+        if(res.statusCode && (res.statusCode < 200 ||res.statusCode > 299) ){
           that.hideToast();
           that.showModal({
             content: ''+res.errMsg
@@ -464,36 +464,36 @@ App({
       });
     }
   },
-  requestUserInfo: function(is_login){
-    if(is_login){
+  requestUserInfo: function (is_login) {
+    if (is_login) {
       this.requestUserXcxInfo();
     } else {
       this.requestUserWxInfo();
     }
   },
-  requestUserXcxInfo: function(){
+  requestUserXcxInfo: function () {
     var that = this;
     this.sendRequest({
-      url: '/index.php?r=AppData/getXcxUserInfo',
-      success: function(res){
-        if(res.status == 0){
-          if(res.data){
+      url: '/userInfo/',
+      success: function (res) {
+        if (res.status == 0) {
+          if (res.data) {
             that.setUserInfoStorage(res.data);
           }
         }
       },
-      fail: function(res){
+      fail: function (res) {
         console.log('requestUserXcxInfo fail');
       }
     })
   },
-  requestUserWxInfo: function(){
+  requestUserWxInfo: function () {
     var that = this;
     wx.getUserInfo({
-      success: function(res){
+      success: function (res) {
         that.sendUserInfo(res.userInfo);
       },
-      fail: function(res){
+      fail: function (res) {
         console.log('requestUserWxInfo fail');
       }
     })
@@ -2441,7 +2441,7 @@ App({
     this.globalData.goodsAdditionalInfo = additionalInfo;
   },
   globalData:{
-    appId:'',
+    appId:'1',
         tabBarPagePathArr: '["\/pages\/page10000\/page10000","\/pages\/page10006\/page10006","\/pages\/tabbarShoppingCart\/tabbarShoppingCart"]',
         homepageRouter: 'page10052',
     formData: null,
@@ -2459,7 +2459,7 @@ App({
     wxParseOldPattern: '_listVesselRichText_',
    
     defaultPhoto:'',
-    siteBaseUrl:'https://xcx.yibanbbang99.com',
+    siteBaseUrl:'http://127.0.0.1:8000',
     appTitle:'',
     appDescription:'',
     appLogo:''
