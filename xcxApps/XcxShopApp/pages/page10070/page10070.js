@@ -47,8 +47,8 @@ var pageData    = {
 
     pagePath += this.dataId ? '?detail='+this.dataId : '';
     return {
-      title: appInstance.getAppTitle() || '即速应用',
-      desc: appInstance.getAppDescription() || '即速应用，拖拽生成app，无需编辑代码，一键打包微信小程序',
+      title: appInstance.getAppTitle() || '予丰科技',
+      desc: appInstance.getAppDescription() || '予丰科技，拖拽生成app，无需编辑代码，一键打包微信小程序',
       path: pagePath
     }
   },

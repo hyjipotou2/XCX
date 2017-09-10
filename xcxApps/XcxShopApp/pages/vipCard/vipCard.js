@@ -7,7 +7,7 @@ Page({
     receiveCard: -1, // 默认不知道是否有领取
     // 卡片信息
     cardDetail: {
-      appName: '即速应用',
+      appName: '予丰科技',
       logoUrl: 'http://1251027630.cdn.myqcloud.com/1251027630/zhichi_frontend/static/invitation/images/logo.png',
       duration: '无限期',
       level: '普通用户'
@@ -30,7 +30,7 @@ Page({
     },
     // 联系我们
     vipContact: {
-      appName: '即速应用',
+      appName: '予丰科技',
       phone: '无'
     },
     // 活动打开的详情

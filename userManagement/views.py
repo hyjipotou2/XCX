@@ -20,9 +20,7 @@ import serializers
 from forms import *
 from userManagement.getShopApp import Xcx
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+
 
 def getSession():
     return hashlib.sha1(os.urandom(24)).hexdigest()
@@ -85,7 +83,7 @@ def goods(request):
         # FormSet = inlineformset_factory(Goods, GoodsImage, extra=2,fields="__all__",fk_name="goodsImageForeignKey")
         # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
 
-        return render(request, 'userManagement/goodsManagement.html', {'List': List, "AddGoodsForm": AddGoodsForm})
+        return render(request, 'userManagement/goodsManagement.html', {'List': List, "AddGoodsForm": AddGoodsForm,"id":id})
 @login_required
 def setting(request):
     if request.method == 'GET':
@@ -97,7 +95,7 @@ def setting(request):
         # FormSet = inlineformset_factory(Goods, GoodsImage, extra=2,fields="__all__",fk_name="goodsImageForeignKey")
         # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
 
-        return render(request, 'userManagement/setting.html', {'List': List})
+        return render(request, 'userManagement/setting.html', {'List': List,"id":id})
     if request.method == 'POST':
         id = request.POST.get("id", 1)
         applet = get_object_or_404(Applet, id=id)
@@ -151,7 +149,7 @@ def orders(request):
         
         
 
-        return render(request, 'userManagement/ordersManagement.html')
+        return render(request, 'userManagement/ordersManagement.html',{"id":id})
 
 
 def getForm(request):

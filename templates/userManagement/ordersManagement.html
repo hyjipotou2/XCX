@@ -18,6 +18,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
  <script src="../../static/userManagement/public/js/string.js"></script>
+    <script src="../../static/userManagement/public/js/util.js"></script>
     <script type="text/javascript">
 
         var List = {{ List|safe }};
@@ -77,93 +78,58 @@
             <div class="logo1"></div>
             <li class="header">后台管理系统</li>
             <li class="treeview">
-                <a href="#">
+                <a href="/goods/?id={{ id }}">
                     <i class="fa fa-dollar"></i>
-                    <span>收银管理</span>
+                    <span>商品管理</span>
+                    <i class="fa fa-angle-right pull-right"></i>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
+            <li class="treeview active">
+                <a href="/orders/?id={{ id }}">
                     <i class="fa fa-list-alt"></i>
-                    <span>销售单据查询</span>
+                    <span>订单查询</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
-                <ul class="treeview-menu" style="display: none;">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>1</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>2</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>3</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>4</a></li>
-                </ul>
+
             </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-bars"></i> <span>商品管理</span>
+            <li class="treeview" >
+                <a href="#" onclick="Toast('即将上线')">
+                    <i class="fa fa-bars"></i> <span>支付设置</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>库存查询</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>2</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>3</a></li>
-                </ul>
+
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="#" onclick="Toast('即将上线')">
                     <i class="fa fa-shopping-cart"></i>
-                    <span>进货采购</span>
+                    <span>小程序概况</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>1</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>2</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>3</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>4</a></li>
-                </ul>
+
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="#" onclick="Toast('即将上线')">
                     <i class="fa fa-bar-chart"></i>
                     <span>财务报表</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>1</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>2</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>3</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>4</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>5</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>6</a></li>
-                </ul>
+
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="#" onclick="Toast('即将上线')">
                     <i class="fa fa-file"></i><span>增值服务下单</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>1</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>2</a></li>
-                </ul>
+
             </li>
+
             <li>
-                <a href="#">
-                    <i class="fa fa-phone-square"></i> <span>预约</span>
-                    <i class="fa fa-angle-right pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>1</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>2</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>3</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>4</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>5</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
+                <a href="#" onclick="Toast('即将上线')">
                     <i class="fa fa-user"></i><span>会员管理</span>
                 </a>
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="#" onclick="Toast('即将上线')>
                     <i class="fa fa-cog"></i> <span>设置</span>
                 </a>
             </li>
@@ -184,7 +150,7 @@
             <!--声明-->
             <li class="startment">
                 <ol>
-                    <li>隐私条款</li>
+
                     <li>帮助</li>
                     <li>客服电话</li>
                 </ol>
@@ -229,63 +195,7 @@
             </div>
             <div class="order-list-body">
                 <ul class="list-unstyled order-list">
-                    <li data-parentsubid="0" data-id="5959001baa32c054593282" data-payment="0">
-                        <div class="order-head">
-                            <div>订单号：5959001baa32c054593282</div>
-                            <div>成交时间：2017-07-02 22:15:55</div>
-                        </div>
-                        <div class="order-body clearfix">
-                            <div class="col-md-2"><img
-                                    src="http://img.weiye.me/zcimgdir/thumb/t_14989891525958c26059fe7.png">
-                                <div class="order-goods-name">123</div>
-                                <div class="order-goods-model"></div>
-                            </div>
-                            <div class="col-md-1">0.01</div>
-                            <div class="col-md-1">1</div>
-                            <div class="col-md-2">
-                                <div><span style="margin-right:20px;">Gg</span><span>13220158284</span></div>
-                                <div>甘肃省陇南市西和县 H</div>
-                            </div>
-                            <div class="col-md-1">待付款
-                                <div><a class="checkOrderFlowInfo">订单进度</a></div>
-                            </div>
-
-                            <div class="col-md-1">0.02</div>
-                        </div>
-                        <div class="order-body clearfix">
-                            <div class="col-md-2"><img
-                                    src="http://img.weiye.me/zcimgdir/thumb/t_14989891525958c26059fe7.png">
-                                <div class="order-goods-name">qwe</div>
-                                <div class="order-goods-model"></div>
-                            </div>
-                            <div class="col-md-1">0.01</div>
-                            <div class="col-md-1">1</div>
-                        </div>
-                    </li>
-                    <li data-parentsubid="0" data-id="5958c362a9a47947070754" data-payment="0">
-                        <div class="order-head">
-                            <div>订单号：5958c362a9a47947070754</div>
-                            <div>成交时间：2017-07-02 17:56:50</div>
-                        </div>
-                        <div class="order-body clearfix">
-                            <div class="col-md-2"><img
-                                    src="http://img.weiye.me/zcimgdir/thumb/t_14989891525958c26059fe7.png">
-                                <div class="order-goods-name">123</div>
-                                <div class="order-goods-model"></div>
-                            </div>
-                            <div class="col-md-1">0.01</div>
-                            <div class="col-md-1">1</div>
-                            <div class="col-md-2">
-                                <div><span style="margin-right:20px;">Gg</span><span>13220158284</span></div>
-                                <div>甘肃省陇南市西和县 H</div>
-                            </div>
-                            <div class="col-md-1">已关闭
-                                <div><a class="checkOrderFlowInfo">订单进度</a></div>
-                            </div>
-                            <div class="col-md-1">0.01</div>
-                        </div>
-                    </li>
-                </ul>
+                   </ul>
             </div>
             <div id="order-table-toolbar" style="display: none;"></div>
         </div>

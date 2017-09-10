@@ -166,7 +166,7 @@ function setGoodsData(data, tbody, page) {
         i.isAlive ? checked = 'checked="checked"' : checked = "";
 
         var tr = "<tr class='tr' data-id=" + i.id + ">" +
-            "<td class='td'>" + i.goodsType + "</td>" +
+
             "<td class='td'>" + i.goodsName + "</td>" +
             "<td class='td'>" + "<img src='" + i.thumbnail + "'>" + "</td>" +
 

@@ -108,8 +108,8 @@ Page({
         url = '/pages/goodsDetail/goodsDetail?detail='+ goodsId + (franchiseeId ? '&franchisee='+franchiseeId : '');
 
     return {
-      title: app.getAppTitle() || '即速应用',
-      desc: app.getAppDescription() || '即速应用，拖拽生成app，无需编辑代码，一键打包微信小程序',
+      title: app.getAppTitle() || '予丰科技',
+      desc: app.getAppDescription() || '予丰科技，拖拽生成app，无需编辑代码，一键打包微信小程序',
       path: url
     }
   },

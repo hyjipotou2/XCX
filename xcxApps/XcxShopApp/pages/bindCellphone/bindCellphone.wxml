@@ -13,7 +13,7 @@
       <label class="item-name">验证码</label><input bindinput="inputNewCode" placeholder="请输入验证码"/><label class="get-code-btn" bindtap="sendCodeToNewPhone">{{ newCodeStatus }}</label>
     </view>
     <label class="bind-new-tel-btn {{ !newPhone || !newCode ? 'disabled' : '' }}" bindtap="bindNewPhone">绑定手机</label>
-    <view class="support-tip">即速应用技术支持</view>
+    <view class="support-tip">予丰科技技术支持</view>
   </view>
 </view>
 

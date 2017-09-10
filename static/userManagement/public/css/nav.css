@@ -1,72 +1,9 @@
-html, body{ margin:0; height:100%; }
-body{margin:0;padding:0;position:relative;direction:ltr; }
-li{ list-style:none;}
-a{color:#c51d2c;}
-h1{font-size:2pc}
-.navbar{margin:0;padding:0 0 0 235px;height:40px;min-width:1000px;
-border-bottom:3px solid #d61d2e;border-radius:0;color:#414141;background:#1a1a1a;position:fixed;width:100%;z-index:11}
-.navbar .navbar-nav li a{padding:0 10px;line-height:50px;position:relative}
-.navbar .navbar-nav li a i{margin:0;width:2pc;text-align:center;color:#c8c8c8;font-size:18px}
-.navbar .navbar-nav li a:hover{background-color:none}
-.navbar .navbar-nav li a i:hover{color:#fff;font-size:20px}
-.navbar .navbar-nav li a .badge1{background:#c51d2c;position:absolute;top:15px;right:20px;height:6px; border-radius:6px;width:6px;}
-.navbar .navbar-nav li .dropdown-toggle:active,.navbar .navbar-nav li .open .dropdown-toggle:active{background-color:none!important}
-.navbar .navbar-nav li .dropdown-menu{margin-top:3px;border:none;min-width:350px;border-radius:0;border:1px solid #d4d4d4;box-shadow:0 2px 4px rgba(0,0,0,.125);padding:0}
-.navbar .navbar-nav li .dropdown-menu:active{background:#000}
-.navbar .navbar-nav li .dropdown-menu:after{top:-7px;border-bottom:8px solid #fff}
-.navbar .navbar-nav li .dropdown-menu:after,.navbar .navbar-nav li .dropdown-menu:before{position:absolute;right:1pc;display:inline-block;border-right:8px solid transparent;border-left:8px solid transparent;content:''}
-.navbar .navbar-nav li .dropdown-menu:before{top:-9.5px;border-bottom:8px solid #d4d4d4}
-.navbar .navbar-nav li .update-menu{min-width:150px}
-.navbar .navbar-nav li .dropdown-menu li{padding:0;position:relative;min-width:250px;border-bottom:1px solid #d4d4d4;line-height:60px;padding:0 15px}
-.navbar .navbar-nav li .dropdown-menu li i{font-size:18px;margin-left:5px;margin-right:20px;color:#d95043}
-.navbar .navbar-nav li .dropdown-menu li:last-child{border:none}
-.navbar .navbar-nav li .dropdown-menu li a.notification-link,.navbar .navbar-nav li .dropdown-menu li a.notification-user{padding:0;overflow:inherit;display:inline-block;font-size:14px}
-.navbar .navbar-nav li .dropdown-menu li a.notification-user{margin-right:5px;color:#57889c;font-weight:700}
-.navbar .navbar-nav li .dropdown-menu li a.notification-user:hover{color:#57889c;text-decoration:underline}
-.navbar .navbar-nav li .dropdown-menu li a.notification-link{font-weight:700;color:#71d398;text-decoration:underline;margin-left:5px}
-.navbar .navbar-nav li .dropdown-menu li a.notification-link:hover{color:#4ac77c}
-.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-footer,.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-header{background:#f5f5f5;border:1px solid #fff}
-.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-footer .progress,.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-header .progress{border:1px solid #d4d4d4;background:#fff}
-.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-header:after{position:absolute;content:'';width:100%;left:-1px;bottom:-2px;border-bottom:1px solid #d4d4d4;box-sizing:content-box;padding:0 1px}
-.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-header{margin-bottom:2px}
-.navbar .navbar-nav li .dropdown-menu li.divider{height:5px;margin:0;background-color:#f5f5f5}
-.navbar .navbar-nav li .dropdown-menu li a{border-radius:0;line-height:50px;height:50px;margin:0 -15px;padding:0 15px;border-left:0!important;background-color:#fff!important}
-.navbar .navbar-nav li .dropdown-menu li a img.avatar{height:40px;border-radius:50em;border:1px solid #d4d4d4;margin:0 10px 0 -5px;float:left}
-.navbar .navbar-nav li .dropdown-menu li a div{font-size:14px;line-height:26px;font-weight:700}
-.navbar .navbar-nav li .dropdown-menu li a small{display:block;line-height:9pt;font-size:10px;margin-top:-3px;font-style:italic}
-.navbar .navbar-nav li .dropdown-menu li a .label{position:absolute;right:10px;top:11px}
-.navbar .navbar-nav li .dropdown-menu li a i{margin:0 10px 0 -5px;border:none}
-.navbar .navbar-nav li .dropdown-menu li.avatar{min-width:300px;height:60px;padding:0 15px}
-.navbar .navbar-nav li .dropdown-menu li.avatar a{line-height:59px;height:59px;padding:9px 15px}
-.navbar .navbar-nav li .dropdown-menu li.avatar a .label{top:20px}
-.navbar .navbar-nav .open a:focus{background-color:none}
-.navbar .navbar-form{margin:0}
-.btn{border:none;border-radius:0;text-shadow:none;color:#484848}
-.btn i{margin-top:2px}
-.dropdown-menu{border-radius:2px;border:1px solid #d4d4d4;box-shadow:0 2px 4px rgba(0,0,0,.125)}
-.dropdown-menu li a:hover{background-color:#eee}
-.panel-body .tab-content{background:0 0;border:none;padding:0}
-.masonry-thumb{display:inline-block;vertical-align:top;margin-bottom:6px}
-.rating{unicode-bidi:bidi-override;direction:rtl;font-size:30px}
-.rating span.star{font-family:FontAwesome;font-weight:400;font-style:normal;display:inline-block}
-.rating span.star:hover{cursor:pointer}
-.rating span.star:before{content:"\f006";padding-right:5px;color:#999}
-.rating span.star:hover:before,.rating span.star:hover~span.star:before{content:"\f005";color:#e3cf7a}
-.glyphicons-icon-list div{margin:10px 0}
-.glyphicons-icon-list div span,.glyphicons-icon-list div strong{font-size:10px}
-.glyphicons-icon-list div strong{margin-top:-5px;display:block}
-.fontawesome-icon-list div{margin:5px 0}
-.fontawesome-icon-list .fa{width:20px;text-align:center;margin-right:10px}
-.elfinder .elfinder-button{box-sizing:content-box}
-.text-with-hr{text-align:center;position:relative;z-index:2}
-.text-with-hr:before{position:absolute;content:'';top:20px;left:0;width:100%;border-bottom:1px solid #d4d4d4;z-index:-1}
-.text-with-hr span{display:inline-block;background:#fff;padding:10px}
 /* 导航 */
 .nav-wrap{
 	position: absolute;
 	top: 0;
 	left: 0;
-    z-index: 99999;
+    z-index: 10;
     width: 100%;
     height: 58px;
     line-height: 58px;
@@ -130,7 +67,7 @@ border-bottom:3px solid #d61d2e;border-radius:0;color:#414141;background:#1a1a1a
 	width: 106%;
 }
 li.menu-one.check_login:hover{
-	color: #ffb300;
+	color: #ffb300; 
 }
 .menu-one:hover ul{
 	display: block;
@@ -181,10 +118,10 @@ li.menu-one.check_login:hover{
 	background-color: #ffb300;
 }
 .menu-one .menu-two:hover a{
-    color:#fff;
+    color:#fff; 
 }
 li.menu-two.check_login:hover{
-    color:#fff;
+    color:#fff; 
 }
 .menu-one .menu-two > a{
 	display: inline-block;
@@ -414,9 +351,9 @@ span.nav-reg:hover{
 
 /*-----------SEO --------------*/
 .nav-logo-img{
-	background-image: url(http://cdn.jisuapp.cn/static/pc/index/img/jisu_nav_logo.svg);
+	background-image: url('../images/TempLogo.png');
     background-repeat: no-repeat;
-    background-size: auto 41px;
+    background-size: auto 70px;
     background-position: center center;
     position: relative;
     overflow: hidden;
@@ -427,7 +364,7 @@ span.nav-reg:hover{
 	position: absolute;
 }
 /*.nav-logo-img:after{
-	content: "即速应用";
+	content: "予丰科技";
     color: #2b2b2b;
     position: absolute;
     left: 213px;
@@ -441,3 +378,70 @@ span.nav-reg:hover{
   line-height: 40px;
   font-size: 16px;
 }
+html, body{ margin:0; height:100%; }
+body{margin:0;padding:0;position:relative;direction:ltr; }
+li{ list-style:none;}
+a{color:#c51d2c;}
+h1{font-size:2pc}
+.navbar{margin:0;padding:0 0 0 235px;height:40px;min-width:1000px;
+border-bottom:3px solid #d61d2e;border-radius:0;color:#414141;background:#1a1a1a;position:fixed;width:100%;z-index:11}
+.navbar .navbar-nav li a{padding:0 10px;line-height:50px;position:relative}
+.navbar .navbar-nav li a i{margin:0;width:2pc;text-align:center;color:#c8c8c8;font-size:18px}
+.navbar .navbar-nav li a:hover{background-color:none}
+.navbar .navbar-nav li a i:hover{color:#fff;font-size:20px}
+.navbar .navbar-nav li a .badge1{background:#c51d2c;position:absolute;top:15px;right:20px;height:6px; border-radius:6px;width:6px;}
+.navbar .navbar-nav li .dropdown-toggle:active,.navbar .navbar-nav li .open .dropdown-toggle:active{background-color:none!important}
+.navbar .navbar-nav li .dropdown-menu{margin-top:3px;border:none;min-width:350px;border-radius:0;border:1px solid #d4d4d4;box-shadow:0 2px 4px rgba(0,0,0,.125);padding:0}
+.navbar .navbar-nav li .dropdown-menu:active{background:#000}
+.navbar .navbar-nav li .dropdown-menu:after{top:-7px;border-bottom:8px solid #fff}
+.navbar .navbar-nav li .dropdown-menu:after,.navbar .navbar-nav li .dropdown-menu:before{position:absolute;right:1pc;display:inline-block;border-right:8px solid transparent;border-left:8px solid transparent;content:''}
+.navbar .navbar-nav li .dropdown-menu:before{top:-9.5px;border-bottom:8px solid #d4d4d4}
+.navbar .navbar-nav li .update-menu{min-width:150px}
+.navbar .navbar-nav li .dropdown-menu li{padding:0;position:relative;min-width:250px;border-bottom:1px solid #d4d4d4;line-height:60px;padding:0 15px}
+.navbar .navbar-nav li .dropdown-menu li i{font-size:18px;margin-left:5px;margin-right:20px;color:#d95043}
+.navbar .navbar-nav li .dropdown-menu li:last-child{border:none}
+.navbar .navbar-nav li .dropdown-menu li a.notification-link,.navbar .navbar-nav li .dropdown-menu li a.notification-user{padding:0;overflow:inherit;display:inline-block;font-size:14px}
+.navbar .navbar-nav li .dropdown-menu li a.notification-user{margin-right:5px;color:#57889c;font-weight:700}
+.navbar .navbar-nav li .dropdown-menu li a.notification-user:hover{color:#57889c;text-decoration:underline}
+.navbar .navbar-nav li .dropdown-menu li a.notification-link{font-weight:700;color:#71d398;text-decoration:underline;margin-left:5px}
+.navbar .navbar-nav li .dropdown-menu li a.notification-link:hover{color:#4ac77c}
+.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-footer,.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-header{background:#f5f5f5;border:1px solid #fff}
+.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-footer .progress,.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-header .progress{border:1px solid #d4d4d4;background:#fff}
+.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-header:after{position:absolute;content:'';width:100%;left:-1px;bottom:-2px;border-bottom:1px solid #d4d4d4;box-sizing:content-box;padding:0 1px}
+.navbar .navbar-nav li .dropdown-menu li.dropdown-menu-header{margin-bottom:2px}
+.navbar .navbar-nav li .dropdown-menu li.divider{height:5px;margin:0;background-color:#f5f5f5}
+.navbar .navbar-nav li .dropdown-menu li a{border-radius:0;line-height:50px;height:50px;margin:0 -15px;padding:0 15px;border-left:0!important;background-color:#fff!important}
+.navbar .navbar-nav li .dropdown-menu li a img.avatar{height:40px;border-radius:50em;border:1px solid #d4d4d4;margin:0 10px 0 -5px;float:left}
+.navbar .navbar-nav li .dropdown-menu li a div{font-size:14px;line-height:26px;font-weight:700}
+.navbar .navbar-nav li .dropdown-menu li a small{display:block;line-height:9pt;font-size:10px;margin-top:-3px;font-style:italic}
+.navbar .navbar-nav li .dropdown-menu li a .label{position:absolute;right:10px;top:11px}
+.navbar .navbar-nav li .dropdown-menu li a i{margin:0 10px 0 -5px;border:none}
+.navbar .navbar-nav li .dropdown-menu li.avatar{min-width:300px;height:60px;padding:0 15px}
+.navbar .navbar-nav li .dropdown-menu li.avatar a{line-height:59px;height:59px;padding:9px 15px}
+.navbar .navbar-nav li .dropdown-menu li.avatar a .label{top:20px}
+.navbar .navbar-nav .open a:focus{background-color:none}
+.navbar .navbar-form{margin:0}
+.btn{border:none;border-radius:0;text-shadow:none;color:#484848}
+.btn i{margin-top:2px}
+.dropdown-menu{border-radius:2px;border:1px solid #d4d4d4;box-shadow:0 2px 4px rgba(0,0,0,.125)}
+.dropdown-menu li a:hover{background-color:#eee}
+.panel-body .tab-content{background:0 0;border:none;padding:0}
+.masonry-thumb{display:inline-block;vertical-align:top;margin-bottom:6px}
+.rating{unicode-bidi:bidi-override;direction:rtl;font-size:30px}
+.rating span.star{font-family:FontAwesome;font-weight:400;font-style:normal;display:inline-block}
+.rating span.star:hover{cursor:pointer}
+.rating span.star:before{content:"\f006";padding-right:5px;color:#999}
+.rating span.star:hover:before,.rating span.star:hover~span.star:before{content:"\f005";color:#e3cf7a}
+.glyphicons-icon-list div{margin:10px 0}
+.glyphicons-icon-list div span,.glyphicons-icon-list div strong{font-size:10px}
+.glyphicons-icon-list div strong{margin-top:-5px;display:block}
+.fontawesome-icon-list div{margin:5px 0}
+.fontawesome-icon-list .fa{width:20px;text-align:center;margin-right:10px}
+.elfinder .elfinder-button{box-sizing:content-box}
+.text-with-hr{text-align:center;position:relative;z-index:2}
+.text-with-hr:before{position:absolute;content:'';top:20px;left:0;width:100%;border-bottom:1px solid #d4d4d4;z-index:-1}
+.text-with-hr span{display:inline-block;background:#fff;padding:10px}
+@media screen and (min-width:1000px){
+	body{overflow:hidden}
+}
+

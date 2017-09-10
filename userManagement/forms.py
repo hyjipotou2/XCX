@@ -69,6 +69,6 @@ class AddGoodsForm(forms.ModelForm):
 
     class Meta:
         model = Goods
-        exclude=["applet"]
+        exclude=["applet","goodsType"]
 
 
