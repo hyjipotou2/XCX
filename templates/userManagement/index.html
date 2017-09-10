@@ -43,46 +43,11 @@
 
 <link rel="stylesheet" href="../../static/userManagement/myXcx/css/nav.css">
 <script type="text/javascript" src="../../static/userManagement/myXcx/js/cookie.js"></script>
-
-<div class="nav-wrap">
-    <div class="nav-logo nav-logo-img">
-        <h1>微信小程序</h1>
-    </div>
-    <ul class="top-menu" style="position: relative;">
+<script type="text/javascript" src="../../static/userManagement/myXcx/js/myapp.js"></script>
 
 
-        <li class="menu-one check_login" data="/index.php?r=pc/Webapp/myapp">
-            应用管理
-        </li>
 
-        <li class="menu-one active">
-            <a href="http://www.jisuapp.cn/index.php?r=pc/index/AppHome">首页</a>
-        </li>
-        <div class="nav_line"
-             style="position: absolute; height: 2px; background: rgb(0, 0 0); top: 54px; z-index: 0; width: 92px; left: 282.391px;"></div>
-    </ul>
-    <div class="nav-login">
-        <div class="menu-one nav-center">
-            <a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1"><img class="nav-img"
-                                                                                                   src="../../static/userManagement/myXcx/img/57cac3e61af0856611d5eb756e4b4eb5_o.jpg">
-                杨子玉
-            </a>
-            <ul is_designer="-1">
-                <li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1"
-                                        style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">个人中心</a>
-                </li>
 
-                <li class="menu-two"><a
-                        href="http://www.jisuapp.cn/index.php?r=pc/agent/showindex&amp;is_app=1">代理管理</a></li>
-                <!-- <li class="menu-two"><a href="/index.php?r=pc/Designer/ShowApply&is_app=1">设计师</a></li> -->
-                <li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=Login/logout&amp;is_app=1"
-                                        onclick="setCookie(&#39;pc_pw&#39;,&#39;&#39;, 24);">退出</a></li>
-            </ul>
-        </div>
-        <!-- <div class="massage"><a href="/index.php?r=pc/IndexNew/showInform&is_app=1" title="通知中心"><img id="massageImg" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc/index/img/message_enter.png" onmousemove="enter(this)" onmouseout="leave(this)" alt=""></a>
-        </div> -->
-    </div>
-</div>
 
 <script type="text/javascript">
     var is_login = $('body').attr('is_login');
@@ -104,6 +69,81 @@
 <script type="text/javascript" src="../../static/userManagement/myXcx/js/jquery.md5.js"></script>
 <script type="text/javascript" src="../../static/userManagement/myXcx/js/cookie.js"></script>
 <script type="text/javascript" src="../../static/userManagement/myXcx/js/app_login_reg.js"></script>
+<div class="mask_app_setting" >
+  <div class="content_app_setting">
+    <div class="set-modal-title">
+      <div class="title-text">基本设置</div>
+      <div class="close-btn">x</div>
+    </div>
+    <div class="set-modal-content">
+      <form id="applet-form">
+        <div class="set-detail-item">
+
+        <div class="set-app-info">
+
+          <input class="publish-title-input" type="text" name="name" placeholder="我的应用">
+            <label>*</label>
+          <textarea class="publish-desc-input" name="description" placeholder="应用描述"></textarea>
+        </div>
+      </div>
+      <div class="set-detail-item">
+
+        <input class="image-input"type="file" name="image"/>
+
+        <div class="set-logo-info">
+          <p>Logo用于二维码及登录页面</p>
+          <p>建议图片尺寸 32*32</p>
+        </div>
+      </div>
+
+</form>
+
+    </div>
+    <div class="set-modal-btn">
+      <div class="cancel-btn">取消</div>
+      <div class="save-btn">保存</div>
+    </div>
+  </div>
+</div>
+<div class="nav-wrap">
+    <div class="nav-logo nav-logo-img">
+        <h1>微信小程序</h1>
+    </div>
+    <ul class="top-menu" style="position: relative;">
+
+
+        <li class="menu-one check_login" data="/index.php?r=pc/Webapp/myapp">
+            应用管理
+        </li>
+
+        <li class="menu-one active">
+            <a href="http://www.jisuapp.cn/index.php?r=pc/index/AppHome">首页</a>
+        </li>
+        <div class="nav_line"
+             style="position: absolute; height: 2px; background: rgb(0, 0 0); top: 54px; z-index: 0; width: 92px; left: 282.391px;"></div>
+    </ul>
+    <div class="nav-login">
+        <div class="menu-one nav-center">
+            <a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1"><img class="nav-img"
+                                                                                                   src="../../static/userManagement/myXcx/img/touxiang.png">
+                {{ User.username }}
+            </a>
+            <ul is_designer="-1">
+                <li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1"
+                                        style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">个人中心</a>
+                </li>
+
+                <li class="menu-two"><a
+                        href="http://www.jisuapp.cn/index.php?r=pc/agent/showindex&amp;is_app=1">代理管理</a></li>
+                <!-- <li class="menu-two"><a href="/index.php?r=pc/Designer/ShowApply&is_app=1">设计师</a></li> -->
+                <li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=Login/logout&amp;is_app=1"
+                                        onclick="setCookie(&#39;pc_pw&#39;,&#39;&#39;, 24);">退出</a></li>
+            </ul>
+        </div>
+        <!-- <div class="massage"><a href="/index.php?r=pc/IndexNew/showInform&is_app=1" title="通知中心"><img id="massageImg" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc/index/img/message_enter.png" onmousemove="enter(this)" onmouseout="leave(this)" alt=""></a>
+        </div> -->
+    </div>
+</div>
 <div class="lr-mask" id="login_wrap" user_token="9e6cf0db558721b169b6942c46fa8542">
     <div class="lr" id="login-panel">
         <div class="lr-left">
@@ -171,53 +211,7 @@
                         <div class="login-btn" id="perfit-info">完善</div>
                     </div>
                 </div>
-                <div class="company-reg">
-                    <input type="text" id="reg-fullname" placeholder="企业名称" class="long-input">
-                    <!-- <label class="necessary">*</label> -->
-                    <input type="text" id="reg-phone" placeholder="手机号" class="long-input"><img
-                        style="width: 20px;vertical-align: middle;margin-left: 10px;" id="reg-phone-exist">
-                    <!-- <label class="necessary">*</label> -->
-                    <input type="password" class="reg-password long-input" placeholder="密码">
-                    <!-- <label class="necessary">*</label> -->
-                    <input type="password" class="reg-conpassword long-input" placeholder="确认密码">
-                    <!-- <label class="necessary">*</label> -->
-                    <input type="text" placeholder="验证码" id="pic-code"
-                           style="width:70px;vertical-align: top;margin-top: 12px;">
-                    <div class="getPicCode" style="display: inline-block;margin-top: 7px;"><img class="pic-code"
-                                                                                                src="../../static/userManagement/myXcx/img/index.php"><span>看不清，换一张</span>
-                    </div>
-                    <input type="text" id="phone-code" placeholder="短信验证码" class="short-input"
-                           style="margin-top: 15px;width: 146px;"><span class="getPhoneCode">获取验证码</span>
-                    <select id="reg-company-type">
-                        <option value="政府机构">政府机构</option>
-                        <option value="微信">微信</option>
-                        <option value="传媒广告">传媒广告</option>
-                        <option value="电商">电商</option>
-                        <option value="餐饮">餐饮</option>
-                        <option value="家具">家具</option>
-                        <option value="IT">IT</option>
-                        <option value="教育">教育</option>
-                        <option value="房地产">房地产</option>
-                        <option value="服装">服装</option>
-                        <option value="婚庆">婚庆</option>
-                        <option value="娱乐">娱乐</option>
-                        <option value="旅游">旅游</option>
-                        <option value="汽车">汽车</option>
-                        <option value="美容">美容</option>
-                        <option value="摄影">摄影</option>
-                        <option value="公益">公益</option>
-                        <option value="金融">金融</option>
-                    </select>
-                    <div><select id="province-select">
-                        <option disabled="" selected="">选择省</option>
-                    </select><select id="city-select">
-                        <option disabled="" selected="">选择市</option>
-                    </select><select id="area-select">
-                        <option disabled="" selected="">选择区</option>
-                    </select></div>
-                    <div style="margin-top: 15px;"><input id="inviteCode" class="short-input"
-                                                          placeholder="邀请码，可不填"><span class="reg-btn">注册</span></div>
-                </div>
+
             </div>
             <div class="findBackPw">
                 <div class="title"><span class="findtype" type="phone">手机找回</span><span class="changetype">通过邮箱找回</span>
@@ -297,30 +291,6 @@
 
 
 <!-- 悬浮窗 -->
-<div class="nav_top">
-      <span class="nav_help">
-      <a href="http://bbs.zhichiwangluo.com/forum.php?mod=viewthread&amp;tid=11085&amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D39"
-         target="_blank">
-      <span class="use"><svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                           xlink:href="/zhichi_frontend/static/pc/index/symbol-svg/symbol-btn.svg#icon-help"></use></svg></span>
-      </a>
-      <div class="help_con">
-        <p>新手入门教程</p>
-	   </div>
-      </span>
-    <span style="margin: 1px 0;" class="nav_video">
-      <a href="http://bbs.zhichiwangluo.com/plugin.php?id=tpgao_edu:view&amp;typeid=12&amp;cpid=8&amp;courseid=1"
-         target="_blank">
-      <span class="use"><svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                           xlink:href="/zhichi_frontend/static/pc/index/symbol-svg/symbol-btn.svg#icon-video"></use></svg></span>
-      </a>
-      <div class="video_con">
-        <p>最新视频教程</p>
-      </div>
-      </span>
-    <span class="scrollTop use"><svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                   xlink:href="/zhichi_frontend/static/pc/index/symbol-svg/symbol-btn.svg#icon-top"></use></svg></span>
-</div>
 
 <!-- 申请出售模板 的模态框-->
 <div id="apply-template-dialog" class="zhichi-dialog">

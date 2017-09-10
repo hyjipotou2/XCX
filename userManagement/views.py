@@ -107,7 +107,7 @@ def setting(request):
         applet.appletId=AppId
         applet.secret=AppSecret
         applet.image=image
-        applet.description=Description
+        #applet.description=Description
         applet.save()
         imageurl="http://"+request.get_host()+applet.image.url
         xcxObj=Xcx(applet.id,applet.name,applet.description,imageurl)
@@ -136,7 +136,7 @@ def index(request):
             xcx_list[i]["modDateTime"] = xcx_set[i].modDateTime
 
 
-        return render(request, 'userManagement/index.html',{"applet_list":xcx_list})
+        return render(request, 'userManagement/index.html',{"applet_list":xcx_list,"User":request.user})
 
 
 @login_required
@@ -468,5 +468,39 @@ def get_or_permissionDenied(klass, *args, **kwargs):
         raise PermissionDenied()
 def get_appleUser_or_permissionDenied(session_key):
     return get_or_permissionDenied(AppletUser,xcxSession=session_key)
+def resign(request):
+    if request.method == "GET":
+
+        return render_to_response('userManagement/resign.html',
+                                  RequestContext(request, {'form':ResignForm}))
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if(User.objects.filter(username=username).exists()):
+            return render_to_response('userManagement/resign.html',
+                                  RequestContext(request, {'username_is_exists':True}))
+
+        User.objects.create_user(username,password=password)
+        user = auth.authenticate(username=username, password=password)
+        auth.login(request, user)
+
+        return HttpResponseRedirect(request.GET.get("next_to", '/index/'))
+
+def createApplet(request):
+    if request.method=="POST":
+        user=request.user
+        name=request.POST.get("name","APP")
+        description=request.POST.get("description","APP")
+        image=request.FILES.get("image")
+        Applet.objects.create(appletManageUser=user.manageuser,name=name,description=description,image=image)
+        return HttpResponse("ok")
+
+
+
+
+
+
+
+
 
 

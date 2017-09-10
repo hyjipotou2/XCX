@@ -43,6 +43,8 @@ url(r'^addcartlist/', views.addCartList),
 url(r'^deletecart/', views.deleteCart),
 url(r'^onlogin/', views.onLogin),
 url(r'^setting/', views.setting),
+url(r'^resign/', views.resign),
+url(r'^createapplet/', views.createApplet),
 
 
 
