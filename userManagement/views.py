@@ -20,7 +20,9 @@ import serializers
 from forms import *
 from userManagement.getShopApp import Xcx
 
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 def getSession():
     return hashlib.sha1(os.urandom(24)).hexdigest()
