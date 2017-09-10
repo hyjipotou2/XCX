@@ -98,15 +98,14 @@ def setting(request):
     if request.method == 'POST':
         id = request.POST.get("id", 1)
         applet = get_object_or_404(Applet, id=id)
-        image=request.FILES.get("imageLogo")
-        XcxName=request.POST.get("XcxName")
+
         AppId=request.POST.get("AppId")
         AppSecret=request.POST.get("AppSecret")
         Description = request.POST.get("description","小程序应用")
-        applet.name=XcxName
+
         applet.appletId=AppId
         applet.secret=AppSecret
-        applet.image=image
+
         #applet.description=Description
         applet.save()
         imageurl="http://"+request.get_host()+applet.image.url
