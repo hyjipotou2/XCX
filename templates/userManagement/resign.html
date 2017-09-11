@@ -230,12 +230,7 @@
     }
 
     function validatelt(inputelement,err){
-        if(password!=password1)
-        {
-            inputelement.setCustomValidity("密码不一致");
-            return false;
 
-        }
         if(inputelement.validity.patternMismatch){
             inputelement.setCustomValidity(err);
 
