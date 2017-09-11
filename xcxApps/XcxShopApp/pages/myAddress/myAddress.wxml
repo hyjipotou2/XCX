@@ -14,9 +14,9 @@
                 </label>
               </label>
               <view class="myAddress-address-top" bindtap="editAddress" data-id="{{ item.id }}">
-                <text>{{ item.address_info.name }}</text>
-                <text>{{ item.address_info.contact }}</text>
-                <view>{{ item.address_info.province.text + item.address_info.city.text + item.address_info.district.text + item.address_info.detailAddress }}</view>
+                <text>{{item.name }}</text>
+                <text>{{itme.contact }}</text>
+                <view>{{ item.province + item.city + item.district + item.detailAddress }}</view>
               </view>
               <text class="myAddress-delete" bindtap="deleteAddress" data-id="{{ item.id }}">删除</text>
             </view>

@@ -140,7 +140,10 @@ def index(request):
 
         return render(request, 'userManagement/index.html',{"applet_list":xcx_list,"User":request.user})
 
-
+@login_required
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect("/login/")
 @login_required
 def orders(request):
     if request.method == 'GET':
@@ -259,14 +262,16 @@ def wxLogin(request):
 
 def userInfo(request):
     if request.method == 'POST':
-        dic=dict(request.POST)
+        dic=request.POST
         session_key = request.POST.get("session_key", None)
-        dic.pop("session_key")
+
 
 
         if (session_key):
             appletUser = get_or_permissionDenied(AppletUser, xcxSession=session_key)
             for i in dic:
+                if(i=="session_key"):
+                    continue
                 setattr(appletUser,i,dic[i])
 
 
@@ -496,11 +501,6 @@ def createApplet(request):
         image=request.FILES.get("image")
         Applet.objects.create(appletManageUser=user.manageuser,name=name,description=description,image=image)
         return HttpResponse("ok")
-
-
-
-
-
 
 
 

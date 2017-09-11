@@ -20,14 +20,12 @@ Page({
     this.subShopId = options.sub_shop_id || '';
 
     app.sendRequest({
-      url: '/index.php?r=AppShop/addressList',
+      url: '/api/address/',
       success: function(res){
-        var address = res.data,
-            addressList = [];
+        var addressList = res;
+            
 
-        for(var i = 0, j = address.length-1 ; i <= j; i++){
-          addressList.push(address[i]);
-        }
+       
         that.setData({
           addressList: addressList,
           selectAddressId: selectAddressId,
@@ -35,6 +33,10 @@ Page({
           afterInitial: true,
           from: from
         })
+      },
+      fail: function (res) {
+        let r = e;
+
       }
     })
   },
@@ -42,14 +44,12 @@ Page({
     if(this.data.isFromBack){
       var that = this;
       app.sendRequest({
-        url: '/index.php?r=AppShop/addressList',
+        url: '/api/address/',
         success: function(res){
-          var address = res.data,
-              addressList = [];
+          var addressList = res;
+         
 
-          for(var i = 0, j = address.length-1 ; i <= j; i++){
-            addressList.push(address[i]);
-          }
+         
           that.setData({
             addressList: addressList
           })
@@ -69,27 +69,25 @@ Page({
         success : function(res){
           app.sendRequest({
             method : 'post',
-            url : '/index.php?r=AppShop/AddWxAddress',
+            url : '/api/address/',
             data : {
-              detailInfo : res.detailInfo || '',
-              cityName : res.cityName || '',
-              provinceName : res.provinceName || '',
-              UserName : res.userName || '',
-              telNumber : res.telNumber || '',
+              
+
+              detailAddress : res.detailInfo || '',
+              city : res.cityName || '',
+              province : res.provinceName || '',
+              name : res.userName || '',
+              contact : res.telNumber || '',
               district : res.district || '',
               countyName : res.countyName || ''
             },
             success : function(){
               app.sendRequest({
-                url : '/index.php?r=AppShop/addressList',
+                url : '/api/address/',
                 success : function(res){
-                  var address = res.data,
-                      addressList = [];
-                  for(var i = 0, j = address.length - 1; i <= j; i++){
-                    addressList.push(address[i]);
-                  }
+                 
                   _this.setData({
-                    addressList : addressList
+                    addressList: res
                   })
                 }
               })
@@ -112,10 +110,8 @@ Page({
       cancelText: '取消',
       confirm: function(){
         app.sendRequest({
-          url: '/index.php?r=AppShop/delAddress',
-          data: {
-            address_id: deleteId
-          },
+          url: '/api/address/' + deleteId,
+          method:'delete',
           success: function(res){
             var addressList = that.data.addressList;
 

@@ -71,7 +71,7 @@
 }
 .addAddress-edit-wrap picker {
   display: inline-block;
-  width: 32%;
+  width: 75%;
   margin-right: 1%;
 }
 .addAddress-bottom-opt {

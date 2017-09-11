@@ -474,7 +474,7 @@ App({
   requestUserXcxInfo: function () {
     var that = this;
     this.sendRequest({
-      url: '/userInfo/',
+      url: '/userinfo/',
       success: function (res) {
         if (res.status == 0) {
           if (res.data) {

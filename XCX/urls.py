@@ -24,6 +24,7 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'goods',views.GoodsViewSet)
 
+
 router.register(r'order',views.OrderViewSet)
 router.register(r'address',views.AddressViewSet)
 urlpatterns = [
@@ -42,6 +43,7 @@ url(r'^cartlist/', views.cartList),
 url(r'^addcartlist/', views.addCartList),
 url(r'^deletecart/', views.deleteCart),
 url(r'^onlogin/', views.onLogin),
+ url(r'^logout/',views.logout),
 url(r'^setting/', views.setting),
 url(r'^resign/', views.resign),
 url(r'^createapplet/', views.createApplet),

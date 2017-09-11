@@ -332,68 +332,37 @@
 	<link rel="stylesheet" href="../../static/userManagement/public/css/nav.css">
     <script src="../../static/userManagement/setting/js/setting.js"> </script>
 		<div class="nav-wrap">
-			<div class="nav-logo nav-logo-img">
-				<h1>微信小程序</h1>
-			</div>
-			<ul class="top-menu">
-				<li class="menu-one">
-					<a href="http://www.jisuapp.cn/index.php?r=pc/Index/homePage" target="_blank" rel="nofollow">微页</a>
-				</li>
-				<li class="menu-one">
-					<a href="http://www.jisuapp.cn/index.php?r=oauth2/forumAuthOrize&amp;referer=http%3a%2f%2fbbs.zhichiwangluo.com%2fforum.php%3fgid%3d83" target="_blank" rel="nofollow">开发论坛</a>
-				</li>
-				<li class="menu-one">
-					<a class="serve" href="http://www.jisuapp.cn/index.php?r=pc/Webapp/ShowAppPackPage&amp;type=1&amp;_app_id=hCe7c66xGc#">服务<span class="serve_ico"></span></a>					
-					<ul style="width: 100%">
-						<li class="menu-two"><a href="http://www.jisuapp.cn/intro/" target="_blank">功能介绍</a></li>
-						<!--li class="menu-two"><a href="/index.php?r=pc/index/agency&is_app=1" target="_blank">成为代理</a></li-->
-						<li class="menu-two"><a href="http://www.jisuapp.cn/agents/" target="_blank">成为代理</a></li>
-						<li class="menu-two check_login" data="/index.php?r=pc/IndexNew/WechatSubmit">服务支持</li>
-						<!--li class="menu-two"><a href="/index.php?r=pc/Index/MediaReport" target="_blank">媒体报导</a></li-->
-						<li class="menu-two"><a href="http://www.jisuapp.cn/news/" target="_blank">媒体报导</a></li>
-						<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/AgentSearch/showAgentList&amp;is_app=1" target="_blank">代理查询</a></li>
-						<li class="menu-two"><a href="http://www.jisuapp.cn/match/" target="_blank">设计大赛</a></li>
-					</ul>
-				</li>
-				<li class="menu-one">
-					<!--a href="/index.php?r=pc/Index/appcase" target="_blank">案例</a-->
-					<a href="http://www.jisuapp.cn/cases/" target="_blank">案例</a>
-					<ul style="display: none;">
-						<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/Index/appcase" target="_blank">webApp</a></li>
-					</ul>
-				</li>
-				<li class="menu-one">
-					<!--a href="/index.php?r=pc/Webapp/exclusive" target='_blank'>官方定制</a-->
-					<a href="http://www.jisuapp.cn/exclusive/" target="_blank">官方定制</a>
-				</li>
-				<li class="menu-one check_login" data="/index.php?r=pc/Webapp/myapp">
-					应用管理
-				</li>
-				<li class="menu-one">
-					<!-- <a href="/index.php?r=pc/Webapp/AppTpl">小程序制作</a> -->
-					<a href="http://www.jisuapp.cn/make/">小程序制作</a>
-				</li>
-				<li class="menu-one">
-					<a href="http://www.jisuapp.cn/index.php?r=pc/index/AppHome">首页</a>
-				</li>
-			</ul>
-			<div class="nav-login">
-									<div class="menu-one nav-center">
-						<a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1"><img class="nav-img" src="../../static/userManagement/setting/img/57cac3e61af0856611d5eb756e4b4eb5_o.jpg">
-													杨子玉
-																								</a>
-						<ul is_designer="-1">
-							<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">个人中心</a></li>
-							
-														<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=pc/agent/showindex&amp;is_app=1">代理管理</a></li>
-														<!-- <li class="menu-two"><a href="/index.php?r=pc/Designer/ShowApply&is_app=1">设计师</a></li> -->
-														<li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=Login/logout&amp;is_app=1" onclick="setCookie(&#39;pc_pw&#39;,&#39;&#39;, 24);">退出</a></li>
-						</ul>
-					</div>
-					<!-- <div class="massage"><a href="/index.php?r=pc/IndexNew/showInform&is_app=1" title="通知中心"><img id="massageImg" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc/index/img/message_enter.png" onmousemove="enter(this)" onmouseout="leave(this)" alt=""></a>
-					</div> -->
-							</div>
-		</div>
+    <div class="nav-logo nav-logo-img">
+        <h1>微信小程序</h1>
+    </div>
+    <ul class="top-menu" style="position: relative;">
+
+
+        <li class="menu-one check_login" data="/index.php?r=pc/Webapp/myapp">
+            应用管理
+        </li>
+
+        <li class="menu-one active">
+            <a href="http://www.jisuapp.cn/index.php?r=pc/index/AppHome">首页</a>
+        </li>
+        <div class="nav_line"
+             style="position: absolute; height: 2px; background: rgb(0, 0 0); top: 54px; z-index: 0; width: 92px; left: 282.391px;"></div>
+    </ul>
+    <div class="nav-login">
+        <div class="menu-one nav-center">
+            <a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1"><img class="nav-img"
+                                                                                                   src="../../static/userManagement/myXcx/img/touxiang.png">
+                {{user.username }}
+            </a>
+            <ul is_designer="-1">
+                <li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=Login/logout&amp;is_app=1"
+                                        onclick="setCookie(&#39;pc_pw&#39;,&#39;&#39;, 24);">退出</a></li>
+            </ul>
+        </div>
+        <!-- <div class="massage"><a href="/index.php?r=pc/IndexNew/showInform&is_app=1" title="通知中心"><img id="massageImg" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc/index/img/message_enter.png" onmousemove="enter(this)" onmouseout="leave(this)" alt=""></a>
+        </div> -->
+    </div>
+</div>
 
 
 
