@@ -69,7 +69,7 @@ class ManageUser(models.Model):
 class Applet(models.Model):
     name=models.CharField(u'名称', max_length=255)
     description = models.CharField(u'描述', max_length=255,blank=True)
-    image=models.ImageField(upload_to="images",blank=True)
+    image=models.ImageField(upload_to="images",blank=True,default="images/topLogo_LThzOqp.jpg")
     appletId=models.CharField(u"ID",max_length=255,blank=True)
     secret=models.CharField(u"secret",max_length=255,blank=True)
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
