@@ -73,9 +73,9 @@ class XcxApiTests(TestCase):
     def test_Zip(self):
         import getShopApp
         import os
-        shop=getShopApp.Xcx(self.applet.id,self.applet.name,self.applet.description,"uuuuuuu")
-        shop.getZipUrl()
-        self.assertTrue( os.path.exists(os.path.join(BASE_DIR,"media","app",str(self.applet.id)+".zip")))
+        # shop=getShopApp.Xcx(self.applet.id,self.applet.name,self.applet.description,"uuuuuuu")
+        # shop.getZipUrl()
+        # self.assertTrue( os.path.exists(os.path.join(BASE_DIR,"media","app",str(self.applet.id)+".zip")))
 
 
 
