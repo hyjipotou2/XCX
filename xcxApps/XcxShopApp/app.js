@@ -2441,7 +2441,7 @@ App({
     this.globalData.goodsAdditionalInfo = additionalInfo;
   },
   globalData:{
-    appId:'1',
+    appId:'',
         tabBarPagePathArr: '["\/pages\/page10000\/page10000","\/pages\/page10006\/page10006","\/pages\/tabbarShoppingCart\/tabbarShoppingCart"]',
         homepageRouter: 'page10052',
     formData: null,
@@ -2459,7 +2459,7 @@ App({
     wxParseOldPattern: '_listVesselRichText_',
    
     defaultPhoto:'',
-    siteBaseUrl:'http://127.0.0.1:8000',
+    siteBaseUrl:'https://xcx.yibangbang99.com',
     appTitle:'',
     appDescription:'',
     appLogo:''
