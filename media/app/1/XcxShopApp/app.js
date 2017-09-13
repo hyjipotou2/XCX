@@ -474,7 +474,7 @@ App({
   requestUserXcxInfo: function () {
     var that = this;
     this.sendRequest({
-      url: '/userInfo/',
+      url: '/userinfo/',
       success: function (res) {
         if (res.status == 0) {
           if (res.data) {
@@ -2459,10 +2459,10 @@ App({
     wxParseOldPattern: '_listVesselRichText_',
    
     defaultPhoto:'',
-    siteBaseUrl:'http://127.0.0.1:8000',
+    siteBaseUrl:'https://xcx.yibangbang99.com',
     appTitle:'345',
     appDescription:'小程序应用',
-    appLogo:'http://127.0.0.1:8000/media/images/topLogo_LThzOqp.jpg'
+    appLogo:'http://xcx.yibangbang99.com/media/images/topLogo_LThzOqp.jpg'
   }
 })
 

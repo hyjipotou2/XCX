@@ -45,100 +45,43 @@ Page({
         orderId: orderId
       })
     }
-    this.getArea('province', 0);
+   
   },
   getAddressDetail: function(id){
     var that = this;
 
     app.sendRequest({
-      url: '/index.php?r=AppShop/GetAddressById',
-      data: { address_id: id },
+      url: '/api/address/'+id,
+    
       success: function(res){
-        var data = res.data;
+        
         that.setData({
-          name: data.address_info.name,
-          contact: data.address_info.contact,
-          detail: data.address_info.detailAddress,
-          isDefault: +data.is_default,
-          provincePara: data.address_info.province,
-          cityPara: data.address_info.city,
-          districtPara: data.address_info.district
+          name: res.name,
+          contact: res.contact,
+          detail: res.detailAddress,
+         
+          provincePara: res.province,
+          cityPara: res.city,
+          districtPara: res.district,
+          region: res.province + "," + res.city + "," + res.district
         })
-      }
+     }
+      
     });
   },
-  getArea: function(category, pid){
-    var that = this;
-
-    app.sendRequest({
-      url: '/index.php?r=Region/getRegionList',
-      data: { pid: pid },
-      success: function(res){
-        var list = res.data,
-            ids = [];
-
-        for (var i = 0, j = list.length - 1; i <= j; i++) {
-          ids.push(list[i].id);
-          list[i] = list[i].name;
-        }
-        switch(category){
-          case 'province':  that.setData({ provinces:list, provinceIds:ids, cities:[], districts:[] })
-                            break;
-              case 'city':  that.setData({ cities:list, cityIds:ids, districts:[] })
-                            break;
-          case 'district':  that.setData({ districts:list, districtIds:ids })
-                            break;
-        }
-      }
-    });
-  },
-  bindProvinceChange: function(e){
-    var index = e.detail.value,
-        id = this.data.provinceIds[index];
-
-    this.getArea('city', id);
+  bindPickerChange:function(e)
+  {
     this.setData({
-      provincePara: {
-        text: this.data.provinces[index],
-        id: id
-      },
-      cityPara: {
-        text: '',
-        id: ''
-      },
-      districtPara: {
-        text: '',
-        id: ''
-      }
+      region: e.detail.value,
+      province : e.detail.value[0],
+      city: e.detail.value[1],
+      district: e.detail.value[2],
+    
     })
-  },
-  bindCityChange: function(e){
-    var index = e.detail.value,
-        id = this.data.cityIds[index];
 
-    this.getArea('district', id);
-    this.setData({
-      cityPara: {
-        text: this.data.cities[index],
-        id: id
-      },
-      districtPara: {
-        text: '',
-        id: ''
-      }
-    })
   },
-  bindDistrictChange: function(e){
-    var index = e.detail.value,
-        id = this.data.districtIds[index];
-
-    this.setData({
-      districtPara: {
-        text: this.data.districts[index],
-        id: id
-      }
-    })
-  },
+  
+ 
   nameInput: function(e){
     this.setData({
       name: e.detail.value
@@ -154,38 +97,45 @@ Page({
       detail: e.detail.value
     })
   },
-  addAddress: function(){
+  formSubmit: function(){
     var para = {};
     var that = this;
-
+    let url = '/api/address/';
+    let method='post';
     if(!this.completeAddressInfo()){
       return;
     }
-    para.province = this.data.provincePara;
-    para.city = this.data.cityPara;
-    para.district = this.data.districtPara;
 
-    para.name = this.data.name;
-    para.contact = this.data.contact;
-    para.detailAddress = this.data.detail;
+    if (that.data.addressId)
+    {
+method='put';
+url = url + that.data.addressId;      
+    }
 
     app.sendRequest({
-      method: 'post',
-      url: '/index.php?r=AppShop/addAddress',
+      method: method,
+      url: url,
       data: {
-        address_id: this.data.addressId,
-        address_info: para,
-        is_default: this.data.isDefault
+        province: this.data.province,
+        city: this.data.city,
+        district : this.data.district,
+
+        name : this.data.name,
+        contact : this.data.contact,
+        detailAddress : this.data.detail,
       },
       success: function(res){
-        if(that.data.orderId){
-          that.setAddress(res.data);
-        } else {
+       
           app.turnBack();
-        }
+        
+      },
+      fail:function(res)
+      {
+     let re=res;
       }
     })
   },
+  
   setAddress: function(addressId){
     var orderId = this.data.orderId;
 
@@ -210,15 +160,10 @@ Page({
     if(!tip && !data.contact){
       tip = '请填写联系方式';
     }
-    if(!tip && !data.provincePara.text){
-      tip = '请选择省份';
-    }
-    if(!tip && !data.cityPara.text){
-      tip = '请选择城市';
-    }
-    if(!tip && !data.districtPara.text){
+    if (!tip && !data.region){
       tip = '请选择地区';
     }
+   
     if(!tip && !data.detail){
       tip = '请填写详细地址';
     }

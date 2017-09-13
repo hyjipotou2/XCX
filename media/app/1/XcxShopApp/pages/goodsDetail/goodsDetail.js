@@ -275,7 +275,7 @@ Page({
                 };
 
     app.sendRequest({
-      url: '/index.php?r=AppShop/addCart',
+      url: '/addcartlist/',
       data: param,
       success: function(res){
         var cart_arr = [res.data],
