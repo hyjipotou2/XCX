@@ -37,8 +37,9 @@ class Xcx():
         os.system(op)
 
     def createZip(self):
+
         os.system(
-            "zip -rjq %s.zip %s &&mv %s.zip %s" % (self.id, os.path.join(self.appPath, self.id), self.id, self.appPath))
+            "cd %s&&zip -rq %s.zip %s &&mv %s.zip %s" % (self.appPath,self.id, self.id, self.id, self.appPath))
 
     def removeTemp(self):
         os.system("rm -rf " + os.path.join(self.appPath, self.id))
