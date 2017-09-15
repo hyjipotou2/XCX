@@ -11,6 +11,20 @@ $(function () {
         postApplet()
 
     })
+    $(".delete-applet").each(
+        function () {
+            var currentEle = $(this);
+
+                var id = currentEle[0].dataset.id
+
+            currentEle.click(function () {
+
+                deleteApplet(id)
+            })
+
+
+        }
+    )
 
 
 })
@@ -30,7 +44,8 @@ function postApplet() {
         success: function (returndata) {
             console.log(returndata.toString());
             Toast("创建成功");
-             window.reload()
+            setTimeout("location.reload(true)",1000)
+
 
         },
         error: function (returndata) {
@@ -41,6 +56,31 @@ function postApplet() {
 
 
 }
+function deleteApplet(id) {
+
+    mdata={};
+    mdata['id']=id
+
+    $.ajax({
+        url: "/deleteapplet/",
+        type: "POST",
+        data:mdata,
+
+        success: function (returndata) {
+
+            Toast("删除成功");
+            setTimeout("location.reload(true)",1000)
+
+        },
+        error: function (returndata) {
+            console.log(returndata.responseText);
+            Toast("删除失败")
+        }
+    });
+
+
+}
+
 
 function Toast(msg,duration){
     duration=isNaN(duration)?3000:duration;

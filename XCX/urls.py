@@ -27,6 +27,7 @@ router.register(r'goods',views.GoodsViewSet)
 
 router.register(r'order',views.OrderViewSet)
 router.register(r'address',views.AddressViewSet)
+
 urlpatterns = [
 url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
    url(r'^api/', include(router.urls)),
@@ -47,6 +48,7 @@ url(r'^onlogin/', views.onLogin),
 url(r'^setting/', views.setting),
 url(r'^resign/', views.resign),
 url(r'^createapplet/', views.createApplet),
+url(r'^deleteapplet/', views.deleteApplet),
 
 
 

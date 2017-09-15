@@ -8,8 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
     <meta name="keywords" content="活动汇,微活动,咫尺活动,微页,咫尺网络,微杂志,微邀请函,喜帖,电子邀请函,H5应用,APP,微场景,场景应用,微场景制作,场景应用制作">
-    <link rel="shortcut icon" href="http://cdn.jisuapp.cn/zhichi_frontend/static/common/images/favicon.ico"
-          type="image/x-icon">
     <link rel="stylesheet" href="../../static/userManagement/myXcx/css/common.css">
     <link rel="stylesheet" href="../../static/userManagement/myXcx/css/pc_icomoon.css">
     <link rel="stylesheet" href="../../static/userManagement/myXcx/css/myapp.css">
@@ -129,8 +127,8 @@
                 {{ user.username }}
             </a>
             <ul is_designer="-1">
-                <li class="menu-two"><a href="http://www.jisuapp.cn/index.php?r=Login/logout&amp;is_app=1"
-                                        onclick="setCookie(&#39;pc_pw&#39;,&#39;&#39;, 24);">退出</a></li>
+                <li class="menu-two"><a href="/logout/"
+                                        >退出</a></li>
             </ul>
         </div>
         <!-- <div class="massage"><a href="/index.php?r=pc/IndexNew/showInform&is_app=1" title="通知中心"><img id="massageImg" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc/index/img/message_enter.png" onmousemove="enter(this)" onmouseout="leave(this)" alt=""></a>
@@ -158,6 +156,7 @@
                     <div class="tool-show">
                         <a class="nav_item" href="/setting/?id={{ applet.id }}">导出</a>
                         <a class="nav_item" href="/goods/?id={{ applet.id }}">管理</a>
+                        <a class="delete-applet nav_item" data-id="{{ applet.id }}">删除</a>
 
 
                     </div>
