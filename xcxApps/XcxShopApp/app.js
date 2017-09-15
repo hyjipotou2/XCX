@@ -753,17 +753,17 @@ App({
           param.page_size = 100;
         }
         param.isTest=true
-       
+        param.applet = _this.getID();
         _this.sendRequest({
           //url: '/index.php?r=AppShop/GetGoodsList',
-          url: '/api/goods/?applet=1',
+          url: '/api/goods/',
           data: param,
           method: 'GET',
           success: function (res) {
               newdata={}
               newdata["goods_list4.goods_data"]=res
               pageInstance.setData(newdata);
-            
+
           }
         });
       }
@@ -1277,9 +1277,9 @@ App({
 
       if (obj.length == 16) {
         newdata[datakey] = value + ' ' + time;
-      } else if (obj.length == 10) {  
+      } else if (obj.length == 10) {
         newdata[datakey] = value;
-      } else if (obj.length == 5) {  
+      } else if (obj.length == 5) {
         newdata[datakey] = value + ' ' + obj;
       } else if (obj.length == 0) {
         newdata[datakey] = value;
@@ -2437,6 +2437,9 @@ App({
   getGoodsAdditionalInfo: function(){
     return this.globalData.goodsAdditionalInfo;
   },
+  getID: function () {
+    return this.globalData.appId;
+  },
   setGoodsAdditionalInfo: function(additionalInfo){
     this.globalData.goodsAdditionalInfo = additionalInfo;
   },
@@ -2454,10 +2457,10 @@ App({
       address: ''
     },
     previewGoodsOrderGoodsInfo: [],
-    goodsAdditionalInfo: {}, 
+    goodsAdditionalInfo: {},
     urlLocationId:'',
     wxParseOldPattern: '_listVesselRichText_',
-   
+
     defaultPhoto:'',
     siteBaseUrl:'https://xcx.yibangbang99.com',
     appTitle:'',
