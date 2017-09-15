@@ -36,39 +36,16 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown visible-md visible-lg">
                 <!--通知个数-->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bell-o"></i>
-                    <span class="badge1"></span>
+                <a href="/index/" class="dropdown-toggle" data-toggle="dropdown">
+                   首页
                 </a>
-                <ul class="dropdown-menu">
-                    <li class="clearfix">
-                        <i class="fa fa-comment"></i>
-                        <a href="#" class="notification-user"> 1</a>
-                        <span class="notification-action"> 2</span>
-                        <a href="#" class="notification-link"> 3</a>
-                    </li>
-                    <li class="clearfix">
-                        <i class="fa fa-pencil"></i>
-                        <a href="#" class="notification-user"> 4 </a>
-                        <span class="notification-action"> 5</span>
-                        <a href="#" class="notification-link">6</a>
-                    </li>
-                    <li class="dropdown-menu-footer text-center">
-                        <a href="#">7</a>
-                    </li>
-                </ul>
+
             </li>
             <li class="dropdown visible-md visible-lg">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">jhonsmith@mail.com</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
-                    <li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>
-                    <li><a href="#"><i class="fa fa-usd"></i>Payments </a></li>
-                    <li><a href="#"><i class="fa fa-file"></i>File</a></li>
-                    <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
-                </ul>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}</a>
+
             </li>
-            <li><a href="#"><i class="fa fa-power-off"></i></a></li>
+            <li><a href="/logout/"><i class="fa fa-power-off"></i></a></li>
         </ul>
     </div>
 </div>
