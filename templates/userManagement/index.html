@@ -115,7 +115,7 @@
         </li>
 
         <li class="menu-one active">
-            <a href="http://www.jisuapp.cn/index.php?r=pc/index/AppHome">首页</a>
+            <a href="/index/">首页</a>
         </li>
         <div class="nav_line"
              style="position: absolute; height: 2px; background: rgb(0, 0 0); top: 54px; z-index: 0; width: 92px; left: 282.391px;"></div>
@@ -162,7 +162,7 @@
                     </div>
                     <img class="info-pic" src="../../static/userManagement/myXcx/img/xcxapp208.jpg"></div>
                 <div class="info-bottom"><a
-                        href="http://www.jisuapp.cn/index.php?r=pc/AppMgr/manager&amp;_app_id=C0hm87D88e"
+                        href=""
                         target="_blank"><p>{{   applet.name }}</p></a>
                     <p class="info-title"><label class="detail"><span class="add_time"></span>{{ applet.createDateTime|date:"o-m-j"}}</label><label
 
@@ -543,42 +543,7 @@
     }
 </style>
 <!-- 屏蔽 -->
-<div class="shield-panel" id="shield-panel">
-    <div class="main">
-        <p class="title">提示信息<span class="close">×</span></p>
-        <div style="text-align: center;font-size: 20px;padding: 20px 0;"><img
-                src="../../static/userManagement/myXcx/img/shield.png">您的小程序涉及敏感词汇，违反微信规定，已被屏蔽
-        </div>
-        <div class="context" style="padding-left: 50px;">
-            <p><span>违规小程序</span><span class="shield-id"></span></p>
-            <p><span>具体原因</span><span class="shield-reason"></span></p>
-            <p style="color: red;"><span>申诉要求</span><span>请去除违规内容后再申诉！申诉将在三个工作日内处理。</span></p>
-            <p><span>联系QQ</span><span>3422158815</span></p>
-        </div>
-        <div class="shield-btn"><a class="preview" target="_blank"
-                                   href="http://www.jisuapp.cn/index.php?r=pc/Webapp/myapp">预览</a><a class="edit"
-                                                                                                     target="_blank"
-                                                                                                     href="http://www.jisuapp.cn/index.php?r=pc/Webapp/myapp">编辑</a><a
-                class="check" target="_blank"
-                href="http://bbs.zhichiwangluo.com/forum.php?mod=viewthread&amp;tid=11178">查看</a><span
-                id="to-appeal">申诉</span></div>
-    </div>
-</div>
-<!-- 申诉 -->
-<div class="appeal-panel" id="appeal-panel">
-    <div class="main">
-        <p class="title">小程序申诉<span class="close">×</span></p>
-        <div class="appeal-form">
-            <div><label><span style="color: red;">*</span>您的称呼：</label><input id="appeal-name" type="text" name="">
-            </div>
-            <div><label><span style="color: red;">*</span>联系方式：</label><input id="appeal-phone" type="text" name="">
-            </div>
-            <div style="margin-top: 30px;"><label><span style="color: red;">*</span>申诉原因：</label><textarea
-                    id="appeal-reason"></textarea></div>
-        </div>
-        <div class="appeal-btn"><span class="cancel-appeal">取消</span><span class="submit-appeal">提交</span></div>
-    </div>
-</div>
+
 <script type="text/javascript">
     $('#shield-panel').on('click', '#to-appeal', function () {
         $('#shield-panel').hide().siblings('#appeal-panel').show();
