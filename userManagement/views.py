@@ -493,6 +493,12 @@ def resign(request):
 
         return HttpResponseRedirect(request.GET.get("next_to", '/index/'))
 
+class AppletViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin,
+                   mixins.DestroyModelMixin,mixins.UpdateModelMixin):
+    serializer_class = serializers.AppletSerializer
+    queryset = Applet.objects.all()
+
+
 def createApplet(request):
     if request.method=="POST":
         user=request.user
@@ -500,6 +506,12 @@ def createApplet(request):
         description=request.POST.get("description","APP")
         image=request.FILES.get("image")
         Applet.objects.create(appletManageUser=user.manageuser,name=name,description=description,image=image)
+        return HttpResponse("ok")
+def deleteApplet(request):
+    if request.method=="POST":
+        id=request.POST.get("id")
+        applet=get_object_or_404(Applet,id=id)
+        applet.delete()
         return HttpResponse("ok")
 
 
