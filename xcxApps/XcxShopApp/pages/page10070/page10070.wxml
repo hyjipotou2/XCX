@@ -1,11 +1,11 @@
 <view class="app">
 <template name="zcUserCenter">
   <view class="user-center usercenter-mode1 background-ele {{ data.customFeature['with-horizontal'] ? 'with-horizontal-view': '' }}" style="{{data.style}}">
-    <view class="show-view" catchtap="UserCenterTurnToPage" data-router="userCenter" 
+    <view class="show-view"  data-router="userCenter" 
           style=" background-image: url('http://cdn.jisuapp.cn/zhichi_frontend/static/webapp/images/top_bg.jpg');"> <label class="empty-span"></label>
       <image class="cover-thumb" src="{{ userInfo.avatarUrl || 'http://img.zhichiwangluo.com/zc_app_default_photo.png'}}"></image>
       <label class="nickname">{{ userInfo.nickname || '用户名' }}</label>
-      <label class="ico-moon icon-rightarrow"></label>
+     
     </view>
     <block wx:if="{{ data.customFeature['with-horizontal'] }}">
       <view class="horizontal-view">
