@@ -44,7 +44,7 @@ Page({
       url: '/api/goods/' + this.data.goodsId,
      
       success: that.modifyGoodsDetail
-    },"http://127.0.0.1:8000")
+    })
   },
   onShareAppMessage: function(){
     var goodsId = this.data.goodsId,
@@ -265,23 +265,24 @@ Page({
     //     app.turnToPage(pagePath);
     //   }
     // })
-    var franchiseeId = this.data.franchiseeId,
-        that = this,
-        param = {
-                  goods_id: this.data.goodsId,
-                  model_id: this.data.selectModelInfo.modelId || '',
-                  num: this.data.selectModelInfo.buyCount,
-                  sub_shop_app_id: franchiseeId || ''
-                };
+    var that = this,
+      param = {
+        goods_id: this.data.goodsId,
+        model_id: this.data.selectModelInfo.modelId || '',
+        num: this.data.selectModelInfo.buyCount,
+        sub_shop_app_id: this.data.franchiseeId || ''
+      };
 
     app.sendRequest({
       url: '/addcartlist/',
       data: param,
+      method: "POST"
+      ,
       success: function(res){
         var cart_arr = [res.data],
-            pagePath = '/pages/previewGoodsOrder/previewGoodsOrder?cart_arr='+ encodeURIComponent(cart_arr);
+            pagePath = '/pages/previewGoodsOrder/previewGoodsOrder'
 
-        franchiseeId && (pagePath += '&franchisee='+franchiseeId);
+        
         that.hiddeAddToShoppingCart();
         app.turnToPage(pagePath);
       }

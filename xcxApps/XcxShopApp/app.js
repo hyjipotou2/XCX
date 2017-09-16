@@ -2437,6 +2437,9 @@ App({
   getGoodsAdditionalInfo: function(){
     return this.globalData.goodsAdditionalInfo;
   },
+  setID: function (id) {
+     this.globalData.appId=id;
+  },
   getID: function () {
     return this.globalData.appId;
   },

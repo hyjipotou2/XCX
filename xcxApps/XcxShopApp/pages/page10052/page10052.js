@@ -18,6 +18,11 @@ var pageData    = {
       franchiseeComps: [],
       cityLocationComps: [],
       onLoad: function (e) {
+        if(e.ID)
+        {appInstance.setID(e.ID)
+        }
+
+
     this.setData({
       addShoppingCartShow: false,
       addTostoreShoppingCartShow:false

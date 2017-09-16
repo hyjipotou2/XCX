@@ -119,7 +119,7 @@ class Order(models.Model):
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
     orderStateChoices = ((-1, u'已删除'), (0, u'待付款'),(1,u'待发货'), (2, u'配送中'), (3, u'交易完成'))
-
+    contact = models.CharField(u'电话', max_length=255, blank=True)
     orderState = models.IntegerField(u'订单状态', choices=orderStateChoices, default=0)
     originalPrice = models.FloatField(u'原价', default=0.0)
     totalPrice = models.FloatField(u'总价', default=0.0)

@@ -56,7 +56,7 @@ Page({
         that.clickSelectAll();
         that.recalculateCountPrice();
       }
-    },"http://127.0.0.1:8000")
+    })
   },
   switchToEdit: function(){
     this.setData({
@@ -336,7 +336,7 @@ Page({
         data['goodsList['+index+'].num'] = currentNum;
         that.setData(data);
       }
-    },"http://127.0.0.1:8000")
+    })
   },
   modalConfirm: function(){
     this.setData({

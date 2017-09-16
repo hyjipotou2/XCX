@@ -33,40 +33,25 @@ Page({
     this.dataInitial();
   },
   dataInitial: function () {
-    this.getCalculationInfo();
+  
     this.getShopAddress();
     this.getCartList();
   },
   onShow: function(){
-    if(this.isFromBack){
-      this.getCalculationInfo();
-    } else {
-      this.isFromBack = true;
-    }
+    
   },
   getCartList: function () {
     var that = this,
         franchisee_id = this.franchisee_id;
 
     app.sendRequest({
-      url: '/index.php?r=AppShop/cartList',
-      data: {
-        page: 1,
-        page_size: 100,
-        sub_shop_app_id: franchisee_id,
-        parent_shop_app_id: franchisee_id ? app.globalData.appId : ''
-      },
+      url: '/cartlist/',
+     
       success: function(res){
         var data = [];
-        if(that.cart_id_arr.length){
-          for (var i = 0; i <= res.data.length - 1; i++) {
-            if(that.cart_id_arr.indexOf(res.data[i].id) >= 0){
-              data.push(res.data[i]);
-            }
-          }
-        } else {
-          data = res.data;
-        }
+       
+          data = res;
+        
 
         for (var i = 0; i <= data.length - 1; i++) {
           var goods = data[i],
@@ -82,6 +67,7 @@ Page({
         that.setData({
           goodsList: data
         });
+       that. recalculateCountPrice()
       }
     })
   },
@@ -163,14 +149,42 @@ Page({
   },
   getShopAddress:function(){
     var that = this;
+   
+   
+    var that = this;
     app.sendRequest({
-      url: '/index.php?r=AppShop/getAppShopLocationInfo',
+      url: '/api/address/',
       success: function (res) {
+        var addressList = res;
+
+
+
         that.setData({
-          shopAddress: res.data
-        });
+          selectAddress:addressList[0],
+          shopAddress: addressList[0]
+        })
       }
-    });
+    })
+   
+   
+  },
+  recalculateCountPrice: function () {
+    var list = this.data.goodsList,
+      totalCount = 0,
+      price = 0;
+
+    for (var i = list.length - 1; i >= 0; i--) {
+      var goods = list[i];
+      
+        totalCount += +goods.num;
+        price += +goods.price * +goods.num;
+      
+    }
+
+    this.setData({
+      goodsCountToPay: totalCount,
+      totalPayment: price.toFixed(2)
+    })
   },
   remarkInput: function (e) {
     var value = e.detail.value;
@@ -293,37 +307,24 @@ Page({
       return;
     }
 
-    for(var key in this.additional_info){
-      if(key !== undefined){
-        hasWritedAdditionalInfo = true;
-        break;
-      }
-    }
-    if(!this.data.noAdditionalInfo && !hasWritedAdditionalInfo){
-      app.showModal({
-        content: '请填写商品补充信息'
-      });
-      return;
-    }
-
+    
+  
     if(this.requesting){
       return;
     }
     this.requesting = true;
 
     app.sendRequest({
-      url : '/index.php?r=AppShop/addCartOrder',
+      url: '/api/order/',
       method: 'post',
       data: {
-        cart_arr: this.cart_data_arr,
-        formId: e.detail.formId,
-        sub_shop_app_id: this.franchisee_id,
-        selected_benefit: selected_benefit,
-        is_balance: this.data.useBalance ? 1 : 0,
-        is_self_delivery: this.data.is_self_delivery,
-        remark: this.data.orderRemark,
-        address_id: this.data.selectAddress.id,
-        additional_info: this.additional_info
+        orderGoods: that.data.goodsList,
+        deliveryName: that.data.selectAddress.name,
+        deliveryPosition: that.data.selectAddress.province + that.data.selectAddress.city + that.data.selectAddress.district + that.data.selectAddress.detailAddress ,
+        contact: that.data.selectAddress.contact
+
+
+          
       },
       success: function(res){
         that.payOrder(res.data);
@@ -424,13 +425,13 @@ Page({
         success: function (res) {
           app.sendRequest({
             method: 'post',
-            url: '/index.php?r=AppShop/AddWxAddress',
+            url: '/api/address/',
             data: {
-              detailInfo: res.detailInfo || '',
-              cityName: res.cityName || '',
-              provinceName: res.provinceName || '',
-              UserName: res.userName || '',
-              telNumber: res.telNumber || '',
+              detailAddress: res.detailInfo || '',
+              name: res.cityName || '',
+              province: res.provinceName || '',
+              name: res.userName || '',
+              contact: res.telNumber || '',
               district: res.district || '',
               countyName: res.countyName || ''
             },
