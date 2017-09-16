@@ -49,6 +49,9 @@ url(r'^setting/', views.setting),
 url(r'^resign/', views.resign),
 url(r'^createapplet/', views.createApplet),
 url(r'^deleteapplet/', views.deleteApplet),
+ url(r'^weixincallback/', views.weixinCallBack),
+ url(r'^getpaymentcode/', views.getPaymentCode),
+
 
 
 
