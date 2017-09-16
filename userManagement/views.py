@@ -2,6 +2,7 @@
 import hashlib
 import json
 import os
+from xml.etree import ElementTree
 
 import requests
 from django.contrib import auth
@@ -21,8 +22,16 @@ from forms import *
 from userManagement.getShopApp import Xcx
 
 import sys
+
+from userManagement.weixinPay import MyweixinClass
+
 reload(sys)
 sys.setdefaultencoding('utf8')
+def read_xml(text, findname):
+    root = ElementTree.fromstring(text)
+
+    node_find = root.find(findname)
+    return (node_find.text)
 
 def getSession():
     return hashlib.sha1(os.urandom(24)).hexdigest()
@@ -514,6 +523,33 @@ def deleteApplet(request):
         applet.delete()
         return HttpResponse("ok")
 
+
+def weixinCallBack(request):
+    if request.method == 'POST':
+        xml = request.body
+        mtrade_status = (read_xml(xml, "return_code"))
+
+        if (mtrade_status == 'SUCCESS'):
+            mOrder = Order.objects.get(id=(read_xml(xml, "attach")))
+            mOrder.orderState = 1
+            mOrder.save()
+
+        return HttpResponse(
+            "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>")
+
+def getPaymentCode(request):
+    session_key = request.GET.get("session_key")
+    order_id=request.GET.get("order_id")
+    order=get_object_or_404(Order,id=order_id)
+    appletUser=get_appleUser_or_permissionDenied(session_key)
+    if request.META.has_key('HTTP_X_FORWARDED_FOR'):
+        ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip = request.META['REMOTE_ADDR']
+
+    weixin=MyweixinClass(order,ip,appletUser.openid,appid=appletUser.applet.appletId)
+    dict=weixin.getxcxMD5Dict()
+    return JsonResponse(dict,safe=False)
 
 
 

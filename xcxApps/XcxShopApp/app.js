@@ -42,14 +42,17 @@ App({
 
     
     if(param.method){
-      if(param.method.toLowerCase() == 'post'){
+      if (param.method.toLowerCase() == 'post' && !header ){
+       
+
+        
         data = this.modifyPostParam(data);
         header = header || {
           'content-type': 'application/x-www-form-urlencoded;'
         }
-      }
+      
       param.method = param.method.toUpperCase();
-    }
+    }}
 
     if(!param.hideLoading){
       this.showToast({

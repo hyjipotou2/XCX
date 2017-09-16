@@ -231,6 +231,13 @@ Page({
       })
       return;
     }
+    var pagePath = '/pages/previewGoodsOrder/previewGoodsOrder?cart_arr=' + encodeURIComponent(cartIdArray);
+
+    franchiseeId && (pagePath += '&franchisee=' + franchiseeId);
+    app.turnToPage(pagePath);
+    return;
+
+
     if(sameGoodsType){
     // 当购物车勾选商品种类全部相同时 不生成订单而是跳转到预览订单页面
       if(selectGoodsType == 0){
@@ -251,19 +258,6 @@ Page({
       }
     }
 
-    app.sendRequest({
-      url : '/index.php?r=AppShop/addCartOrder',
-      method: 'post',
-      data: {
-        cart_arr: payIdArr,
-        formId: e.detail.formId,
-        sub_shop_app_id: fromUserCenterEle ? '' : franchiseeId
-      },
-      success: function(res){
-        var pagePath = '/pages/orderDetail/orderDetail?detail='+res.data+(franchiseeId ? '&franchisee='+franchiseeId : '');
-        app.turnToPage(pagePath);
-      }
-    });
   },
   clickMinusButton: function(e){
     var index = e.currentTarget.dataset.index,

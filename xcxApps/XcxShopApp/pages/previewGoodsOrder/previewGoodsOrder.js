@@ -317,6 +317,9 @@ Page({
     app.sendRequest({
       url: '/api/order/',
       method: 'post',
+      header: {
+        'content-type': 'application/json'
+      }, 
       data: {
         orderGoods: that.data.goodsList,
         deliveryName: that.data.selectAddress.name,
