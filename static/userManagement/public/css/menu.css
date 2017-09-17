@@ -30,7 +30,8 @@ min-width:210px;}
 /*statment 脚注*/
 .startment{z-index:811; display:block;}
 .startment ol{ text-align:left;  height:20px; margin-top:25%; margin-left: -10px;}
-.startment ol li {float: left; margin-right:15px; color:#eee; cursor:pointer; font-size: 12px;}
+.startment ol li{float: left; margin-right:15px; color:#eee; cursor:pointer; font-size: 12px;}
+.startment h5{margin-left: 29px;color:#eee; cursor:pointer; font-size: 14px;}
 .startment ol li:hover{color:#fff;}
 
 
