@@ -441,7 +441,5 @@ border-bottom:3px solid #d61d2e;border-radius:0;color:#414141;background:#1a1a1a
 .text-with-hr{text-align:center;position:relative;z-index:2}
 .text-with-hr:before{position:absolute;content:'';top:20px;left:0;width:100%;border-bottom:1px solid #d4d4d4;z-index:-1}
 .text-with-hr span{display:inline-block;background:#fff;padding:10px}
-@media screen and (min-width:1000px){
-	body{overflow:hidden}
-}
+
 
