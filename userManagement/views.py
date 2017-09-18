@@ -550,6 +550,10 @@ def getPaymentCode(request):
     weixin=MyweixinClass(order,ip,appletUser.openid,appid=appletUser.applet.appletId)
     dict=weixin.getxcxMD5Dict()
     return JsonResponse(dict,safe=False)
+def help(request):
+    return render(request, 'userManagement/help.html')
+
+
 
 
 
