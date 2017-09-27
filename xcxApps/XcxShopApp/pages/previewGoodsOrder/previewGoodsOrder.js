@@ -295,6 +295,10 @@ Page({
     });
   },
   confirmPayment: function(e){
+    app.showModal({
+      content: '未开通支付服务，请联系客服13220158284'
+    });
+    return;
     var list = this.data.goodsList,
         that = this,
         selected_benefit = this.data.selectDiscountInfo,
