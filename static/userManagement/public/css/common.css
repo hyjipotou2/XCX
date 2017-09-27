@@ -16,6 +16,11 @@ body{
 	-o-box-sizing: border-box;
 	box-sizing: border-box;
 }
+/*温馨提示*/
+.footer{ width:100%; height:30px; border-top:1px solid #e5e2e3; margin-top:45px;margin-bottom:10px;}
+.footer p{ font-size:16px; margin-top:10px;}
+
+
 /*底部版权*/
 footer{
 	margin:100px 0 50px 300px;
@@ -676,4 +681,29 @@ body::-webkit-scrollbar-thumb, div::-webkit-scrollbar-thumb, p::-webkit-scrollba
   0%{opacity: 1;}
   25%{opacity: 0;}
   100%{opacity: 1;}
+}
+
+.foot
+{
+    width: 100%;
+    height: 230px;
+    background-color: #bce8f1;
+
+}
+.foot .connect_us
+{   margin-left: 10%;
+    vertical-align: top;
+    margin-top: 30px;
+    display: inline-block;
+}
+.foot .wechat_qrcode
+{display: inline-block;
+    margin-top: 30px;
+    margin-left: 47%;
+
+}
+.foot .wechat_qrcode img
+{
+
+    width: 150px;
 }
