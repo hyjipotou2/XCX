@@ -552,6 +552,8 @@ def getPaymentCode(request):
     return JsonResponse(dict,safe=False)
 def help(request):
     return render(request, 'userManagement/help.html')
+def indexShow(request):
+    return render(request, 'userManagement/indexshow.html', {"User": request.user})
 
 
 

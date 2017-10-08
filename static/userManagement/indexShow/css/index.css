@@ -1,0 +1,212 @@
+
+@media screen and (max-width: 792px) {
+    .navbar-nav
+    {display: none;}
+}
+
+.mcontainer
+{height: 100%;
+width: 100%;
+
+
+}
+p,h1,h2,h3,h4,h5{
+    font-family: "黑体-简";
+    font-weight: lighter;
+
+}
+.mtop-nav
+{
+    height: 100px;
+    width: 100%;
+    background-color: #f9faf8;
+
+
+
+}
+.mtop-nav img
+{
+    display: inline-block;
+    margin-left: 138px;
+    line-height: 50px;
+    margin-top: 33px;
+
+}
+
+
+.navbar-nav
+{
+
+    margin-right: 245px;
+    float: right;
+    margin-top: 26px;
+
+
+}
+.bannder>img
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -100;
+    display: block;
+}
+.navbar-nav a
+{
+
+    color: black;
+    font-size: 17px;
+
+}
+
+
+li.active>a
+{color: #2c8ae2;
+    border:0;
+
+    border-bottom:1px solid #2c8ae2;
+
+}
+
+.bannder
+{
+    width: 100%;
+
+    background-image:url("../images/wxProcessImage/topImage.jpg");
+    background-size:100% 100%;
+}
+
+.text1
+{
+    text-align:center;
+    font-size: 55px;
+    color: white;
+
+}
+button
+{font-size: 20px;
+width: 170px;
+    height: 51px;
+
+}
+.buttondiv
+{text-align: center;
+margin-top: 83px;}
+#t1
+{padding-top: 13%  ;
+padding-bottom: 33px;
+margin-top: 0px;}
+
+.first
+{width: 100% ;
+height: 406px;
+    background-color: #efefef;
+}
+
+.first>p
+{height: auto;
+width:52%;
+margin-top: 24px;
+}
+
+
+
+.mh3
+{font-size: 24px;
+display: block;
+padding-left: 172px;
+margin-top: 0;
+    padding-top:81px;
+    z-index: 100;
+
+}
+.second
+{
+    height: 503px;
+    width: 100%;
+    position: relative;
+    background-color: black;
+}
+.mp
+{font-size: 15px;
+display: block;
+padding-left: 172px;
+color: #959595  ;
+z-index: 100;}
+
+#p1
+{
+    width: 45%;
+    margin-top: 52px;
+    margin-bottom: 45px;
+}
+.mstar
+{margin-bottom: 27px;}
+
+.mstar::before
+{
+    content: url("../../media/images/wxProcessImage/star.jpg");
+
+}
+.showimg2
+{margin-top: -37px;
+
+
+}
+.beautiful
+{
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top:0;
+    z-index: 50;
+
+
+}
+.third
+{width: 100%;
+height: 931px;
+text-align: center  ;
+background-color: #efefef}
+
+
+.third>p
+{width: 100%;
+    font-size: 24px;
+    height: 106px;
+    color: white;
+    background-color: #2888e2;
+    text-align: center;
+    vertical-align:middle;
+    line-height: 106px;
+    margin-bottom: 0;
+
+
+}
+
+.row
+{
+    width: 73%;
+    height: 136px;
+    display: inline-block;
+    margin-top: 92px;
+
+}
+.col-md-4
+{
+    height: 100%;
+    display: inline-block;
+
+    padding-left: 40px;
+    padding-right: 40px;
+
+}
+.col-md-4 p
+{font-size: 13.2px;
+
+}
+.col-md-4 h4
+{
+    font-size: 14.8px;
+    font-weight: normal;
+}
