@@ -28,13 +28,12 @@ class Xcx():
         os.system("cp -R -f " + os.path.join(self.xcxApps, "*") + " " + os.path.join(self.appPath, self.id))
 
     def setData(self):
-        op = 'sed -i "" "s/appId:\'\'/appId:\'%s\'/;' \
+        op = 'sed -i "s/appId:\'\'/appId:\'%s\'/;' \
              's/appTitle:\'\'/appTitle:\'%s\'/;' \
              's/appDescription:\'\'/appDescription:\'%s\'/;' \
              's/appLogo:\'\'/appLogo:\'%s\'/"%s' \
              % (self.id, self.name, self.appDescription, self.httpstring(self.imageurl),
                 " " + os.path.join(self.appPath, self.id, "XcxShopApp", "app.js"))
-
         os.system(op)
 
     def createZip(self):
