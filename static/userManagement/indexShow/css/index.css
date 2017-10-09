@@ -83,10 +83,13 @@ li.active>a
     color: white;
 
 }
-button
+.bu
 {font-size: 20px;
 width: 170px;
     height: 51px;
+    display: inline-block;
+    text-align: center;
+    line-height: 51px;
 
 }
 .buttondiv
