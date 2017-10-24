@@ -172,7 +172,7 @@ def getForm(request):
         goods = get_object_or_404(Goods, id=id)
 
         formHtml = AddGoodsForm(instance=goods).as_ul()
-        print formHtml
+
 
         images = goods.goodsimage_set.all()
         imageHtml = ""
@@ -554,6 +554,32 @@ def help(request):
     return render(request, 'userManagement/help.html')
 def indexShow(request):
     return render(request, 'userManagement/indexshow.html', {"User": request.user})
+def show(request):
+    if request.method == 'GET':
+        id = request.GET.get("id", 1)
+        data=ShowAppData.objects.filter(id=id)
+        formHtml=""
+        if data.count()>=1:
+
+            formHtml = ShowForm(instance=data[0]).as_ul()
+        else:
+            formHtml = ShowForm().as_ul()
+        return render(request,'userManagement/showManagement.html',{"form":formHtml,"id":id})
+    if request.method== 'POST':
+        id=request.GET.get("id")
+        applet=get_object_or_404(Applet,id=id)
+        if(hasattr(applet,"showappdata")):
+            dict=request.POST
+            dict["id"]=id
+
+        else:
+            dict=request.POST
+            dict['applet']=applet
+            ShowAppData.objects.create(dict)
+
+
+
+
 
 
 

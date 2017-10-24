@@ -74,6 +74,9 @@ class Applet(models.Model):
     secret=models.CharField(u"secret",max_length=255,blank=True)
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
+    appletType=((0,"商城"),(1,"公司展 示"))
+    type=models.IntegerField(u'类型',choices=appletType,default=0)
+
 
     appletManageUser=models.ForeignKey(ManageUser)
 
@@ -151,5 +154,12 @@ class Address(models.Model):
     countyName=models.CharField(u'国',max_length=255,blank=True)
     def __unicode__(self):
         return self.name
+
+class ShowAppData(models.Model):
+    applet = models.OneToOneField(Applet)
+    indexImage=models.ImageField(u"首页图片",upload_to='images', max_length=255)
+    contactMan=models.CharField(u"联系人",max_length=255)
+    contactNumber = models.CharField(u"联系方式", max_length=255)
+    contactLocation = models.CharField(u"地址", max_length=255)
 
 
