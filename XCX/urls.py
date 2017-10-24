@@ -53,6 +53,7 @@ url(r'^deleteapplet/', views.deleteApplet),
  url(r'^getpaymentcode/', views.getPaymentCode),
  url(r'^help/', views.help),
  url(r'^indexshow/', views.indexShow),
+ url(r'^show/', views.show),
 
 
 

@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+  <image class="img" mode="widthFix" src="{{src}}"></image>
+</view>

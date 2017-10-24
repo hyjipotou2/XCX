@@ -21,6 +21,7 @@ admin.site.register(models.AppletUser)
 admin.site.register(models.Goods,GoodsAdmin)
 admin.site.register(models.GoodsType)
 admin.site.register(models.Address)
+admin.site.register(models.ShowAppData)
 
 admin.site.register(models.ManageUser)
 

@@ -10,15 +10,16 @@
     <link href="../../static/userManagement/public/css/menu.css" rel="stylesheet"/>
     <link href="../../static/userManagement/public/css/nav.css" rel="stylesheet"/>
     <link href="../../static/userManagement/public/css/mains.css" rel="stylesheet"/>
-    <link href="../../static/userManagement/goods/css/goods.css" rel="stylesheet"/>
+
     <link href="../../static/userManagement/public/css/form.css" rel="stylesheet"/>
     <link href="../../static/userManagement/public/css/page.css" rel="stylesheet"/>
 
 
 
-
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
      <script src="../../static/userManagement/public/js/util.js"></script>
+
+    {% block head %}{% endblock %}
 
 
 
@@ -56,15 +57,18 @@
         <ul class="sidebar-menu">
             <!--logo-->
             <div class="logo1"></div>
+            {% block sidebarex %}
+            
+            {% endblock %}
             <li class="header">后台管理系统</li>
-            <li class="treeview active">
+            <li class="treeview {% block goodssidebar %}{% endblock %}">
                 <a href="/goods/?id={{ id }}">
                     <i class="fa fa-dollar"></i>
                     <span>商品管理</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
             </li>
-            <li class="treeview">
+            <li class="treeview {% block ordersidebar %}{% endblock %}">
                 <a href="/orders/?id={{ id }}">
                     <i class="fa fa-list-alt"></i>
                     <span>订单查询</span>
@@ -72,9 +76,25 @@
                 </a>
 
             </li>
-            <li class="treeview" >
+            <li class="treeview {% block paysidebar %}{% endblock %}" >
                 <a href="#" onclick="Toast('即将上线')">
                     <i class="fa fa-bars"></i> <span>支付设置</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+
+            </li>
+            <li class="treeview {% block moneysidebar %}{% endblock %}">
+                <a href="#" onclick="Toast('即将上线')">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>财务报表</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+
+            </li>
+        <li class="treeview {% block showsidebar %}{% endblock %}">
+                <a href="/showsettings/?id={{ id }}">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>公司展示设置</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
 
@@ -87,15 +107,8 @@
                 </a>
 
             </li>
-            <li class="treeview">
-                <a href="#" onclick="Toast('即将上线')">
-                    <i class="fa fa-bar-chart"></i>
-                    <span>财务报表</span>
-                    <i class="fa fa-angle-right pull-right"></i>
-                </a>
-
-            </li>
-            <li class="treeview">
+            
+            <li class="treeview {% block formssidebar %}{% endblock %}">
                 <a href="#" onclick="Toast('即将上线')">
                     <i class="fa fa-file"></i><span>增值服务下单</span>
                     <i class="fa fa-angle-right pull-right"></i>
@@ -103,13 +116,13 @@
 
             </li>
 
-            <li>
+            <li class="treeview {% block vipsidebar %}{% endblock %}">
                 <a href="#" onclick="Toast('即将上线')">
                     <i class="fa fa-user"></i><span>会员管理</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#" onclick="Toast('即将上线')>
+            <li class="treeview {% block settingsidebar %}{% endblock %}">
+                <a href="#" onclick="Toast('即将上线')">
                     <i class="fa fa-cog"></i> <span>设置</span>
                 </a>
             </li>
@@ -140,80 +153,10 @@
         </ul>
     </div>
 </div>
-<div class="mains" id="mains">
-    <div>
-        <div class="btn add-goods addGoodsIngoodsList manage-goodsList-header-common"><span
-                class="glyphicon glyphicon-plus"></span> 添加商品
-        </div>
-
-    </div>
-
-    <table class="table table-hover goods-list-table">
-        <thead>
-        <tr>
-
-            <th data-field="title" type-name="文本">商品名称</th>
-            <th data-field="cover" type-name="图片">商品图片</th>
-            <th data-field="price" type-name="文本">价格</th>
-            <!-- <th data-field="sale_price" type-name="文本">促销价</th> -->
-            <th data-field="sales" type-name="文本">销量</th>
-            <th data-field="stock" type-name="文本">库存</th>
-            <th data-field="{dataOperation}">操作</th>
-            <th data-field="ifShow">上架销售</th>
-        </tr>
-        </thead>
-        <tbody id="goodstbody">
-
-        </tbody>
-    </table>
-    		<div class="fen">
-			<div id="page"></div>
-
-
-
-					</div>
-
-
+<div class="mains">
+{% block body %}{% endblock %}
 </div>
-<div class="mains" id="main2">
-    <div class="row page-content-header">
-        <button class="right-corner-common pull-right goods-return-btn return-right-corner">返回</button>
-        <button class="right-corner-common pull-right save-right-corner" onclick="postOrPatch()">保存</button>
-        <!--h5><strong>添加数据</strong> | 所属对象: <span>商品</span></h5-->
-        <h4 class="addNewGoods-title">添加商品</h4>
-    </div>
-    <form method='post' id="goodsForm" action="/api/goods/">
-
-
-        {{ AddGoodsForm.as_ul }}
-        <li id="images">
-
-            <div class="file-input">
-                <p class="input-container">
-                    上传商品轮播图片
-                    <input type="file" id="upload" accept="image/*" multiple>
-                </p>
-
-            </div>
-        </li>
-    </form>
-
-
-
-
-
-
-
-</div>
-
-
-
-
-<script src="../../static/userManagement/public/js/jquery.page.js"></script>
-<script src="../../static/userManagement/goods/js/goods.js"></script>
-
-
-
+<!-- inline scripts related to this page -->
 
 
 </body>

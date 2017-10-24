@@ -1,0 +1,9 @@
+<!--pages/contact.wxml-->
+<view class='container'>
+<image class="contactimg"  mode="widthFix" src='../../images/contact.jpg'></image>
+<view class="contactText">
+<text class='text'>联系人：{{contactman}}</text>
+<text class='text' bindtap='call'>联系方式：<text class='phone' >{{contactnum}}</text></text>
+<text class='text'>地址：{{contactloc}}</text>
+</view>
+</view>

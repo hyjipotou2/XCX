@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/contact/contact"
+  ],
+  "tabBar": {
+    "list": [{
+        "iconPath": "images/595b819cc2ad7.png",
+        "selectedIconPath": "images/595b819cc2b34.png",
+        "text": "首页",
+        "pagePath": "pages/index/index"
+      },
+      
+      {
+        "iconPath": "images/595b819d01cc4.png",
+        "selectedIconPath": "images/595b819d01d19.png",
+        "text": "联系我们",
+        "pagePath": "pages/contact/contact"
+      }]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

@@ -1,0 +1,21 @@
+/* pages/contact.wxss */
+.contactimg
+{
+  width: 100%;
+}
+.text
+{
+  display: block;
+  margin-bottom: 30px;
+
+}
+.contactText
+{
+margin-left: 40px;
+}
+.phone
+{
+  color: blue;
+  text-decoration:underline;
+  display: inline-block;
+}
