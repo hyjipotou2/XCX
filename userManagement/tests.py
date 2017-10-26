@@ -71,7 +71,7 @@ class XcxApiTests(TestCase):
                                                         }),format='json')
         self.assertEqual(responsePost3.status_code, 400)
     def test_Zip(self):
-        import getShopApp
+        import getApp
         import os
         # shop=getShopApp.Xcx(self.applet.id,self.applet.name,self.applet.description,"uuuuuuu")
         # shop.getZipUrl()

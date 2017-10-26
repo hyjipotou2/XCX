@@ -8,12 +8,17 @@ from XCX.settings import BASE_DIR
 class Xcx():
 
 
-    def __init__(self, id, name, appDescription, imageurl):
+    def __init__(self, id, name, appDescription, imageurl,type):
 
         self.name = str(name)
         self.appDescription = str(appDescription)
         self.imageurl = str(imageurl)
         self.id = str(id)
+        self.type=type
+        if self.type==0:
+            self.appname="XcxShopApp"
+        if self.type==1:
+            self.appname="XcxShowApp"
 
         self.appPath = os.path.join(BASE_DIR, "media", "app")
         self.xcxApps = os.path.join(BASE_DIR, "xcxApps")
@@ -25,7 +30,8 @@ class Xcx():
 
         if ((os.path.isdir(os.path.join(self.appPath, self.id))) == False):
             os.system("mkdir -p " + os.path.join(self.appPath, self.id))
-        os.system("cp -R -f " + os.path.join(self.xcxApps, "*") + " " + os.path.join(self.appPath, self.id))
+
+        os.system("cp -R -f " + os.path.join(self.xcxApps, self.appname) + " " + os.path.join(self.appPath, self.id))
 
     def setData(self):
         op = 'sed -i "s/appId:\'\'/appId:\'%s\'/;' \
@@ -33,7 +39,7 @@ class Xcx():
              's/appDescription:\'\'/appDescription:\'%s\'/;' \
              's/appLogo:\'\'/appLogo:\'%s\'/"%s' \
              % (self.id, self.name, self.appDescription, self.httpstring(self.imageurl),
-                " " + os.path.join(self.appPath, self.id, "XcxShopApp", "app.js"))
+                " " + os.path.join(self.appPath, self.id, self.appname, "app.js"))
         os.system(op)
 
     def createZip(self):

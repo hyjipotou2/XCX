@@ -19,7 +19,7 @@ from rest_framework import viewsets
 
 import serializers
 from forms import *
-from userManagement.getShopApp import Xcx
+from userManagement.getApp import Xcx
 
 import sys
 
@@ -121,7 +121,7 @@ def setting(request):
         #applet.description=Description
         applet.save()
         imageurl="http://"+request.get_host()+applet.image.url
-        xcxObj=Xcx(applet.id,applet.name,applet.description,imageurl)
+        xcxObj=Xcx(applet.id,applet.name,applet.description,imageurl,applet.type)
         dict={}
         dict["url"]=xcxObj.getZipUrl()
         return  JsonResponse(dict,safe=False)
@@ -327,6 +327,19 @@ class AddressViewSet(viewsets.ModelViewSet):
         return queryset
     queryset = Address.objects.all()
     serializer_class = serializers.AddressSerializer
+class ShowViewSet(viewsets.ReadOnlyModelViewSet):
+    def get_queryset(self):
+        queryset = ShowAppData.objects.all()
+
+        app_id = self.request.query_params.get("_app_id")
+        if app_id is not None:
+            applet=get_object_or_404(Applet,id=app_id)
+            queryset =queryset.filter(applet=applet)
+
+
+        return queryset
+    serializer_class = serializers.ShowSerializers
+    queryset = ShowAppData.objects.all()
 
 class OrderViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin,
                    mixins.RetrieveModelMixin,

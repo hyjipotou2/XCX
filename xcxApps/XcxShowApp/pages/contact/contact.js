@@ -17,16 +17,28 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
+  onLoad: function () {
+    var that = this
+    appInstance.sendRequest({
+      url: '/api/show/', success: function (res) {
+        console.log(res)
+        that.setData({ contactnum: res[0].contactNumber,
+          contactman: res[0].contactMan,
+          contactloc: res[0].contactLocation })
+
+      }, fail: function (err) {
+        console.log(err)
+      }
+
+
+    })
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
   
-  },
 
   /**
    * 生命周期函数--监听页面显示

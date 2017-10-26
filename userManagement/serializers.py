@@ -81,7 +81,11 @@ class AppletUserSerializers(serializers.ModelSerializer):
     class Meta:
         model=AppletUser
         fields = "__all__"
+class ShowSerializers(serializers.ModelSerializer):
+    class Meta:
 
+        model=ShowAppData
+        exclude=('applet',)
 
 class OrderSerializers(serializers.ModelSerializer):
 
