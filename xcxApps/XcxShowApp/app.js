@@ -2468,7 +2468,7 @@ App({
     wxParseOldPattern: '_listVesselRichText_',
 
     defaultPhoto: '',
-    siteBaseUrl: 'http://127.0.0.1:8000',
+    siteBaseUrl: 'https://xcx.yibangbang99.com',
     appTitle: '',
     appDescription: '',
     appLogo: ''
