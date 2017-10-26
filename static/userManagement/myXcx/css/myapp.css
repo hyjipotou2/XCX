@@ -895,7 +895,7 @@ body {
   margin: auto;
   background-color: white;
   width: 600px;
-  height: 443px;
+  height: 475px;
   top: 10%;
   border-radius: 4px;
 }
@@ -1071,3 +1071,5 @@ body {
   width: 56%;
 
 }
+#id_type
+{line-height: inherit;color: black}

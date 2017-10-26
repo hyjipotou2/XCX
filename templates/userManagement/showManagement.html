@@ -1,5 +1,13 @@
 {% extends 'userManagement/managementFormat.html' %}
 
-{% block body %}<form method='post'>{{ form }}<input type="submit" value="保存">{% endblock %}
+{% block body %}<div class="mains"><form method='post' enctype="multipart/form-data">{{ form }}
+    <input type="submit" value="保存"/>
+    </form>
+</div>{% endblock %}
 
 </form>
+{% block showsidebar %}active{% endblock %}
+{% block ordersidebar %}none{% endblock %}
+{% block goodssidebar %}none{% endblock %}
+{% block paysidebar %}none{% endblock %}
+{% block moneysidebar %}none{% endblock %}

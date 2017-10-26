@@ -62,14 +62,15 @@
             {% endblock %}
             <li class="header">后台管理系统</li>
             <li class="treeview {% block goodssidebar %}{% endblock %}">
-                <a href="/goods/?id={{ id }}">
+                <a href="/goods/?id={{ request.GET.id }}">
                     <i class="fa fa-dollar"></i>
                     <span>商品管理</span>
                     <i class="fa fa-angle-right pull-right"></i>
                 </a>
             </li>
-            <li class="treeview {% block ordersidebar %}{% endblock %}">
-                <a href="/orders/?id={{ id }}">
+
+        <li class="treeview {% block ordersidebar %}{% endblock %}">
+                <a href="/orders/?id={{  request.GET.id }}">
                     <i class="fa fa-list-alt"></i>
                     <span>订单查询</span>
                     <i class="fa fa-angle-right pull-right"></i>
@@ -92,7 +93,7 @@
 
             </li>
         <li class="treeview {% block showsidebar %}{% endblock %}">
-                <a href="/showsettings/?id={{ id }}">
+                <a href="/showsettings/?id={{  request.GET.id }}">
                     <i class="fa fa-shopping-cart"></i>
                     <span>公司展示设置</span>
                     <i class="fa fa-angle-right pull-right"></i>
@@ -153,9 +154,9 @@
         </ul>
     </div>
 </div>
-<div class="mains">
+
 {% block body %}{% endblock %}
-</div>
+
 <!-- inline scripts related to this page -->
 
 

@@ -81,6 +81,19 @@
           <input class="publish-title-input" type="text" name="name" placeholder="我的应用">
             <label>*</label>
           <textarea class="publish-desc-input" name="description" placeholder="应用描述"></textarea>
+          <div>
+
+
+                        <label id="id_type">类型:</label>
+
+                            <select id="id_type" name="type">
+<option value="0" selected="selected">商城</option>
+<option value="1">公司展 示</option>
+</select>
+
+
+
+                </div>
         </div>
       </div>
       <div class="set-detail-item">
@@ -160,7 +173,7 @@
                 <div class="info-top">
                     <div class="tool-show">
                         <a class="nav_item" href="/setting/?id={{ applet.id }}">导出</a>
-                        <a class="nav_item" href="/goods/?id={{ applet.id }}">管理</a>
+                        <a class="nav_item" href="/{% if applet.type == 0 %}goods{% else %}show{% endif %}/?id={{ applet.id }}">管理</a>
                         <a class="delete-applet nav_item" data-id="{{ applet.id }}">删除</a>
 
 

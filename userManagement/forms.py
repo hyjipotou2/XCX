@@ -72,6 +72,7 @@ class AddGoodsForm(forms.ModelForm):
         exclude=["applet","goodsType"]
 class ShowForm(forms.ModelForm):
     class Meta:
+
         model=ShowAppData
         exclude=["applet"]
 

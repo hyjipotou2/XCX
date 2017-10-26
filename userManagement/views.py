@@ -514,7 +514,8 @@ def createApplet(request):
         name=request.POST.get("name","APP")
         description=request.POST.get("description","APP")
         image=request.FILES.get("image")
-        Applet.objects.create(appletManageUser=user.manageuser,name=name,description=description,image=image)
+        type=request.POST.get("type",0)
+        Applet.objects.create(appletManageUser=user.manageuser,name=name,description=description,image=image,type=type)
         return HttpResponse("ok")
 def deleteApplet(request):
     if request.method=="POST":
@@ -568,14 +569,29 @@ def show(request):
     if request.method== 'POST':
         id=request.GET.get("id")
         applet=get_object_or_404(Applet,id=id)
-        if(hasattr(applet,"showappdata")):
-            dict=request.POST
-            dict["id"]=id
+        form = ShowForm(request.POST,request.FILES)
+        if form.is_valid():
 
+            if(hasattr(applet,"showappdata")):
+                applet.showappdata.indexImage=form.cleaned_data['indexImage']
+                applet.showappdata.contactMan = form.cleaned_data['contactMan']
+                applet.showappdata.contactNumber = form.cleaned_data['contactNumber']
+                applet.showappdata.contactLocation = form.cleaned_data['contactLocation']
+                applet.showappdata.save()
+                return HttpResponseRedirect("/show/?id=" + id)
+
+            else:
+                ShowAppData.objects.create(applet=id,
+                                           contactMan=form.cleaned_data['contactMan'],
+                                           contactNumber=form.cleaned_data['contactNumber'],
+                contactLocation=form.cleaned_data['contactLocation'])
+                return HttpResponseRedirect("/show/?id="+id)
         else:
-            dict=request.POST
-            dict['applet']=applet
-            ShowAppData.objects.create(dict)
+            return render(request,'userManagement/showManagement.html',{"form":form.as_ul(),"id":id})
+
+
+
+
 
 
 
