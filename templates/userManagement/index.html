@@ -1,71 +1,6 @@
-<!DOCTYPE html>
-<!-- saved from url=(0049)http://www.jisuapp.cn/index.php?r=pc/Webapp/myapp -->
-<html lang="zh-CN">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>予丰科技-我的应用</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+{% extends 'userManagement/indexFormat.html' %}
+{% block body %}
 
-    <meta name="keywords" content="予丰,予丰科技,APP,小程序制作,小程序一键生成">
-    <link rel="stylesheet" href="../../static/userManagement/public/css/common.css">
-    <link rel="stylesheet" href="../../static/userManagement/myXcx/css/pc_icomoon.css">
-    <link rel="stylesheet" href="../../static/userManagement/myXcx/css/myapp.css">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    <style type="text/css">#videoTapeCtxM {
-        display: block;
-        width: auto;
-        text-align: center;
-        border-top: 1px solid grey;
-        box-shadow: 5px 5px 5px #555;
-        background-color: white;
-    }
-
-    #videoTapeCtxM a {
-        border: 1px solid grey;
-        border-top: none;
-        display: block;
-        color: blue;
-        width: auto;
-        cursor: hand;
-        margin: 0px;
-        padding: 0px 3px 0px 3px;
-    }
-
-    #videoTapeCtxM a:hover {
-        background-color: #AAA;
-    }</style>
-</head>
-<body class="webapp" is_login="2" is_designer="-1" chromeextension:video-tape="true">
-
-<link rel="stylesheet" href="../../static/userManagement/public/css/nav.css">
-<script type="text/javascript" src="../../static/userManagement/myXcx/js/cookie.js"></script>
-<script type="text/javascript" src="../../static/userManagement/myXcx/js/myapp.js"></script>
-
-
-
-
-<script type="text/javascript">
-    var is_login = $('body').attr('is_login');
-    $('.check_login').click(function () {
-        var href = $(this).attr('data');
-        if (is_login == 0) {
-            //$('.lr-mask').show('slow');
-            $(".nav-lglogin").trigger("click");
-        } else {
-            window.location.href = href;
-        }
-    });
-
-</script>
-
-<script src="../../static/userManagement/myXcx/js/nav.js"></script>
-<link rel="stylesheet" href="../../static/userManagement/myXcx/css/app_login_reg.css">
-
-<script type="text/javascript" src="../../static/userManagement/myXcx/js/jquery.md5.js"></script>
-<script type="text/javascript" src="../../static/userManagement/myXcx/js/cookie.js"></script>
-<script type="text/javascript" src="../../static/userManagement/myXcx/js/app_login_reg.js"></script>
 <div class="mask_app_setting" >
   <div class="content_app_setting">
     <div class="set-modal-title">
@@ -87,9 +22,9 @@
                         <label id="id_type">类型:</label>
 
                             <select id="id_type" name="type">
-<option value="0" selected="selected">商城</option>
-<option value="1">公司展 示</option>
-</select>
+                                {% for applet_type in applet_types %}
+<option value="{{ applet_type.0 }}">{{ applet_type.1 }}</option>
+{% endfor %}</select>
 
 
 
@@ -115,44 +50,7 @@
     </div>
   </div>
 </div>
-<div class="nav-wrap">
-    <div class="nav-logo nav-logo-img">
-        <h1>微信小程序</h1>
-    </div>
-    <ul class="top-menu" style="position: relative;">
 
-
-        <li class="menu-one check_login" >
-            <a href="/help/">小程序教程</a>
-        </li>
-
-        </li>
-        <li class="menu-one active">
-            <a href="/index/">应用管理</a>
-
-        </li>
-        <li class="menu-one">
-            <a href="/indexshow/">首页</a>
-
-        </li>
-        <div class="nav_line"
-             style="position: absolute; height: 2px; background: rgb(0, 0 0); top: 54px; z-index: 0; width: 92px; left: 282.391px;"></div>
-    </ul>
-    <div class="nav-login">
-        <div class="menu-one nav-center">
-            <a><img class="nav-img"
-                                                                                                   src="../../static/userManagement/myXcx/img/touxiang.png">
-                {{ user.username }}
-            </a>
-            <ul is_designer="-1">
-                <li class="menu-two"><a href="/logout/"
-                                        >退出</a></li>
-            </ul>
-        </div>
-        <!-- <div class="massage"><a href="/index.php?r=pc/IndexNew/showInform&is_app=1" title="通知中心"><img id="massageImg" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc/index/img/message_enter.png" onmousemove="enter(this)" onmouseout="leave(this)" alt=""></a>
-        </div> -->
-    </div>
-</div>
 
 
 <div class="container">
@@ -168,12 +66,12 @@
 
 
 
-            <li class="info" data-vend_status="0" data-vend_price="null" data-id="{{  applet.id}}"
+            <li class="info" data-vend_status="0" data-vend_price="null" data-id="{{applet.id}}"
                 data-logo="http://cdn.jisuapp.cn/zhichi_frontend/static/invitation/images/logo.png" data-desc="我的应用">
                 <div class="info-top">
                     <div class="tool-show">
                         <a class="nav_item" href="/setting/?id={{ applet.id }}">导出</a>
-                        <a class="nav_item" href="/{% if applet.type == 0 %}goods{% else %}show{% endif %}/?id={{ applet.id }}">管理</a>
+                        <a class="nav_item" href="/{% if applet.type == 0 %}goods{% elif applet.type == 1 %}show{% elif applet.type == 2 %}question{% endif %}/?id={{ applet.id }}">管理</a>
                         <a class="delete-applet nav_item" data-id="{{ applet.id }}">删除</a>
 
 
@@ -181,7 +79,7 @@
                     <img class="info-pic" src="../../static/userManagement/myXcx/img/xcxapp208.jpg"></div>
                 <div class="info-bottom"><a
                         href=""
-                        target="_blank"><p>{{   applet.name }}</p></a>
+                        target="_blank"><p>{{ applet.name }}</p></a>
                     <p class="info-title"><label class="detail"><span class="add_time"></span>{{ applet.createDateTime|date:"o-m-j"}}</label><label
 
                             class="viewCou"></p></div>
@@ -193,197 +91,17 @@
     </div>
 
 </div>
-<div class="foot" style="display: none">
-    <div class="connect_us">
-					<p class="foot_title">联系我们</p>
-					<p class="foot_detail" style="font-size:16px;">联系电话：13220158284</p>
-
-				</div>
-    <div class="wechat_qrcode">
-					<p class="foot_title"><span>官方微信</span></p>
-					<img src="../../static/userManagement/public/images/WechatIMG85.jpeg" alt="" rel="nofollow">
-				</div>
-</div>
-
-</div>
-<!-- 引入news_footer -->
-<link rel="stylesheet" href="../../static/userManagement/myXcx/css/news_footer.css">
-
-
-<!-- 悬浮窗 -->
-
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    .transfer-div {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999999;
-        overflow: hidden;
-        border-radius: 5px;
-    }
-
-    .transfer-panel {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        width: 330px;
-        height: 240px;
-        margin-left: -165px;
-        margin-top: -120px;
-        background-color: #fff;
-        text-align: center;
-        overflow: hidden;
-        border-radius: 5px;
-    }
-
-    .transfer-title {
-        color: #4d4d4d;
-        font-size: 24px;
-        padding: 16px 0 13px;
-    }
-
-    .transfer-tip {
-        color: #727272;
-        font-size: 14px;
-        margin: 0;
-    }
-
-    .transfer-email {
-        margin: 23px 0;
-    }
-
-    .transfer-email input {
-        height: 35px;
-        width: 280px;
-        text-indent: 5px;
-        border-radius: 2px;
-        line-height: 35px;
-        border: 1px solid #afafaf;
-    }
-
-    .transfer-panel button {
-        height: 33px;
-        width: 100px;
-        margin: 0 10px;
-        background-color: #fff;
-        border-radius: 2px;
-    }
-
-    .transfer-cancel-btn {
-        border: 1px solid #afafaf;
-        color: #4d4d4d;
-    }
-
-    .transfer-panel .transfer-sure-btn {
-        background-color: #3091f2;
-        border: 1px solid #3091f2;
-        color: #fff;
-    }
-
-    .webapp .transfer-panel .transfer-sure-btn {
-        background-color: #f1c130;
-        border: 1px solid #f1c130;
-        color: #fff;
-    }
-</style>
-<div class="transfer-div" id="transfer-div">
-    <div class="transfer-panel">
-        <div class="transfer-title">转让</div>
-        <p class="transfer-tip">请复制后转让</p>
-        <p class="transfer-tip">以免带来不必要的麻烦</p>
-        <div class="transfer-email">
-            <input id="transferUser" type="text" placeholder="请输入接收方邮箱或手机">
-        </div>
-        <div>
-            <button class="transfer-cancel-btn">取消</button>
-            <button class="transfer-sure-btn">转让</button>
-        </div>
-    </div>
-</div>
-<script>
-    function transferToUser(id, type, callback) {
-        // type 0是微页， 1是app
-        if (type == 1) {
-            $('#transfer-div .transfer-title').text('webapp转让');
-        } else {
-            $('#transfer-div .transfer-title').text('微页转让');
-        }
-        ;
-        $('#transferUser').focus();
-        var url = ['/index.php?r=pc/InvitationNew/TransferInvUser', '/index.php?r=pc/AppData/TransferAppUser'];
-        $('#transfer-div').show();
-        $('#transfer-div .transfer-sure-btn').on('click', function () {
-            var username = $('#transferUser').val().trim(),
-                    regE = /^[a-zA-Z0-9_\.-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-            regP = /^1\d{10}/;
-            if (!username) {
-                alertTip('请输入接收方邮箱或手机');
-                $('#transferUser').focus();
-                return;
-            }
-            ;
-            if (!regE.test(username) && !regP.test(username)) {
-                alertTip("请输入正确的邮箱或手机！");
-                return;
-            }
-            $.ajax({
-                url: url[type],
-                type: 'post',
-                dataType: 'json',
-                data: {
-                    id: id,
-                    username: username,
-                },
-                success: function (data) {
-                    if (data.status != 0) {
-                        alertTip(data.data);
-                        return;
-                    }
-                    ;
-                    alertTip('转让成功');
-                    $('#transfer-div').hide();
-                    callback();
-                },
-                error: function (data) {
-                    alertTip(data.data);
-                    return;
-                },
-            })
-        });
-        $('#transfer-div .transfer-cancel-btn').click(function () {
-            $('#transfer-div').hide();
-        });
-    }
 
 
 
 
-<script src="../../static/userManagement/myXcx/js/jquery.zeroclipboard.min.js"></script>
-<script src="../../static/userManagement/myXcx/js/common.js"></script>
+{% endblock %}
+{% block head %}
+ <link rel="stylesheet" href="../../static/userManagement/myXcx/css/myapp.css">
+    <script type="text/javascript" src="../../static/userManagement/myXcx/js/myapp.js"></script>
+{% endblock %}
+{% block title %}
+<title>予丰科技-我的应用</title>
+{% endblock %}
+{% block appmanage %}active{% endblock %}
 
-
-
-<div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container"
-     style="position: absolute; left: 0px; top: -9999px; width: 1px; height: 1px; z-index: 999999999;">
-    <object id="global-zeroclipboard-flash-bridge" name="global-zeroclipboard-flash-bridge" width="100%" height="100%"
-            type="application/x-shockwave-flash" data="../../static/userManagement/myXcx/img/ZeroClipboard.swf.下载">
-        <param name="allowScriptAccess" value="always">
-        <param name="allowNetworking" value="all">
-        <param name="menu" value="false">
-        <param name="wmode" value="transparent">
-        <param name="flashvars"
-               value="trustedOrigins=www.jisuapp.cn%2C%2F%2Fwww.jisuapp.cn%2Chttp%3A%2F%2Fwww.jisuapp.cn&amp;swfObjectId=global-zeroclipboard-flash-bridge">
-    </object>
-</div>
-</body>
-</html>

@@ -86,6 +86,11 @@ class ShowSerializers(serializers.ModelSerializer):
 
         model=ShowAppData
         exclude=('applet',)
+class QuestionSerializers(serializers.ModelSerializer):
+    class Meta:
+
+        model=QuestionAppData
+        exclude=('applet',)
 
 class OrderSerializers(serializers.ModelSerializer):
 

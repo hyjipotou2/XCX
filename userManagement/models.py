@@ -44,7 +44,7 @@ class Goods(models.Model):
 
 class ManageUser(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
-
+    code=models.CharField(max_length=10, blank=True)
     name = models.CharField(u'昵称', max_length=255)
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
@@ -74,11 +74,13 @@ class Applet(models.Model):
     secret=models.CharField(u"secret",max_length=255,blank=True)
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
-    appletType=((0,"商城"),(1,"公司展示"))
+    appletType=((2,"左右脑测试"),(0,"商城"),(1,"公司展示"))
     type=models.IntegerField(u'类型',choices=appletType,default=0)
 
 
     appletManageUser=models.ForeignKey(ManageUser)
+    def __unicode__(self):
+        return self.appletManageUser.user.username+" "+self.name
 
 
 class AppletUser(models.Model):
@@ -161,5 +163,12 @@ class ShowAppData(models.Model):
     contactMan=models.CharField(u"联系人",max_length=255)
     contactNumber = models.CharField(u"联系方式", max_length=255)
     contactLocation = models.CharField(u"地址", max_length=255)
+class QuestionAppData(models.Model):
+    applet=models.OneToOneField(Applet)
+    image1 = models.ImageField(u"广告图片1",blank=True,upload_to='images', max_length=255)
+    image2 = models.ImageField(u"广告图片2",blank=True,upload_to='images', max_length=255)
+    image3 = models.ImageField(u"广告图片3",blank=True,upload_to='images', max_length=255)
+
+
 
 

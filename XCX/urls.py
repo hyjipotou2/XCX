@@ -25,7 +25,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'goods',views.GoodsViewSet)
 router.register(r'show',views.ShowViewSet)
 
-
+router.register(r'question',views.QuestionViewSet)
 router.register(r'order',views.OrderViewSet)
 router.register(r'address',views.AddressViewSet)
 
@@ -55,6 +55,8 @@ url(r'^deleteapplet/', views.deleteApplet),
  url(r'^help/', views.help),
  url(r'^indexshow/', views.indexShow),
  url(r'^show/', views.show),
+ url(r'^question/', views.question),
+
 
 
 

@@ -1,0 +1,15 @@
+<!--logs.wxml-->
+<view class="container">
+  <view class="topview">
+    <view class="num">
+      <text class="text">左脑</text>
+      <text class="text age">{{left}}岁</text>
+    </view>
+    <image mode="widthFix" class="brain" src='../../images/timg.jpeg'></image>
+    <view class="num">
+      <text class="text">右脑</text>
+      <text class="text age">{{right}}岁</text>
+    </view>
+  </view>
+  <view class="bottomview"><text>你的左脑是{{left}}岁，像一个正值壮年的人，沉着，又有活力，你的思维随时可以迸发出令人惊奇的能量，但又出乎意料的稳定，所以，可以说生活中没有你拿不下的事情！而你的右脑只有{{right}}岁，喜欢用更为内敛的方式表达情感和抒发情绪，喜欢的东西也比身边的其他人要有内涵和深度的多。感觉是一个十分了不起的人呐！</text></view>
+</view>

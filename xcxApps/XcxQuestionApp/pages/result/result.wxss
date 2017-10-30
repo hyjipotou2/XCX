@@ -1,0 +1,54 @@
+page
+{
+  background-color: #EFEFEF;
+  
+}
+.log-list {
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+.log-item {
+  margin: 10rpx;
+}
+.brain
+{
+  width: 51%;
+
+}
+.topview
+{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.text
+{
+  display: block;
+  text-align:center;
+  background-color:#F8CD27;
+line-height:2.55555556;
+border-radius:5px;
+}
+.age
+{
+padding-left:14px;
+padding-right:14px;
+box-sizing:border-box;
+font-size:24px;
+text-align:center;
+text-decoration:none;
+line-height:2.55555556;
+border-radius:5px;
+-webkit-tap-highlight-color:transparent;
+overflow:hidden;
+color:#000000;
+background-color:#F8CD27;
+
+margin-top: 10px;
+}
+.bottomview
+{
+  padding: 25px;
+  
+}

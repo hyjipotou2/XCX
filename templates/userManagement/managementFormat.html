@@ -77,6 +77,14 @@
                 </a>
 
             </li>
+        <li class="treeview {% block questionsidebar %}{% endblock %}">
+                <a href="/question/?id={{  request.GET.id }}">
+                    <i class="fa fa-list-alt"></i>
+                    <span>左右脑测试广告管理</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+
+            </li>
             <li class="treeview {% block paysidebar %}{% endblock %}" >
                 <a href="#" onclick="Toast('即将上线')">
                     <i class="fa fa-bars"></i> <span>支付设置</span>
@@ -93,7 +101,7 @@
 
             </li>
         <li class="treeview {% block showsidebar %}{% endblock %}">
-                <a href="/showsettings/?id={{  request.GET.id }}">
+                <a href="/show/?id={{  request.GET.id }}">
                     <i class="fa fa-shopping-cart"></i>
                     <span>公司展示设置</span>
                     <i class="fa fa-angle-right pull-right"></i>

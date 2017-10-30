@@ -3,7 +3,7 @@ import hashlib
 import json
 import os
 from xml.etree import ElementTree
-
+import random
 import requests
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -32,6 +32,13 @@ def read_xml(text, findname):
 
     node_find = root.find(findname)
     return (node_find.text)
+def getCode(phone):
+    code=str(random.randint(1000,9999))
+    r = requests.get('http://qxt.fungo.cn/Recv_center',
+                     params={'CpName': "rkdf", 'CpPassword': "rk0902",
+                             'DesMobile': phone,"Content":"【短信吧】您的验证码是"+code+".一分钟内有效"})  # 最基本的GET请求
+
+    return code
 
 def getSession():
     return hashlib.sha1(os.urandom(24)).hexdigest()
@@ -145,9 +152,10 @@ def index(request):
         for i in range(0,len(xcx_list)):
             xcx_list[i]["createDateTime"]=xcx_set[i].createDateTime
             xcx_list[i]["modDateTime"] = xcx_set[i].modDateTime
+        types=Applet.appletType
 
 
-        return render(request, 'userManagement/index.html',{"applet_list":xcx_list,"User":request.user})
+        return render(request, 'userManagement/index.html',{"applet_list":xcx_list,"User":request.user,"applet_types":types})
 
 @login_required
 def logout(request):
@@ -571,11 +579,13 @@ def indexShow(request):
 def show(request):
     if request.method == 'GET':
         id = request.GET.get("id", 1)
-        data=ShowAppData.objects.filter(id=id)
-        formHtml=""
-        if data.count()>=1:
+        applet = Applet.objects.get(id=id)
 
-            formHtml = ShowForm(instance=data[0]).as_ul()
+
+        formHtml=""
+        if hasattr(applet,"showappdata"):
+
+            formHtml = ShowForm(instance=applet.showappdata).as_ul()
         else:
             formHtml = ShowForm().as_ul()
         return render(request,'userManagement/showManagement.html',{"form":formHtml,"id":id})
@@ -601,11 +611,51 @@ def show(request):
                 return HttpResponseRedirect("/show/?id="+id)
         else:
             return render(request,'userManagement/showManagement.html',{"form":form.as_ul(),"id":id})
+def question(request):
+    if request.method == 'GET':
+        id = request.GET.get("id", 1)
+        applet=Applet.objects.get(id=id)
+        formHtml=""
+        if hasattr(applet,"questionappdata"):
+
+            formHtml = QuestionForm(instance=applet.questionappdata).as_ul()
+        else:
+            formHtml = QuestionForm().as_ul()
+        return render(request,'userManagement/questionManagement.html',{"form":formHtml,"id":id})
+    if request.method== 'POST':
+        id=request.GET.get("id")
+        applet=get_object_or_404(Applet,id=id)
+        form = QuestionForm(request.POST,request.FILES)
+        if form.is_valid():
+
+            if(hasattr(applet,"questionappdata")):
+                form = QuestionForm(request.POST, request.FILES, instance=applet)
+                form.save()
+
+                return HttpResponseRedirect("/question/?id=" + id)
+
+            else:
+                QuestionAppData.objects.create(applet=applet,
+                                        **form.cleaned_data)
+                return HttpResponseRedirect("/question/?id="+id)
+        else:
+            return render(request,'userManagement/questionManagement.html',{"form":form.as_ul(),"id":id})
 
 
 
+class QuestionViewSet(viewsets.ReadOnlyModelViewSet):
+    def get_queryset(self):
+        queryset = QuestionAppData.objects.all()
+
+        app_id = self.request.query_params.get("_app_id")
+        if app_id is not None:
+            applet=get_object_or_404(Applet,id=app_id)
+            queryset =queryset.filter(applet=applet)
 
 
+        return queryset
+    serializer_class = serializers.QuestionSerializers
+    queryset = QuestionAppData.objects.all()
 
 
 

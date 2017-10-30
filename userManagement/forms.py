@@ -75,5 +75,10 @@ class ShowForm(forms.ModelForm):
 
         model=ShowAppData
         exclude=["applet"]
+class QuestionForm(forms.ModelForm):
+    class Meta:
+
+        model=QuestionAppData
+        exclude=["applet"]
 
 

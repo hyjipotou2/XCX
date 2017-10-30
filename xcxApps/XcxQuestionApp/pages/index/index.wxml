@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="container">
+  <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+  </block>
+</swiper>
+  <text>{{test[index].title}}</text>
+  <view class='select'><button bindtap='next'>{{test[index].selectA}}</button><button  bindtap='next'>{{test[index].selectB}}</button></view>
+</view>

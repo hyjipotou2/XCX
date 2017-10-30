@@ -70,6 +70,7 @@ class XcxApiTests(TestCase):
         responsePost3 = self.APIclint.post("/api/order/", json.dumps({"session_key": self.xcxSession,"orderGoods":[]
                                                         }),format='json')
         self.assertEqual(responsePost3.status_code, 400)
+
     def test_Zip(self):
         import getApp
         import os
