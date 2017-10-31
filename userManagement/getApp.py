@@ -42,6 +42,7 @@ class Xcx():
              's/appLogo:\'\'/appLogo:\'%s\'/"%s' \
              % (self.id, self.name, self.appDescription, self.httpstring(self.imageurl),
                 " " + os.path.join(self.appPath, self.id, self.appname, "app.js"))
+        print op
         os.system(op)
 
     def createZip(self):
