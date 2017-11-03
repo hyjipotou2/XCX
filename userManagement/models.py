@@ -52,7 +52,7 @@ class ManageUser(models.Model):
     cashApplicationChoices = ((0, u'已完成'), (1, u'申请提现'))
     cashApplication = models.IntegerField(u'提现申请状态', choices=cashApplicationChoices, default=0)
     zhifubaoCount = models.CharField(u'支付宝账号', blank=True, max_length=255)
-
+    hasPermission = models.BooleanField(u"左右脑权限", default=False)
     def __unicode__(self):
         return self.user.username
 
@@ -76,7 +76,7 @@ class Applet(models.Model):
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
     appletType=((2,"左右脑测试"),(0,"商城"),(1,"公司展示"))
     type=models.IntegerField(u'类型',choices=appletType,default=0)
-    hasPermission=models.BooleanField(u"左右脑权限",default=False)
+
 
     appletManageUser=models.ForeignKey(ManageUser)
     def __unicode__(self):
