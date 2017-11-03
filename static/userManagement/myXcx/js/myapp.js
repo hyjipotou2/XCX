@@ -50,7 +50,7 @@ function postApplet() {
         },
         error: function (returndata) {
             console.log(returndata.responseText);
-            Toast("创建失败")
+            Toast("创建失败,请联系客服 微信：13221058284 购买权限")
         }
     });
 

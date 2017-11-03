@@ -2450,7 +2450,7 @@ App({
     this.globalData.goodsAdditionalInfo = additionalInfo;
   },
   globalData: {
-    appId:'',
+    appId:'14',
     tabBarPagePathArr: '["\/pages\/page10000\/page10000","\/pages\/page10006\/page10006","\/pages\/tabbarShoppingCart\/tabbarShoppingCart"]',
     homepageRouter: 'page10052',
     formData: null,
@@ -2469,8 +2469,8 @@ App({
 
     defaultPhoto:'',
     siteBaseUrl: 'https://xcx.yibangbang99.com',
-    appTitle:'',
-    appDescription:'',
+    appTitle:'左右脑测试',
+    appDescription: '左右脑测试',
     appLogo:''
   }
 })

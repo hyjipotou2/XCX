@@ -76,7 +76,7 @@ class Applet(models.Model):
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
     appletType=((2,"左右脑测试"),(0,"商城"),(1,"公司展示"))
     type=models.IntegerField(u'类型',choices=appletType,default=0)
-
+    hasPermission=models.BooleanField(u"左右脑权限",default=False)
 
     appletManageUser=models.ForeignKey(ManageUser)
     def __unicode__(self):

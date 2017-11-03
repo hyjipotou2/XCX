@@ -11,6 +11,7 @@ from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, _get_queryset
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
@@ -536,8 +537,11 @@ def createApplet(request):
         description=request.POST.get("description","APP")
         image=request.FILES.get("image")
         type=request.POST.get("type",0)
+        if(user.manageuser.hasPermission==False&&type==2):
+            return HttpResponseForbidden(u"没有权限")
         Applet.objects.create(appletManageUser=user.manageuser,name=name,description=description,image=image,type=type)
         return HttpResponse("ok")
+
 def deleteApplet(request):
     if request.method=="POST":
         id=request.POST.get("id")
