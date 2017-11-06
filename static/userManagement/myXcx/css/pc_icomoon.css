@@ -378,3 +378,5 @@
 .icon-arrow-down:before {
   content: "\ea3e";
 }
+.container
+{min-height: 710px;}
