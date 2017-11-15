@@ -28,7 +28,8 @@ router.register(r'show',views.ShowViewSet)
 router.register(r'question',views.QuestionViewSet)
 router.register(r'order',views.OrderViewSet)
 router.register(r'address',views.AddressViewSet)
-
+router.register(r'cars',views.CarsViewSet)
+router.register(r'carsapp',views.CarsAppViewSet)
 urlpatterns = [
 url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
    url(r'^api/', include(router.urls)),
@@ -39,6 +40,8 @@ url(r'^media/(?P<path>.*)$', 'django.views.static.serve',{'document_root': setti
     url(r'^orders/', views.orders),
     url(r'^imageupapi/', views.imageUpApi),
     url(r'^getform/',views.getForm),
+ url(r'^getcarform/', views.getCarForm),
+
     url(r'^wxlogin/', views.wxLogin),
     url(r'^userinfo/', views.userInfo),
 url(r'^cartlist/', views.cartList),
@@ -56,6 +59,8 @@ url(r'^deleteapplet/', views.deleteApplet),
  url(r'^indexshow/', views.indexShow),
  url(r'^show/', views.show),
  url(r'^question/', views.question),
+url(r'^carsapp/', views.carsapp),
+url(r'^cars/', views.cars),
 
 
 

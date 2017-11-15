@@ -1,0 +1,86 @@
+/* pages/car/ca r.wxss */
+
+
+.topimage
+{
+  width: 100%;
+  height: 192px;
+}
+.title2
+{
+  color: gray;
+  font-size: 10px;
+}
+.price
+{
+   color: #ff702a;
+}
+
+.fright
+{float: right}
+.detail
+{
+  background: white;
+  padding-left:10px;
+  padding-right: 10px; 
+}
+.location
+{
+  background: white;
+  margin-bottom: 10px;
+  margin-top: 10px;
+   padding: 10px; 
+  font-size: 12px;
+}
+.contact
+{
+  background: white;
+   padding: 10px;
+   font-size: 14px; 
+}
+.bottom
+{
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  background: white;
+}
+
+.flexleft
+{
+ width: 12.5%;
+  flex-shrink:0;
+  line-height: 40px;
+}
+.flexleft image
+{
+ width: 35px;
+ height: 35px;
+margin-top:3px;
+margin-left: 2px;
+ border-radius: 17.5px;  
+}
+.flexce
+{
+  flex-grow:1;
+  font-size: 14px;
+   word-wrap: normal;
+   text-align: left;
+
+}
+.flexri
+{
+  width: 37.5%;
+ background: #ff702a;
+ text-align: center;
+  color: white;
+  flex-shrink:0;
+  line-height: 40px;
+}
+
+.iconfont {
+  
+  color:  white;
+}

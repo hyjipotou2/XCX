@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/car/car",
+    "pages/caritems/caritems",
+    "pages/shop/shop"
+  ],
+  "tabBar": {
+    "backgroundColor":"#ff702a",
+    "selectedColor":"#ffffff",
+    "color":"#CCCCCC",
+    "list": [
+      {"iconPath":"images/home1.png",
+   "selectedIconPath":"images/home.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {"iconPath": "images/auto1.png",
+        "pagePath": "pages/caritems/caritems",
+        "text": "车型报价",
+          "selectedIconPath": "images/auto.png"
+      },
+      {"iconPath": "images/store1.png",
+        "pagePath": "pages/shop/shop",
+        "text": "门店介绍",
+          "selectedIconPath": "images/store.png"}
+      
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

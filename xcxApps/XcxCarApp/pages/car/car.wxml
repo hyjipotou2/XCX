@@ -1,0 +1,19 @@
+<!--pages/car/ca r.wxml-->
+<view class="container">
+  <image class="topimage" src="{{car.image}}"></image>
+  <view class="detail">
+    <text>{{car.carName}}</text>
+    <view>
+      <text class="title2">现车</text>
+      <text class="title2 fright"></text>
+    </view>
+    <view class="price">
+    {{car.price}}元
+    </view>
+  </view>
+  <view class="location"> {{location}} <i class="iconfont icon-map fright"></i></view>
+  <view class="contact">
+{{car.contact}}
+  </view>
+  <view class="bottom"><view class='flexleft'><image src="{{logo}}"></image></view><view class='flexce'>{{title}}</view><view class="flexri" bindtap='makephone' data-phone='{{phone}}'><i class="iconfont icon-phone"></i>电话咨询</view></view>
+</view>

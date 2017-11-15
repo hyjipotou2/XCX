@@ -81,4 +81,13 @@ class QuestionForm(forms.ModelForm):
         model=QuestionAppData
         exclude=["applet"]
 
+class CarAppForm(forms.ModelForm):
+    class Meta:
 
+        model=CarAppData
+        exclude=["applet"]
+class CarsForm(forms.ModelForm):
+    class Meta:
+
+        model=Cars
+        exclude=["applet"]

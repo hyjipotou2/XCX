@@ -1,0 +1,74 @@
+{% extends 'userManagement/managementFormat.html' %}
+{% block head %}
+  <link href="../../static/userManagement/goods/css/goods.css" rel="stylesheet"/>
+
+{% endblock %}
+{% block body %}
+
+<div class="mains" id="mains">
+    <div>
+        <div class="btn add-goods addGoodsIngoodsList manage-goodsList-header-common"><span
+                class="glyphicon glyphicon-plus"></span> 添加车
+        </div>
+
+    </div>
+
+    <table class="table table-hover goods-list-table">
+        <thead>
+        <tr>
+
+            <th data-field="title" type-name="文本">名称</th>
+            <th data-field="cover" type-name="图片">图片</th>
+            <th data-field="price" type-name="文本">价格</th>
+            <!-- <th data-field="sale_price" type-name="文本">促销价</th> -->
+
+            <th data-field="{dataOperation}">操作</th>
+
+        </tr>
+        </thead>
+        <tbody id="goodstbody">
+
+        </tbody>
+    </table>
+    		<div class="fen">
+			<div id="page"></div>
+
+
+
+					</div>
+
+
+</div>
+<div class="mains" id="main2">
+    <div class="row page-content-header">
+        <button class="right-corner-common pull-right goods-return-btn return-right-corner">返回</button>
+        <button class="right-corner-common pull-right save-right-corner" onclick="postOrPatch()">保存</button>
+        <!--h5><strong>添加数据</strong> | 所属对象: <span>商品</span></h5-->
+        <h4 class="addNewGoods-title">添加车</h4>
+    </div>
+    <form method='post' id="goodsForm" action="/api/goods/">
+
+
+        {{ AddGoodsForm.as_ul }}
+
+    </form>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<script src="../../static/userManagement/public/js/jquery.page.js"></script>
+<script src="../../static/userManagement/cars/js/cars.js"></script>
+
+
+
+{% endblock %}
+{% block carssidebar %}active{% endblock %}
+{% block carsaappletsidebar %}{% endblock %}

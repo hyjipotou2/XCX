@@ -148,3 +148,12 @@ class AppletSerializer(serializers.ModelSerializer):
         model = Applet
 
         exclude =("appletId","secret","appletManageUser")
+class CarSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model =CarAppData
+        exclude=("applet",)
+class CarsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Cars
+        fields = "__all__"

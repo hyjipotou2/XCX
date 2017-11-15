@@ -9,6 +9,10 @@ class GoodsType(models.Model):
     goodsType=models.CharField(u'分类',max_length=255)
     def __unicode__(self):
         return self.goodsType
+class Brand(models.Model):
+    brand=models.CharField(u'品牌',max_length=255)
+    def __unicode__(self):
+        return self.brand
 
 
 
@@ -40,6 +44,31 @@ class Goods(models.Model):
     def __unicode__(self):
         return self.goodsName
 
+class Cars(models.Model):
+    brand=models.ForeignKey(GoodsType,null=True,blank=True)
+    applet=models.ForeignKey('Applet')
+
+
+
+    carName = models.CharField(u'商品名', max_length=255)
+
+
+
+
+    price = models.FloatField(u'价格')
+    image = models.ImageField(u'图', upload_to='images', max_length=255, blank=True)
+    contact=models.TextField(u"介绍",blank=True)
+
+    modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
+    createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
+
+
+
+
+
+
+    def __unicode__(self):
+        return self.carName
 
 
 class ManageUser(models.Model):
@@ -74,7 +103,7 @@ class Applet(models.Model):
     secret=models.CharField(u"secret",max_length=255,blank=True)
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
-    appletType=((2,"左右脑测试"),(0,"商城"),(1,"公司展示"))
+    appletType=((2,"左右脑测试"),(0,"商城"),(1,"公司展示"),((3,"车辆展示以及销售")))
     type=models.IntegerField(u'类型',choices=appletType,default=0)
 
 
@@ -170,5 +199,11 @@ class QuestionAppData(models.Model):
     image3 = models.ImageField(u"广告图片3",blank=True,upload_to='images', max_length=255)
 
 
-
+class CarAppData(models.Model):
+    applet=models.OneToOneField(Applet)
+    title=models.CharField(u"标题",blank=True,max_length=255)
+    phone=models.CharField(u"电话",blank=True,max_length=255)
+    contact=models.CharField(u'内容简介',blank=True,max_length=255)
+    location=models.CharField(u'位置',blank=True,max_length=255)
+    logo=models.ImageField(u"logo",blank=True,upload_to='images', max_length=255)
 

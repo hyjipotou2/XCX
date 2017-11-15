@@ -24,5 +24,7 @@ admin.site.register(models.Address)
 admin.site.register(models.ShowAppData)
 admin.site.register(models.QuestionAppData)
 admin.site.register(models.ManageUser)
+admin.site.register(models.CarAppData)
+admin.site.register(models.Cars)
 
 

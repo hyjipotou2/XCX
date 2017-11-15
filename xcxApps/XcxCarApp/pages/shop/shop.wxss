@@ -1,0 +1,49 @@
+/* pages/shop/shop.wxss */
+
+.title
+{background: white;
+padding-left: 10px;
+padding-right: 10px;
+}
+.location
+{
+  background: white;
+  padding-left: 10px;
+padding-right: 10px;
+font-size: 13px;
+}
+.phone
+{
+  background: white;
+  margin-bottom:10px; 
+  padding-left: 10px;
+padding-right: 10px;
+font-size: 13px;
+}
+.fright
+{float: right;
+}
+.location
+{
+  margin-top:10px;
+  margin-bottom: 10px; 
+  padding-left: 10px;
+padding-right: 10px;
+}
+
+.company
+{
+  background: white;
+  padding-left: 10px;
+padding-right: 10px;
+font-size: 13px;
+
+}
+.ctitle
+{
+margin-bottom: 10px;
+}
+.contact
+{
+  font-size: 13px;
+}

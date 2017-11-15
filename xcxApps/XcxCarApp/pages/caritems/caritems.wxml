@@ -1,0 +1,24 @@
+<!--pages/caritems/caritems.wxml-->
+<view class='container'>
+  <view class='top'><view>全部品牌</view><view bindtap='sort'>{{ sort[sortindex]}}</view></view>
+ <block wx:for="{{cars}}">
+  <view bindtap='carsitem' data-id="{{item.id}}" class="contact">
+    <view class="imagesview">
+      <image src='{{item.image}}'></image>
+    </view>
+    <view class="detail">
+      <text class='title'>{{item.carName}}</text>
+      <text class="price">{{item.price}}</text>
+      <view class="detailcontact">{{item.contact}}</view>
+    </view>
+
+  </view>
+  </block>
+   <view class='brandselect' style='display:none'>
+   <scroll-view scroll-y class="lie"><view class="branditem">奥迪</view></scroll-view>
+    
+
+   
+   </view>
+    <view class='sort'></view>
+</view>

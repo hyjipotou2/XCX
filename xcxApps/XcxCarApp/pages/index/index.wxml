@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="top">
+    <view class="logo">
+      <image src='{{logo}}'></image>
+    </view>
+    <view class='right'>
+      <text class="title">{{title}}</text>
+      <view class='location'>
+        <text>{{contact}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='brand'>
+    <view><i class="iconfont icon-favorite"></i>主营品牌</view>
+    <scroll-view scroll-x style="width: 100%">
+      <block wx:for="{{brands}}">
+
+        <view class='brands'>
+          <image src='{{item.images}}'></image>
+          <text>{{item.title}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class='item'>
+    <view class='titleitem'><i class="iconfont icon-trade"></i>车型报价</view>
+    <block wx:for="{{cars}}">
+    <view bindtap='carsclick' data-id='{{item.id}}' class="doblelist">
+      <view class="contact">
+        <image src='{{item.image}}'></image>
+        <text class="name1">{{item.carName}}</text>
+        <text class="name2">{{item.contact}}</text>
+        <text class="price">{{item.price}}元</text>
+      </view> </view>
+      </block>
+   
+  </view>
+
+</view>

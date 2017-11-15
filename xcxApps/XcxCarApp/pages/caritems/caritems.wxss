@@ -1,0 +1,68 @@
+/* pages/caritems/caritems.wxss */
+page
+{
+  background: #f8f8f8;
+}
+.contact
+{display: flex;
+border-bottom: 0.5px solid blanchedalmond;
+background: white;
+}  
+.imagesview image
+{
+width: 100px;
+height: 100px;
+}  
+.detail
+{
+ flex-grow: 1;
+
+vertical-align: top;
+}
+.price
+{
+  float: right;
+
+}
+.price
+{
+  float: right;
+  margin-right: 10px;  
+   color: #ff702a;
+}
+.top view
+{display: inline-block;
+width: 50%;
+text-align: center;
+background: white;
+
+}
+.top view
+{font-size: 16px;
+
+}
+
+ 
+.brandselect
+{
+  height: calc(100% - 24px);
+  width: 100%;
+  position: absolute;
+  top: 26px;
+  background: rgba(248,248,248,0.5);
+  overflow: auto;
+}
+.lie
+{
+  height: 60%;
+
+  background: white;
+}
+.detailcontact
+{
+  width: 92%;
+ 
+ word-wrap:break-word; 
+ font-size: 13px;
+ color: gray;
+}

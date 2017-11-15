@@ -1,0 +1,8 @@
+<!--pages/shop/shop.wxml-->
+<view class="container">
+  <view class='title'>{{title}}</view>
+  <view class="location"> <view>{{location}} <i class="iconfont icon-map fright"></i></view></view>
+  <view class="phone" bindtap='makephone' data-phone='{{phone}}'><i class="iconfont icon-phone"></i>{{phone}}<i class="iconfont icon-more fright"></i></view>
+  <view class="company"><view class='ctitle'><i class="iconfont icon-favorite"></i>主营品牌</view>
+  <text class="contact">{{contact}}</text></view>
+</view>
