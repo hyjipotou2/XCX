@@ -21,6 +21,8 @@ class Xcx():
             self.appname="XcxShowApp"
         if self.type==2:
             self.appname="XcxQuestionApp"
+        if self.type==3:
+            self.appname="XcxCarApp"
 
         self.appPath = os.path.join(BASE_DIR, "media", "app")
         self.xcxApps = os.path.join(BASE_DIR, "xcxApps")
