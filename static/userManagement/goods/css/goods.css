@@ -156,3 +156,12 @@ form ul li
 {
     margin-right: 0px;
 }
+.mid
+{
+    display: inline-block;
+    width: 100%;
+}
+.right{ display: none;
+
+
+}
