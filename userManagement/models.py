@@ -207,3 +207,7 @@ class CarAppData(models.Model):
     location=models.CharField(u'位置',blank=True,max_length=255)
     logo=models.ImageField(u"logo",blank=True,upload_to='images', max_length=255)
 
+class Phone(models.Model):
+    phone=models.CharField(u"电话号码",max_length=18)
+    modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
+    createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)

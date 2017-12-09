@@ -19,7 +19,7 @@ td{text-align:center;}
 
 /*媒体检测*/
 @media screen and (min-width:1600px){
-.mains{width:84%;height:75%;position:absolute;left:15.5%;top:55px;}
+.mains{width:84%;height:92%;position:absolute;left:15.5%;top:55px;}
 .mains2{width:84%; height:15%;position:absolute;left:15.5%;}
 .money1 input{ margin-left:10px; }
 .money1 ul li:nth-child(1){margin-right:120px;}

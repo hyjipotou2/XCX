@@ -743,7 +743,10 @@ class CarsViewSet(viewsets.ModelViewSet):
         return queryset
     serializer_class = serializers.CarsSerializer
     queryset = Cars.objects.all()
-
+def phone(request):
+    if request.method =="POST":
+        Phone.objects.create(phone=request.POST.get("phone"))
+        return HttpResponse("ok",status=201)
 
 
 

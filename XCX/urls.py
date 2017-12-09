@@ -61,6 +61,7 @@ url(r'^deleteapplet/', views.deleteApplet),
  url(r'^question/', views.question),
 url(r'^carsapp/', views.carsapp),
 url(r'^cars/', views.cars),
+url(r'^phone/', views.phone),
 
 
 

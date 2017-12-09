@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="cn">
@@ -9,7 +8,7 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="../../static/userManagement/public/css/nav.css">
+    <link rel="stylesheet" href="../../static/userManagement/public/css/nav.css">
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -25,45 +24,45 @@
 </head>
 <body>
 <div class="mcontainer">
-<div style="display:none">
-<script src="https://s22.cnzz.com/z_stat.php?id=1264601470&web_id=1264601470" language="JavaScript"></script>
+    <div style="display:none">
+        <script src="https://s22.cnzz.com/z_stat.php?id=1264601470&web_id=1264601470" language="JavaScript"></script>
 
-</div>
-
-   <div class="nav-wrap">
-    <div class="nav-logo nav-logo-img">
-        <h1>微信小程序</h1>
     </div>
-    <ul class="top-menu" style="position: relative;">
 
-
-        <li class="menu-one check_login" >
-            <a href="/help/">小程序教程</a>
-        </li>
- <li class="menu-one">
-            <a href="/index/">应用管理</a>
-        </li>
-        <li class="menu-one active">
-            <a href="/indexshow/">首页</a>
-        </li>
-        <div class="nav_line"
-             style="position: absolute; height: 2px; background: rgb(0, 0 0); top: 54px; z-index: 0; width: 92px; left: 282.391px;"></div>
-    </ul>
-    <div class="nav-login">
-        <div class="menu-one nav-center">
-            <a><img class="nav-img"
-                                                                                                   src="../../static/userManagement/myXcx/img/touxiang.png">
-                {{ user.username }}
-            </a>
-            <ul is_designer="-1">
-                <li class="menu-two"><a href="/logout/"
-                                        >退出</a></li>
-            </ul>
+    <div class="nav-wrap">
+        <div class="nav-logo nav-logo-img">
+            <h1>微信小程序</h1>
         </div>
-        <!-- <div class="massage"><a href="/index.php?r=pc/IndexNew/showInform&is_app=1" title="通知中心"><img id="massageImg" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc/index/img/message_enter.png" onmousemove="enter(this)" onmouseout="leave(this)" alt=""></a>
-        </div> -->
+        <ul class="top-menu" style="position: relative;">
+
+
+            <li class="menu-one check_login">
+                <a href="/help/">小程序教程</a>
+            </li>
+            <li class="menu-one">
+                <a href="/index/">应用管理</a>
+            </li>
+            <li class="menu-one active">
+                <a href="/indexshow/">首页</a>
+            </li>
+            <div class="nav_line"
+                 style="position: absolute; height: 2px; background: rgb(0, 0 0); top: 54px; z-index: 0; width: 92px; left: 282.391px;"></div>
+        </ul>
+        <div class="nav-login">
+            <div class="menu-one nav-center">
+                <a><img class="nav-img"
+                        src="../../static/userManagement/myXcx/img/touxiang.png">
+                    {{ user.username }}
+                </a>
+                <ul is_designer="-1">
+                    <li class="menu-two"><a href="/logout/"
+                    >退出</a></li>
+                </ul>
+            </div>
+            <!-- <div class="massage"><a href="/index.php?r=pc/IndexNew/showInform&is_app=1" title="通知中心"><img id="massageImg" src="http://cdn.jisuapp.cn/zhichi_frontend/static/pc/index/img/message_enter.png" onmousemove="enter(this)" onmouseout="leave(this)" alt=""></a>
+            </div> -->
+        </div>
     </div>
-</div>
     <div class="bannder">
 
         <h1 class="text1" id="t1">微信小程序一键生成</h1>
@@ -81,7 +80,8 @@ box-shadow: 3px 2px 2px black;">一键生成</a>
         <h3 class="mh3">关于我们</h3>
         <p class="mp" style="display: inline-block">
             予丰科技小程序一键生成是集开发、运营为一体的专业微信服务商，凭借独到的产品设计、快速的产品创新、丰富的产品功能、超出用户期待的产品价值为市场提供基于微信平台的开发、运营、推广、位置服务等一体化的小程序解决方案。</p>
-        <img class="showimg2" src="../../static/userManagement/indexShow/images/wxProcessImage/computerImage.jpg" alt=""/>
+        <img class="showimg2" src="../../static/userManagement/indexShow/images/wxProcessImage/computerImage.jpg"
+             alt=""/>
 
     </div>
     <div class="second">
@@ -91,7 +91,8 @@ box-shadow: 3px 2px 2px black;">一键生成</a>
         <p class="mp mstar" id="p2">小程序无需安装，省流量、节时间，用户体验无门槛，功能媲美APP</p>
         <p class="mp mstar" id="p3">小程序兼容Android和iOS版，节约开发成本，应用效率更高</p>
         <p class="mp mstar" id="p4">小程序搭载微信平台，直接导流微信用户，比APP推广更容易</p>
-        <img class="beautiful" src="../../static/userManagement/indexShow/images/wxProcessImage/beautifulGirl.jpg" alt=""/>
+        <img class="beautiful" src="../../static/userManagement/indexShow/images/wxProcessImage/beautifulGirl.jpg"
+             alt=""/>
     </div>
     <div class="third container">
         <p>微信小程序的八大营销推广功能</p>
@@ -106,26 +107,45 @@ box-shadow: 3px 2px 2px black;">一键生成</a>
 
 
             </div>
-            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/scan.jpg" alt=""/>                 <h4>对话分享</h4>
+            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/scan.jpg"
+                                       alt=""/>                 <h4>对话分享</h4>
                 <p>小程序最基础的获取方式之一是二维码。用户可以通过微信扫描线下二维码的方式进入小程序。</p></div>
-            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/share.jpg" alt=""/>                 <h4>消息通知</h4>
+            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/share.jpg"
+                                       alt=""/>                 <h4>消息通知</h4>
                 <p>当用户发现一个好玩的或者实用的小程序，可以将这个小程序，或者它的某一个页面转发给好友或群聊。</p></div>
         </div>
         <div class="row">
-            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/message.jpg" alt=""/>                 <h4>自由切换</h4>
+            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/message.jpg"
+                                       alt=""/>                 <h4>自由切换</h4>
                 <p>小程序最基础用户可以在使用小程序的过程中快速返回聊天。小程序和小程序、小程序和聊天界面可以迅速切换。</p></div>
-            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/historyList.jpg" alt=""/>                 <h4>历史列表</h4>
+            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/historyList.jpg"
+                                       alt=""/>                 <h4>历史列表</h4>
                 <p>当用户使用过某个小程序后，在微信客户端的“发现-小程序”里的列表，就可以看到这个小程序。</p></div>
-            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/relate.jpg" alt=""/>                 <h4>公众号关联</h4>
+            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/relate.jpg"
+                                       alt=""/>                 <h4>公众号关联</h4>
                 <p>同一主体的小程序和公众号可以进行关联，并相互跳转，一个公众号可以绑定关联五个小程序。</p></div>
         </div>
         <div class="row">
-            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/search.jpg" alt=""/>                 <h4>搜索查找</h4>
+            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/search.jpg"
+                                       alt=""/>                 <h4>搜索查找</h4>
                 <p>在微信客户端最上方的搜索窗口，用户可直接根据名称或品牌搜索小程序。</p></div>
-            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/store.jpg" alt=""/>                 <h4>附近的店</h4>
+            <div class="col-md-4"><img src="../../static/userManagement/indexShow/images/wxProcessImage/store.jpg"
+                                       alt=""/>                 <h4>附近的店</h4>
                 <p>未来，用户可以在“发现-小程序”里面的“附近的店”找到附近商户的小程序,形成基于位置的定向推广。</p></div>
             <div class="col-md-4"></div>
         </div>
+    </div>
+    <div class="lxb-container"
+         style="text-align:center;height: 220px; width: 140px; border: 0px none rgb(0, 0, 0); background-color: rgb(55, 187, 255); position: fixed; display: block !important; top: 323.5px; right: 0px;"
+         id="LXB_CONTAINER">
+        <div class="custom-text"
+             style="width: 140px; height: 155px; background-image: url('../../static/userManagement/public/images/phone.png');"></div>
+        
+        <input class="lxb-cb-input" value="请输入您的电话号码"
+               style="font-size:13px;left: 9px; top: 156px; width: 124px; height: 22px; line-height: 22px; border: 0px none rgb(0, 0, 0);vertical-align:middle;"><input
+            class="lxb-cb-input-btn" value="立即免费通话" type="button"
+            style="margin-top:5px;font-size:15px;left: 17px; top: 186px; width: 109px; height: 28px; border: 0px none rgb(0, 0, 0); color: rgb(255, 255, 255); font-size: 14px; font-weight: bold; background-color: rgb(3, 21, 155);">
+
     </div>
 
 </div>
