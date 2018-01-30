@@ -7,7 +7,7 @@ python: '2.7'
 script: python manage.py test
 before_install:
 - docker pull dnhsoft/mysql-utf8
-- docker run --name XCX-mysql -e MYSQL_ROOT_PASSWORD=1234569 -e MYSQL_DATABASE=XCX -p 3306:3306 -d dnhsoft/mysql-utf8:latest
+- docker run --name XCX-mysql -e MYSQL_ROOT_PASSWORD=1234569 -e MYSQL_DATABASE=XCX -p 3307:3306 -d dnhsoft/mysql-utf8:latest
 - docker ps -a
 install:
 - pip install -r requirements.txt
