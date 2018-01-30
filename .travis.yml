@@ -17,7 +17,7 @@ install:
 after_success:
 - export SSHPASS=$DEPLOY_PASSWORD
 
-- sshpass -e ssh  -o stricthostkeychecking=no ubuntu@123.206.60.123 "cd /var/www/XCX/&&sudo git pull&&sudo touch reload"
+- sshpass -e ssh  -o stricthostkeychecking=no ubuntu@123.206.60.123 "cd /var/www/XCX/&&sudo git pull&&python manage.py migrate&&sudo touch reload"
 
 env:
   global:
