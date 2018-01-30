@@ -27,5 +27,3 @@ admin.site.register(models.ManageUser)
 admin.site.register(models.CarAppData)
 admin.site.register(models.Cars)
 admin.site.register(models.Phone)
-
-

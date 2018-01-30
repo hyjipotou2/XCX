@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link href="../../static/userManagement/public/css/mains.css" rel="stylesheet"/>
+<link href="../../static/userManagement/phoneCall/css/phoneCall.css" rel="stylesheet"/>
+<body>
+<div class="mains" id="mains">
+
+
+    <table class="table table-hover goods-list-table">
+        <thead>
+        <tr>
+
+            <th data-field="title" type-name="文本">电话</th>
+            <th data-field="title" type-name="文本">姓名</th>
+
+            <th data-field="cover" type-name="图片">职业</th>
+            <th data-field="cover" type-name="图片">地区</th>
+
+            <th data-field="cover" type-name="图片">几天后提醒</th>
+            <th data-field="cover" type-name="图片">备注</th>
+            <th data-field="cover" type-name="图片">完成</th>
+
+        </tr>
+        </thead>
+        <tbody id="goodstbody">
+        {% for foo in data %}
+
+            <tr>
+                <form method="post">
+                    <input name="id" value="{{ foo.id }}" style="display: none"/>
+                    <td><a href="tel://+86{{ foo.phone }}">{{ foo.phone }}</a></td>
+                    <td><input name="name" value="{{ foo.name }}"/></td>
+                    <td><input name="occupation" value="{{ foo.occupation }}"/></td>
+                    <td><input name="location" value="{{ foo.location }}"/></td>
+                    <td><input name="nextCall" value=""/></td>
+                    <td><input name="remarks" value="{{ foo.remarks }}"/></td>
+                    <td><input type="submit" value="Submit"/></td>
+                </form>
+            </tr>
+
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+    <div class="fen">
+        <div id="page"></div>
+
+
+    </div>
+
+
+</div>
+</body>
+</html>

@@ -748,6 +748,28 @@ def phone(request):
         Phone.objects.create(phone=request.POST.get("phone"))
         return HttpResponse("ok",status=201)
 
+def phoneCall(request):
+    if request.method=="GET":
+        #Phone.objects.filter()
+        list=[]
+        list.append({"name":"da","phone":"18888"})
+        return render(request,'userManagement/callPhoneManagement.html',{"data":list})
+    if request.method=="POST":
+        id=request.POST.get("id")
+        name=request.POST.get("name","")
+        occupation=request.POST.get("occupation","")
+        location=request.POST.get('location',"")
+        remarks=request.POST.get("remarks","")
+        nextCall=request.POST.get("nextCall","")
+        phone=get_object_or_404(Phone, id=id)
+
+        phone.name=name
+        phone.occupation=occupation
+        phone.location=location
+        phone.remarks=remarks
+        phone.save()
+        return HttpResponseRedirect('/phone/')
+
 
 
 
