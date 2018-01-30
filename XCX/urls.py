@@ -63,7 +63,7 @@ url(r'^carsapp/', views.carsapp),
 url(r'^cars/', views.cars),
 url(r'^phone/', views.phone),
  url(r'^phonecall/', views.phoneCall),
-
+ url(r'^tinymce/', include('tinymce.urls')),
 
 
 

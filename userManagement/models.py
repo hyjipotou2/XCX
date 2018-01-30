@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver
-
+from tinymce.models import HTMLField
 
 class GoodsType(models.Model):
     goodsType=models.CharField(u'分类',max_length=255)
@@ -217,3 +217,8 @@ class Phone(models.Model):
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
 
+class Article(models.Model):
+    modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
+    createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
+    title=models.CharField(u'标题',max_length=255)
+    content=HTMLField(u'内容')

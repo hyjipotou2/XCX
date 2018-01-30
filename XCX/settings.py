@@ -40,8 +40,7 @@ INSTALLED_APPS = (
 
 'userManagement',
 'rest_framework',
-
-
+'tinymce'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,7 +86,7 @@ DATABASES = {
         'NAME': 'XCX',
         'USER':"root",
         'PASSWORD':"1234569",
-        'HOST':'123.206.60.123',
+        'HOST':'127.0.0.1',
         'PORT':'3306',
     }
 }
