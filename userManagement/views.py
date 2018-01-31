@@ -1,10 +1,13 @@
-#coding:utf-8
+# coding:utf-8
 import hashlib
 import json
 import os
 from xml.etree import ElementTree
 import random
 import requests
+import time
+
+from PIL import Image
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -28,18 +31,23 @@ from userManagement.weixinPay import MyweixinClass
 
 reload(sys)
 sys.setdefaultencoding('utf8')
+
+
 def read_xml(text, findname):
     root = ElementTree.fromstring(text)
 
     node_find = root.find(findname)
     return (node_find.text)
+
+
 def getCode(phone):
-    code=str(random.randint(1000,9999))
+    code = str(random.randint(1000, 9999))
     r = requests.get('http://qxt.fungo.cn/Recv_center',
                      params={'CpName': "rkdf", 'CpPassword': "rk0902",
-                             'DesMobile': phone,"Content":"【短信吧】您的验证码是"+code+".一分钟内有效"})  # 最基本的GET请求
+                             'DesMobile': phone, "Content": "【短信吧】您的验证码是" + code + ".一分钟内有效"})  # 最基本的GET请求
 
     return code
+
 
 def getSession():
     return hashlib.sha1(os.urandom(24)).hexdigest()
@@ -102,7 +110,10 @@ def goods(request):
         # FormSet = inlineformset_factory(Goods, GoodsImage, extra=2,fields="__all__",fk_name="goodsImageForeignKey")
         # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
 
-        return render(request, 'userManagement/goodsManagement.html', {'List': List, "AddGoodsForm": AddGoodsForm,"id":id})
+        return render(request, 'userManagement/goodsManagement.html',
+                      {'List': List, "AddGoodsForm": AddGoodsForm, "id": id})
+
+
 @login_required
 def setting(request):
     if request.method == 'GET':
@@ -114,30 +125,25 @@ def setting(request):
         # FormSet = inlineformset_factory(Goods, GoodsImage, extra=2,fields="__all__",fk_name="goodsImageForeignKey")
         # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
 
-        return render(request, 'userManagement/setting.html', {'List': List,"id":id})
+        return render(request, 'userManagement/setting.html', {'List': List, "id": id})
     if request.method == 'POST':
         id = request.POST.get("id", 1)
         applet = get_object_or_404(Applet, id=id)
 
-        AppId=request.POST.get("AppId")
-        AppSecret=request.POST.get("AppSecret")
-        Description = request.POST.get("description","小程序应用")
+        AppId = request.POST.get("AppId")
+        AppSecret = request.POST.get("AppSecret")
+        Description = request.POST.get("description", "小程序应用")
 
-        applet.appletId=AppId
-        applet.secret=AppSecret
+        applet.appletId = AppId
+        applet.secret = AppSecret
 
-        #applet.description=Description
+        # applet.description=Description
         applet.save()
-        imageurl="http://"+request.get_host()+applet.image.url
-        xcxObj=Xcx(applet.id,applet.name,applet.description,imageurl,applet.type)
-        dict={}
-        dict["url"]=xcxObj.getZipUrl()
-        return  JsonResponse(dict,safe=False)
-
-
-
-
-
+        imageurl = "http://" + request.get_host() + applet.image.url
+        xcxObj = Xcx(applet.id, applet.name, applet.description, imageurl, applet.type)
+        dict = {}
+        dict["url"] = xcxObj.getZipUrl()
+        return JsonResponse(dict, safe=False)
 
 
 @login_required
@@ -151,41 +157,38 @@ def cars(request):
         # FormSet = inlineformset_factory(Goods, GoodsImage, extra=2,fields="__all__",fk_name="goodsImageForeignKey")
         # return HttpResponse(FormSet(instance=Goods.objects.all()[0]))
 
-        return render(request, 'userManagement/carsManagement.html', {'List': List, "AddGoodsForm": CarsForm,"id":id})
-
-
+        return render(request, 'userManagement/carsManagement.html', {'List': List, "AddGoodsForm": CarsForm, "id": id})
 
 
 @login_required
 def index(request):
     if request.method == 'GET':
-        xcx_set=request.user.manageuser.applet_set.all()
+        xcx_set = request.user.manageuser.applet_set.all()
         xcx_list = serializers.AppletSerializer(xcx_set, many=True, context={'request': request}).data
-        for i in range(0,len(xcx_list)):
-            xcx_list[i]["createDateTime"]=xcx_set[i].createDateTime
+        for i in range(0, len(xcx_list)):
+            xcx_list[i]["createDateTime"] = xcx_set[i].createDateTime
             xcx_list[i]["modDateTime"] = xcx_set[i].modDateTime
-        types=Applet.appletType
+        types = Applet.appletType
 
+        return render(request, 'userManagement/index.html',
+                      {"applet_list": xcx_list, "User": request.user, "applet_types": types})
 
-        return render(request, 'userManagement/index.html',{"applet_list":xcx_list,"User":request.user,"applet_types":types})
 
 @login_required
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect("/login/")
+
+
 @login_required
 def orders(request):
     if request.method == 'GET':
         id = request.GET.get("id", 1)
 
+        return render(request, 'userManagement/ordersManagement.html', {"id": id})
 
 
-        
-        
-
-        return render(request, 'userManagement/ordersManagement.html',{"id":id})
 def getCarForm(request):
-
     if request.method == 'GET':
         id = request.GET.get("id", 1)
         car = get_object_or_404(Cars, id=id)
@@ -193,13 +196,13 @@ def getCarForm(request):
         formHtml = CarsForm(instance=goods).as_ul()
         return formHtml
 
+
 def getForm(request):
     if request.method == 'GET':
         id = request.GET.get("id", 1)
         goods = get_object_or_404(Goods, id=id)
 
         formHtml = AddGoodsForm(instance=goods).as_ul()
-
 
         images = goods.goodsimage_set.all()
         imageHtml = ""
@@ -298,19 +301,15 @@ def wxLogin(request):
 
 def userInfo(request):
     if request.method == 'POST':
-        dic=request.POST
+        dic = request.POST
         session_key = request.POST.get("session_key", None)
-
-
 
         if (session_key):
             appletUser = get_or_permissionDenied(AppletUser, xcxSession=session_key)
             for i in dic:
-                if(i=="session_key"):
+                if (i == "session_key"):
                     continue
-                setattr(appletUser,i,dic[i])
-
-
+                setattr(appletUser, i, dic[i])
 
             appletUser.save()
             List = serializers.AppletUserSerializers(appletUser, many=False, context={'request': request}).data
@@ -338,35 +337,40 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = serializers.UserSerializer
 
+
 class AddressViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
+
     def get_queryset(self):
         queryset = Address.objects.all()
 
         session_key = self.request.query_params.get("session_key")
         if session_key is not None:
-            appletUser=get_or_permissionDenied(AppletUser,xcxSession=session_key)
+            appletUser = get_or_permissionDenied(AppletUser, xcxSession=session_key)
             queryset = queryset.filter(appletUserForeign=appletUser)
 
-
         return queryset
+
     queryset = Address.objects.all()
     serializer_class = serializers.AddressSerializer
+
+
 class ShowViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         queryset = ShowAppData.objects.all()
 
         app_id = self.request.query_params.get("_app_id")
         if app_id is not None:
-            applet=get_object_or_404(Applet,id=app_id)
-            queryset =queryset.filter(applet=applet)
-
+            applet = get_object_or_404(Applet, id=app_id)
+            queryset = queryset.filter(applet=applet)
 
         return queryset
+
     serializer_class = serializers.ShowSerializers
     queryset = ShowAppData.objects.all()
+
 
 class OrderViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin,
                    mixins.RetrieveModelMixin,
@@ -375,7 +379,6 @@ class OrderViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin,
                    mixins.ListModelMixin, ):
     def get_queryset(self):
         queryset = Order.objects.all().order_by("-createDateTime")
-
 
         session_key = self.request.query_params.get("session_key")
         if session_key is not None:
@@ -411,7 +414,6 @@ def imageUpApi(request):
         outList = []
         for file in request.FILES.values():
             # file_obj = request.FILES.get('file', None)
-
 
             outDict = {}
 
@@ -492,7 +494,6 @@ def deleteCart(request):
             cart = json.loads(appletUser.cart)
             # TODO 未加入是否是本人判断
 
-
             for i in cart:
                 if (i["goods_id"] == goods_id):
                     cart.remove(i)
@@ -516,54 +517,61 @@ def onLogin(request):
         else:
             return JsonResponse({"is_login": 0})
 
+
 def get_or_permissionDenied(klass, *args, **kwargs):
     queryset = _get_queryset(klass)
     try:
         return queryset.get(*args, **kwargs)
     except queryset.model.DoesNotExist:
         raise PermissionDenied()
+
+
 def get_appleUser_or_permissionDenied(session_key):
-    return get_or_permissionDenied(AppletUser,xcxSession=session_key)
+    return get_or_permissionDenied(AppletUser, xcxSession=session_key)
+
+
 def resign(request):
     if request.method == "GET":
-
         return render_to_response('userManagement/resign.html',
-                                  RequestContext(request, {'form':ResignForm}))
+                                  RequestContext(request, {'form': ResignForm}))
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        if(User.objects.filter(username=username).exists()):
+        if (User.objects.filter(username=username).exists()):
             return render_to_response('userManagement/resign.html',
-                                  RequestContext(request, {'username_is_exists':True}))
+                                      RequestContext(request, {'username_is_exists': True}))
 
-        User.objects.create_user(username,password=password)
+        User.objects.create_user(username, password=password)
         user = auth.authenticate(username=username, password=password)
         auth.login(request, user)
 
         return HttpResponseRedirect(request.GET.get("next_to", '/index/'))
 
+
 class AppletViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin,
-                   mixins.DestroyModelMixin,mixins.UpdateModelMixin):
+                    mixins.DestroyModelMixin, mixins.UpdateModelMixin):
     serializer_class = serializers.AppletSerializer
     queryset = Applet.objects.all()
 
 
 def createApplet(request):
-    if request.method=="POST":
-        user=request.user
-        name=request.POST.get("name","APP")
-        description=request.POST.get("description","APP")
-        image=request.FILES.get("image")
-        type=request.POST.get("type",0)
-        if(user.manageuser.hasPermission==False and type==2):
+    if request.method == "POST":
+        user = request.user
+        name = request.POST.get("name", "APP")
+        description = request.POST.get("description", "APP")
+        image = request.FILES.get("image")
+        type = request.POST.get("type", 0)
+        if (user.manageuser.hasPermission == False and type == 2):
             return HttpResponseForbidden(u"没有权限")
-        Applet.objects.create(appletManageUser=user.manageuser,name=name,description=description,image=image,type=type)
+        Applet.objects.create(appletManageUser=user.manageuser, name=name, description=description, image=image,
+                              type=type)
         return HttpResponse("ok")
 
+
 def deleteApplet(request):
-    if request.method=="POST":
-        id=request.POST.get("id")
-        applet=get_object_or_404(Applet,id=id)
+    if request.method == "POST":
+        id = request.POST.get("id")
+        applet = get_object_or_404(Applet, id=id)
         applet.delete()
         return HttpResponse("ok")
 
@@ -581,44 +589,50 @@ def weixinCallBack(request):
         return HttpResponse(
             "<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>")
 
+
 def getPaymentCode(request):
     session_key = request.GET.get("session_key")
-    order_id=request.GET.get("order_id")
-    order=get_object_or_404(Order,id=order_id)
-    appletUser=get_appleUser_or_permissionDenied(session_key)
+    order_id = request.GET.get("order_id")
+    order = get_object_or_404(Order, id=order_id)
+    appletUser = get_appleUser_or_permissionDenied(session_key)
     if request.META.has_key('HTTP_X_FORWARDED_FOR'):
         ip = request.META['HTTP_X_FORWARDED_FOR']
     else:
         ip = request.META['REMOTE_ADDR']
 
-    weixin=MyweixinClass(order,ip,appletUser.openid,appid=appletUser.applet.appletId)
-    dict=weixin.getxcxMD5Dict()
-    return JsonResponse(dict,safe=False)
+    weixin = MyweixinClass(order, ip, appletUser.openid, appid=appletUser.applet.appletId)
+    dict = weixin.getxcxMD5Dict()
+    return JsonResponse(dict, safe=False)
+
+
 def help(request):
     return render(request, 'userManagement/help.html')
+
+
 def indexShow(request):
     return render(request, 'userManagement/indexshow.html', {"User": request.user})
+
+
 def show(request):
     if request.method == 'GET':
         id = request.GET.get("id", 1)
         applet = Applet.objects.get(id=id)
 
-
-        formHtml=""
-        if hasattr(applet,"showappdata"):
+        formHtml = ""
+        if hasattr(applet, "showappdata"):
 
             formHtml = ShowForm(instance=applet.showappdata).as_ul()
         else:
             formHtml = ShowForm().as_ul()
-        return render(request,'userManagement/showManagement.html',{"form":formHtml,"id":id})
-    if request.method== 'POST':
-        id=request.GET.get("id")
-        applet=get_object_or_404(Applet,id=id)
-        form = ShowForm(request.POST,request.FILES)
+        return render(request, 'userManagement/showManagement.html', {"form": formHtml, "id": id})
+    if request.method == 'POST':
+        id = request.GET.get("id")
+        applet = get_object_or_404(Applet, id=id)
+        form = ShowForm(request.POST, request.FILES)
         if form.is_valid():
 
-            if(hasattr(applet,"showappdata")):
-                applet.showappdata.indexImage=form.cleaned_data['indexImage']
+            if (hasattr(applet, "showappdata")):
+                applet.showappdata.indexImage = form.cleaned_data['indexImage']
                 applet.showappdata.contactMan = form.cleaned_data['contactMan']
                 applet.showappdata.contactNumber = form.cleaned_data['contactNumber']
                 applet.showappdata.contactLocation = form.cleaned_data['contactLocation']
@@ -629,28 +643,30 @@ def show(request):
                 ShowAppData.objects.create(applet=id,
                                            contactMan=form.cleaned_data['contactMan'],
                                            contactNumber=form.cleaned_data['contactNumber'],
-                contactLocation=form.cleaned_data['contactLocation'])
-                return HttpResponseRedirect("/show/?id="+id)
+                                           contactLocation=form.cleaned_data['contactLocation'])
+                return HttpResponseRedirect("/show/?id=" + id)
         else:
-            return render(request,'userManagement/showManagement.html',{"form":form.as_ul(),"id":id})
+            return render(request, 'userManagement/showManagement.html', {"form": form.as_ul(), "id": id})
+
+
 def question(request):
     if request.method == 'GET':
         id = request.GET.get("id", 1)
-        applet=Applet.objects.get(id=id)
-        formHtml=""
-        if hasattr(applet,"questionappdata"):
+        applet = Applet.objects.get(id=id)
+        formHtml = ""
+        if hasattr(applet, "questionappdata"):
 
             formHtml = QuestionForm(instance=applet.questionappdata).as_ul()
         else:
             formHtml = QuestionForm().as_ul()
-        return render(request,'userManagement/questionManagement.html',{"form":formHtml,"id":id})
-    if request.method== 'POST':
-        id=request.GET.get("id")
-        applet=get_object_or_404(Applet,id=id)
-        form = QuestionForm(request.POST,request.FILES)
+        return render(request, 'userManagement/questionManagement.html', {"form": formHtml, "id": id})
+    if request.method == 'POST':
+        id = request.GET.get("id")
+        applet = get_object_or_404(Applet, id=id)
+        form = QuestionForm(request.POST, request.FILES)
         if form.is_valid():
 
-            if(hasattr(applet,"questionappdata")):
+            if (hasattr(applet, "questionappdata")):
                 form = QuestionForm(request.POST, request.FILES, instance=applet)
                 form.save()
 
@@ -658,11 +674,10 @@ def question(request):
 
             else:
                 QuestionAppData.objects.create(applet=applet,
-                                        **form.cleaned_data)
-                return HttpResponseRedirect("/question/?id="+id)
+                                               **form.cleaned_data)
+                return HttpResponseRedirect("/question/?id=" + id)
         else:
-            return render(request,'userManagement/questionManagement.html',{"form":form.as_ul(),"id":id})
-
+            return render(request, 'userManagement/questionManagement.html', {"form": form.as_ul(), "id": id})
 
 
 class QuestionViewSet(viewsets.ReadOnlyModelViewSet):
@@ -671,32 +686,33 @@ class QuestionViewSet(viewsets.ReadOnlyModelViewSet):
 
         app_id = self.request.query_params.get("_app_id")
         if app_id is not None:
-            applet=get_object_or_404(Applet,id=app_id)
-            queryset =queryset.filter(applet=applet)
-
+            applet = get_object_or_404(Applet, id=app_id)
+            queryset = queryset.filter(applet=applet)
 
         return queryset
+
     serializer_class = serializers.QuestionSerializers
     queryset = QuestionAppData.objects.all()
+
 
 def carsapp(request):
     if request.method == 'GET':
         id = request.GET.get("id", 1)
-        applet=Applet.objects.get(id=id)
-        formHtml=""
-        if hasattr(applet,"carappdata"):
+        applet = Applet.objects.get(id=id)
+        formHtml = ""
+        if hasattr(applet, "carappdata"):
 
             formHtml = CarAppForm(instance=applet.carappdata).as_ul()
         else:
             formHtml = CarAppForm().as_ul()
-        return render(request,'userManagement/carsAppletManagement.html',{"form":formHtml,"id":id})
-    if request.method== 'POST':
-        id=request.GET.get("id")
-        applet=get_object_or_404(Applet,id=id)
-        form = CarAppForm(request.POST,request.FILES)
+        return render(request, 'userManagement/carsAppletManagement.html', {"form": formHtml, "id": id})
+    if request.method == 'POST':
+        id = request.GET.get("id")
+        applet = get_object_or_404(Applet, id=id)
+        form = CarAppForm(request.POST, request.FILES)
         if form.is_valid():
 
-            if(hasattr(applet,"carappdata")):
+            if (hasattr(applet, "carappdata")):
                 form = CarAppData(request.POST, request.FILES, instance=applet)
                 form.save()
 
@@ -704,10 +720,11 @@ def carsapp(request):
 
             else:
                 CarsViewSet.objects.create(applet=applet,
-                                        **form.cleaned_data)
-                return HttpResponseRedirect("/carsapp/?id="+id)
+                                           **form.cleaned_data)
+                return HttpResponseRedirect("/carsapp/?id=" + id)
         else:
-            return render(request,'userManagement/carsAppletManagement.html',{"form":form.as_ul(),"id":id})
+            return render(request, 'userManagement/carsAppletManagement.html', {"form": form.as_ul(), "id": id})
+
 
 class CarsAppViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
@@ -715,63 +732,66 @@ class CarsAppViewSet(viewsets.ModelViewSet):
 
         app_id = self.request.query_params.get("_app_id")
         if app_id is not None:
-            applet=get_object_or_404(Applet,id=app_id)
-            queryset =queryset.filter(applet=applet)
-        index=self.request.query_params.get("index")
-        if(index is not None):
-            if(index=="up"):
-                queryset=queryset.order_by("price")
+            applet = get_object_or_404(Applet, id=app_id)
+            queryset = queryset.filter(applet=applet)
+        index = self.request.query_params.get("index")
+        if (index is not None):
+            if (index == "up"):
+                queryset = queryset.order_by("price")
             if (index == "down"):
                 queryset = queryset.order_by("-price")
 
-
-
-
         return queryset
+
     serializer_class = serializers.CarSerializer
     queryset = CarAppData.objects.all()
+
+
 class CarsViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Cars.objects.all()
 
         app_id = self.request.query_params.get("_app_id")
         if app_id is not None:
-            applet=get_object_or_404(Applet,id=app_id)
-            queryset =queryset.filter(applet=applet)
-
+            applet = get_object_or_404(Applet, id=app_id)
+            queryset = queryset.filter(applet=applet)
 
         return queryset
+
     serializer_class = serializers.CarsSerializer
     queryset = Cars.objects.all()
+
+
 def phone(request):
-    if request.method =="POST":
+    if request.method == "POST":
         Phone.objects.create(phone=request.POST.get("phone"))
-        return HttpResponse("ok",status=201)
+        return HttpResponse("ok", status=201)
+
 
 def phoneCall(request):
-    if request.method=="GET":
-        #Phone.objects.filter()
-        list=[]
-        list.append({"name":"da","phone":"18888"})
-        return render(request,'userManagement/callPhoneManagement.html',{"data":list})
-    if request.method=="POST":
-        id=request.POST.get("id")
-        name=request.POST.get("name","")
-        occupation=request.POST.get("occupation","")
-        location=request.POST.get('location',"")
-        remarks=request.POST.get("remarks","")
-        nextCall=request.POST.get("nextCall","")
-        phone=get_object_or_404(Phone, id=id)
+    if request.method == "GET":
+        # Phone.objects.filter()
+        list = []
+        list.append({"name": "da", "phone": "18888"})
+        return render(request, 'userManagement/callPhoneManagement.html', {"data": list})
+    if request.method == "POST":
+        id = request.POST.get("id")
+        name = request.POST.get("name", "")
+        occupation = request.POST.get("occupation", "")
+        location = request.POST.get('location', "")
+        remarks = request.POST.get("remarks", "")
+        nextCall = request.POST.get("nextCall", "")
+        phone = get_object_or_404(Phone, id=id)
 
-        phone.name=name
-        phone.occupation=occupation
-        phone.location=location
-        phone.remarks=remarks
+        phone.name = name
+        phone.occupation = occupation
+        phone.location = location
+        phone.remarks = remarks
         phone.save()
         return HttpResponseRedirect('/phone/')
-
-
-
-
+def article(request,id=1):
+    if request.method=="GET":
+        article=Article.objects.get(id=1)
+        return render(request,'userManagement/article.html',{"title":article.title,"content":article.content})
 
 

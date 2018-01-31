@@ -1,3 +1,4 @@
+
 from rest_framework import routers
 
 from userManagement import views
@@ -63,9 +64,8 @@ url(r'^carsapp/', views.carsapp),
 url(r'^cars/', views.cars),
 url(r'^phone/', views.phone),
  url(r'^phonecall/', views.phoneCall),
- url(r'^tinymce/', include('tinymce.urls')),
-
-
+ url(r'^ueditor/', include('DjangoUeditor.urls')),
+url(r'^article/(?P<id>[1-9]\d*)/$',views.article),
 
 
 

@@ -15,7 +15,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -37,16 +35,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'userManagement',
+    'rest_framework',
+    'DjangoUeditor'
 
-'userManagement',
-'rest_framework',
-'tinymce'
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-   # 'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -76,21 +74,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'XCX.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-      'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'XCX',
-        'USER':"root",
-        'PASSWORD':"1234569",
-        'HOST':'127.0.0.1',
-        'PORT':'3306',
+        'USER': "root",
+        'PASSWORD': "1234569",
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -103,15 +99,14 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
-LOGIN_URL="/login/"
+LOGIN_URL = "/login/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL='/static/'
-
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
