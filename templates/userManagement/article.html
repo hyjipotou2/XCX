@@ -1,19 +1,128 @@
 {% extends 'userManagement/indexFormat.html' %}
- {% block title %}
-        <title>{{ title }}</title>
- {% endblock %}
+{% load staticfiles %}
+{% block title %}
+    {% if article %}
+        <title>{{ article.title }}</title>
+    {% elif categoryobjs %}
+        <title>{{ category }}_予丰科技_小程序一键生成</title>
+    {% else %}
+        <title>予丰科技_小程序一键生成</title>
+    {% endif %}
+{% endblock %}
 {% block head %}
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'userManagement/article/css/article.css' %}"/>
+    <link rel="stylesheet" href="{% static 'userManagement/public/css/page.css' %}"/>
+
+    <script src="{% static 'userManagement/public/js/jquery.page.js' %}"></script>
 
 {% endblock %}
 {% block body %}
-<div class="content" style="background: white;padding: 30px">
-<ol class="breadcrumb">
-	<li><a href="#">Home</a></li>
-	<li><a href="#">2013</a></li>
-	<li class="active">十一月</li>
-</ol>
-{{ content |safe }}
-</div>
+    <div class="content">
+        <div class="c_left">
+            <ol class="breadcrumb">
+                <li><a href="/">主页</a></li>
+                <li><a href="/article/{{ category }}/">{{ categoryName }}</a></li>
+                {% if article %}
+                    <li class="active">{{ article.title }}</li>
+                {% endif %}
+            </ol>
+            {% if article %}
+                <div class="main-content">{{ article.content |safe }}</div>
+            {% elif categoryobjs %}
+                <div class="main-content">{% for categoryobj in categoryobjs %}
+                    <ul class="arclist">
+                        <li><span>{{ forloop.counter }}</span><a href="/article/{{ category }}/{{ categoryobj.id }}"
+                                                                 class="title"
+                                                                 title="{{ categoryobj.title }}">{{ categoryobj.title }}</a>
+                            <p>{{ categoryobj.content|striptags|truncatechars:76 }}</p>
+                        </li>
+                    </ul>
+                {% endfor %}
+                </div>
+
+            {% endif %}
+
+        </div>
+        <div class="nright">
+
+            <h3>资讯栏目</h3>
+            <ul class="article-all">
+                {% for foo in allCategory %}
+                    <li><a href="/{{ foo.url }}/" title="{{ foo.name }}"> {{ foo.name }} </a></li>
+                {% endfor %}
+
+
+            </ul>
+            <div class="line1"></div>
+            <h3>标签聚合</h3>
+            <ul class="taglist">
+                <li>
+                    <a href="https://xcx.yibangbang99.com/article/xcx/1/">小程序</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    {% if Len %}
+
+
+    <div class="fen" style="margin-top: -25px">
+        <div id="page"></div>
+    </div>
+     {% endif %}
+    <script>
+        var len = {{ Len|safe }};
+
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]);
+            return 1; //返回参数值
+        }
+
+        function changeURLArg(url, arg, arg_val) {
+            var pattern = arg + '=([^&]*)';
+            var replaceText = arg + '=' + arg_val;
+            if (url.match(pattern)) {
+                if (arg_val == undefined) {
+                    replaceText = ""
+
+                }
+                var tmp = '/(' + arg + '=)([^&]*)/gi';
+                tmp = url.replace(eval(tmp), replaceText);
+                return tmp;
+            } else {
+                if (arg_val == undefined) {
+                    return url
+
+                }
+                if (url.match('[\?]')) {
+                    return url + '&' + replaceText;
+                } else {
+                    return url + '?' + replaceText;
+                }
+            }
+            return url + '\n' + arg + '\n' + arg_val;
+        }
+
+        function setPages() {
+            $("#page").createPage({
+                pageCount: len,
+                current: getUrlParam("page"),
+                backFn: function (p) {
+                    console.log(p);
+                    var url = changeURLArg(window.location.href, "page", p);
+                    window.location.href = changeURLArg(window.location.href, "page", p)
+                }
+            });
+        }
+
+        $(function () {
+            setPages()
+        })
+
+    </script>
 {% endblock %}

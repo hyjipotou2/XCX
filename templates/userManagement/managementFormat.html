@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -6,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href="../../static/userManagement/public/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../../static/userManagement/public/css/menu.css" rel="stylesheet"/>
-    <link href="../../static/userManagement/public/css/nav.css" rel="stylesheet"/>
-    <link href="../../static/userManagement/public/css/mains.css" rel="stylesheet"/>
+    <link href="{% static 'userManagement/public/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'userManagement/public/css/menu.css' %}" rel="stylesheet"/>
+    <link href="{% static 'userManagement/public/css/nav.css' %}" rel="stylesheet"/>
+    <link href="{% static 'userManagement/public/css/mains.css' %}" rel="stylesheet"/>
 
-    <link href="../../static/userManagement/public/css/form.css" rel="stylesheet"/>
-    <link href="../../static/userManagement/public/css/page.css" rel="stylesheet"/>
+    <link href="{% static 'userManagement/public/css/form.css' %}" rel="stylesheet"/>
+    <link href="{% static 'userManagement/public/css/page.css' %}" rel="stylesheet"/>
 
 
 
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-     <script src="../../static/userManagement/public/js/util.js"></script>
+     <script src="{% static 'userManagement/public/js/util.js' %}"></script>
 
     {% block head %}{% endblock %}
 

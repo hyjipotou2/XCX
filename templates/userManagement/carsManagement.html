@@ -1,6 +1,7 @@
 {% extends 'userManagement/managementFormat.html' %}
+{% load staticfiles %}
 {% block head %}
-  <link href="../../static/userManagement/goods/css/goods.css" rel="stylesheet"/>
+  <link href="{% static 'userManagement/goods/css/goods.css' %}" rel="stylesheet"/>
 
 {% endblock %}
 {% block body %}
@@ -64,8 +65,8 @@
 
 
 
-<script src="../../static/userManagement/public/js/jquery.page.js"></script>
-<script src="../../static/userManagement/cars/js/cars.js"></script>
+<script src="{% static 'userManagement/public/js/jquery.page.js' %}"></script>
+<script src="{% static 'userManagement/cars/js/cars.js' %}"></script>
 
 
 

@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -7,7 +8,7 @@
     <title>注册</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../static/userManagement/login/css/htmleaf-demo.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'userManagement/login/css/htmleaf-demo.css' %}">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <style type="text/css">
         .form-bg {

@@ -205,10 +205,20 @@ class Phone(models.Model):
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
 
 
+class ArticleCategory(models.Model):
+    name = models.CharField(u'名称', max_length=100)
+    url = models.CharField(u'链接地址', max_length=100)
+    def __unicode__(self):
+        return self.name
+
+
 class Article(models.Model):
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
+    categoryForeign=models.ForeignKey(ArticleCategory)
     title = models.CharField(u'标题', max_length=255)
     content = UEditorField(u'内容', width=1000, height=400, toolbars="full",
                            upload_settings={"imageMaxSize": 1204000},
                            settings={}, command=None, blank=True)
+    def __unicode__(self):
+        return self.title

@@ -11,6 +11,7 @@ from PIL import Image
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
@@ -789,9 +790,35 @@ def phoneCall(request):
         phone.remarks = remarks
         phone.save()
         return HttpResponseRedirect('/phone/')
-def article(request,id=1):
-    if request.method=="GET":
-        article=Article.objects.get(id=1)
-        return render(request,'userManagement/article.html',{"title":article.title,"content":article.content})
 
 
+def article(request, category, id):
+    # TODO 此处可优化到html中
+    if request.method == "GET":
+        allCategory=ArticleCategory.objects.all()
+        article = get_object_or_404(Article, id=id)
+        articleCategoryList = ArticleCategory.objects.filter(url=category)
+        categoryName = ""
+        if articleCategoryList.count() == 1:
+            categoryName = articleCategoryList[0].name
+        return render(request, 'userManagement/article.html',
+                      {"article": article, "category": category, "categoryName": categoryName,"allCategory":allCategory})
+
+
+def category(request, category):
+    if request.method == "GET":
+        categoryobjs = get_object_or_404(ArticleCategory, url=category).article_set.all()
+        paginator = Paginator(categoryobjs, 8)
+        page = request.GET.get('page', 1)
+        allCategory = ArticleCategory.objects.all()
+        try:
+            # a = request.user.groups.all()[0].id
+            contacts = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            contacts = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            contacts = paginator.page(paginator.num_pages)
+        return render(request, 'userManagement/article.html',
+                      {"Len": paginator.num_pages, "categoryobjs": contacts, "category": category,"allCategory":allCategory})

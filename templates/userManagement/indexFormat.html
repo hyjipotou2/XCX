@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 
 <html lang="zh-CN">
@@ -9,13 +10,13 @@
    <meta name="keywords" content="予丰,予丰科技,APP,小程序制作,北京小程序一键生成,小程序一键生成,微信小程序,小程序制作,微信小程序制作,小程序工具,微信小程序工具,小程序开发,微信小程序开发,小程序问答,微信小程序问答,小程序平台,微信小程序平台">
     <meta charset="UTF-8" name="description" content="予丰科技是国内领先的微信小程序开发工具,制作无需任何代码，一键直接生成小程序，帮助商家快速拥有自己的小程序详情致电 13220158284">
 
-    <link rel="stylesheet" href="../../static/userManagement/public/css/common.css">
-    <link rel="stylesheet" href="../../static/userManagement/myXcx/css/pc_icomoon.css">
+    <link rel="stylesheet" href="{% static 'userManagement/public/css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'userManagement/myXcx/css/pc_icomoon.css' %}">
 
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../static/userManagement/public/css/nav.css">
-<link rel="stylesheet" href="../../static/userManagement/public/css/foot.css">
-    <script src="../../static/userManagement/myXcx/js/nav.js"></script>
+    <link rel="stylesheet" href="{% static 'userManagement/public/css/nav.css' %}">
+<link rel="stylesheet" href="{% static 'userManagement/public/css/foot.css' %}">
+    <script src="{% static 'userManagement/myXcx/js/nav.js' %}"></script>
 
     {% block head %}
 
@@ -50,7 +51,7 @@
     <div class="nav-login">
         <div class="menu-one nav-center">
             <a><img class="nav-img"
-                                                                                                   src="../../static/userManagement/myXcx/img/touxiang.png">
+                                                                                                   src="{% static 'userManagement/myXcx/img/touxiang.png' %}">
                 {{ user.username }}
             </a>
             <ul is_designer="-1">
@@ -73,7 +74,7 @@
 				</div>
     <div class="wechat_qrcode">
 					<p class="foot_title"><span>官方微信</span></p>
-					<img src="../../static/userManagement/public/images/WechatIMG85.jpg" alt="" rel="nofollow">
+					<img src="{% static 'userManagement/public/images/WechatIMG85.jpg' %}" alt="" rel="nofollow">
 				</div>
 </div>
 

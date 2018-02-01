@@ -1,0 +1,78 @@
+.content {
+    width: 94%;
+    margin: 0 3%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    padding-top: 0px;
+    border: 1px dashed #ddd;
+
+}
+
+.c_left {
+    background: white;
+    width: 75%;
+    float: left;
+    border-right: 1px dashed #ddd;
+    overflow: hidden;
+
+}
+
+.nright {
+    width: 23%;
+    float: right;
+    padding-top: 39px;
+
+}
+.main-content
+{
+    padding-left: 8px;
+     padding-right: 8px;
+}
+ul.arclist{
+    text-align: left;
+    width: 100%;
+    padding: 45px 0 0;
+}
+ul.arclist li {
+    width: 50%;
+    float: left;
+    height: 80px;
+    overflow: hidden;
+    float: left;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed #ddd;
+}
+ul.arclist li span {
+    font-size: 12px;
+    font-style: italic;
+    line-height: 30px;
+    text-align: center;
+    background: #0c8bf1;
+    color: #fff;
+    float: left;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+ul.arclist li a.title {
+    text-align: left;
+    color: #0c8bf1;
+}
+ul.arclist li p {
+    margin: 0;
+    color: #999;
+    text-indent: 0;
+    font-size: 12px;
+    width: 95%;
+    line-height: 18px;
+    float: left;
+    padding-top: 0;
+    text-align: left;
+
+}
+.taglist,.article-all
+{
+    min-height: 240px;
+}

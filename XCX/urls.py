@@ -64,9 +64,8 @@ url(r'^carsapp/', views.carsapp),
 url(r'^cars/', views.cars),
 url(r'^phone/', views.phone),
  url(r'^phonecall/', views.phoneCall),
- url(r'^ueditor/', include('DjangoUeditor.urls')),
-url(r'^article/(?P<id>[1-9]\d*)/$',views.article),
-
+url(r'^article/(?P<category>\w+)/(?P<id>[1-9]\d*)/$',views.article),
+url(r'^article/(?P<category>\w+)/$',views.category),
 
 
 

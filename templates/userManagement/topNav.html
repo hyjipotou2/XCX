@@ -1,9 +1,10 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../../static/userManagement/public/css/nav.css">
+    <link rel="stylesheet" href="{% static 'userManagement/public/css/nav.css' %}">
 </head>
 <body>
 <div class="nav-wrap">
@@ -26,7 +27,7 @@
     <div class="nav-login">
         <div class="menu-one nav-center">
             <a href="http://www.jisuapp.cn/index.php?r=pc/IndexNew/showUserInfo&amp;is_app=1"><img class="nav-img"
-                                                                                                   src="../../static/userManagement/myXcx/img/touxiang.png">
+                                                                                                   src="{% static 'userManagement/myXcx/img/touxiang.png' %}">
                 {{ user.username }}
             </a>
             <ul is_designer="-1">

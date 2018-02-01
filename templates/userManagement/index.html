@@ -1,107 +1,110 @@
 {% extends 'userManagement/indexFormat.html' %}
+{% load staticfiles %}
 {% block body %}
 
-<div class="mask_app_setting" >
-  <div class="content_app_setting">
-    <div class="set-modal-title">
-      <div class="title-text">基本设置</div>
-      <div class="close-btn">x</div>
-    </div>
-    <div class="set-modal-content">
-      <form id="applet-form">
-        <div class="set-detail-item">
+    <div class="mask_app_setting">
+        <div class="content_app_setting">
+            <div class="set-modal-title">
+                <div class="title-text">基本设置</div>
+                <div class="close-btn">x</div>
+            </div>
+            <div class="set-modal-content">
+                <form id="applet-form">
+                    <div class="set-detail-item">
 
-        <div class="set-app-info">
+                        <div class="set-app-info">
 
-          <input class="publish-title-input" type="text" name="name" placeholder="我的应用">
-            <label>*</label>
-          <textarea class="publish-desc-input" name="description" placeholder="应用描述"></textarea>
-          <div>
-
-
-                        <label id="id_type">类型:</label>
-
-                            <select id="id_type" name="type">
-                                {% for applet_type in applet_types %}
-<option value="{{ applet_type.0 }}">{{ applet_type.1 }}</option>
-{% endfor %}</select>
+                            <input class="publish-title-input" type="text" name="name" placeholder="我的应用">
+                            <label>*</label>
+                            <textarea class="publish-desc-input" name="description" placeholder="应用描述"></textarea>
+                            <div>
 
 
+                                <label id="id_type">类型:</label>
 
-                </div>
-        </div>
-      </div>
-      <div class="set-detail-item">
-
-        <input class="image-input"type="file" accept="image/*" name="image"/>
-
-        <div class="set-logo-info">
-          <p>Logo用于二维码及登录页面</p>
-          <p>建议图片尺寸 32*32</p>
-        </div>
-      </div>
-
-</form>
-
-    </div>
-    <div class="set-modal-btn">
-      <div class="cancel-btn">取消</div>
-      <div class="save-btn">保存</div>
-    </div>
-  </div>
-</div>
+                                <select id="id_type" name="type">
+                                    {% for applet_type in applet_types %}
+                                        <option value="{{ applet_type.0 }}">{{ applet_type.1 }}</option>
+                                    {% endfor %}</select>
 
 
-
-<div class="container">
-    <div class="top_manage_info">
-
-    </div>
-
-    <div class="my-app-wrap">
-        <ul class="app-container no-more" id="app-container">
-            <li class="add" is-vip="0"><img src="../../static/userManagement/myXcx/img/add.jpg" alt="">
-                <p>创建新小程序</p></li>
-            {% for applet in applet_list %}
-
-
-
-            <li class="info" data-vend_status="0" data-vend_price="null" data-id="{{applet.id}}"
-                data-logo="http://cdn.jisuapp.cn/zhichi_frontend/static/invitation/images/logo.png" data-desc="我的应用">
-                <div class="info-top">
-                    <div class="tool-show">
-                        <a class="nav_item" href="/setting/?id={{ applet.id }}">导出</a>
-                        <a class="nav_item" href="/{% if applet.type == 0 %}goods{% elif applet.type == 1 %}show{% elif applet.type == 2 %}question{% elif applet.type == 3 %}carsapp{% endif %}/?id={{ applet.id }}">管理</a>
-                        <a class="delete-applet nav_item" data-id="{{ applet.id }}">删除</a>
-
-
+                            </div>
+                        </div>
                     </div>
-                    <img class="info-pic" src="../../static/userManagement/myXcx/img/xcxapp208.jpg"></div>
-                <div class="info-bottom"><a
-                        href=""
-                        target="_blank"><p>{{ applet.name }}</p></a>
-                    <p class="info-title"><label class="detail"><span class="add_time"></span>{{ applet.createDateTime|date:"o-m-j"}}</label><label
+                    <div class="set-detail-item">
 
-                            class="viewCou"></p></div>
-            </li>
-{% endfor %}
+                        <input class="image-input" type="file" accept="image/*" name="image"/>
 
-        </ul>
+                        <div class="set-logo-info">
+                            <p>Logo用于二维码及登录页面</p>
+                            <p>建议图片尺寸 32*32</p>
+                        </div>
+                    </div>
 
+                </form>
+
+            </div>
+            <div class="set-modal-btn">
+                <div class="cancel-btn">取消</div>
+                <div class="save-btn">保存</div>
+            </div>
+        </div>
     </div>
 
-</div>
+
+
+    <div class="container">
+        <div class="top_manage_info">
+
+        </div>
+
+        <div class="my-app-wrap">
+            <ul class="app-container no-more" id="app-container">
+                <li class="add" is-vip="0"><img src="{% static 'userManagement/myXcx/img/add.jpg' %}" alt="">
+                    <p>创建新小程序</p></li>
+                {% for applet in applet_list %}
+
+
+
+                    <li class="info" data-vend_status="0" data-vend_price="null" data-id="{{ applet.id }}"
+                        data-logo="http://cdn.jisuapp.cn/zhichi_frontend/static/invitation/images/logo.png"
+                        data-desc="我的应用">
+                        <div class="info-top">
+                            <div class="tool-show">
+                                <a class="nav_item" href="/setting/?id={{ applet.id }}">导出</a>
+                                <a class="nav_item"
+                                   href="/{% if applet.type == 0 %}goods{% elif applet.type == 1 %}show{% elif applet.type == 2 %}question{% elif applet.type == 3 %}carsapp{% endif %}/?id={{ applet.id }}">管理</a>
+                                <a class="delete-applet nav_item" data-id="{{ applet.id }}">删除</a>
+
+
+                            </div>
+                            <img class="info-pic" src="{% static 'userManagement/myXcx/img/xcxapp208.jpg' %}"></div>
+                        <div class="info-bottom"><a
+                                href=""
+                                target="_blank"><p>{{ applet.name }}</p></a>
+                            <p class="info-title"><label class="detail"><span
+                                    class="add_time"></span>{{ applet.createDateTime|date:"o-m-j" }}</label><label
+
+                                    class="viewCou"></p></div>
+                    </li>
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
 
 
 
 
 {% endblock %}
 {% block head %}
- <link rel="stylesheet" href="../../static/userManagement/myXcx/css/myapp.css">
-    <script type="text/javascript" src="../../static/userManagement/myXcx/js/myapp.js"></script>
+    <link rel="stylesheet" href="{% static 'userManagement/myXcx/css/myapp.css' %}">
+    <script type="text/javascript" src="{% static 'userManagement/myXcx/js/myapp.js' %}"></script>
 {% endblock %}
 {% block title %}
-<title>予丰科技-我的应用</title>
+    <title>予丰科技-我的应用</title>
 {% endblock %}
 {% block appmanage %}active{% endblock %}
 

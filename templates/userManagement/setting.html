@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <!-- saved from url=(0085)http://www.jisuapp.cn/index.php?r=pc/Webapp/ShowAppPackPage&type=1&_app_id=hCe7c66xGc -->
 <html lang="en" xmlns:chromeextension="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -6,9 +7,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 	
 	<meta name="keywords" content="予丰,予丰科技,APP,小程序制作,小程序一键生成">
-    <link rel="stylesheet" href="../../static/userManagement/public/css/common.css">
-	<link rel="stylesheet" href="../../static/userManagement/setting/css/jquery.Jcrop.min.css">
-	<link rel="stylesheet" href="../../static/userManagement/setting/css/webuploader.css">
+    <link rel="stylesheet" href="{% static 'userManagement/public/css/common.css' %}">
+	<link rel="stylesheet" href="{% static 'userManagement/setting/css/jquery.Jcrop.min.css' %}">
+	<link rel="stylesheet" href="{% static 'userManagement/setting/css/webuploader.css' %}">
 	<!-- <link rel="stylesheet" href="../../../zhichi_frontend/static/webapp/css/small_program_pack.css"> -->
 	<style>
 		html {
@@ -328,8 +329,8 @@
 <style type="text/css">#videoTapeCtxM{display:block;width:auto;text-align:center;border-top:1px solid grey;box-shadow:5px 5px 5px #555;background-color:white;}#videoTapeCtxM a{border:1px solid grey;border-top:none;display:block;color:blue;width:auto;cursor:hand;margin:0px;padding:0px 3px 0px 3px;}#videoTapeCtxM a:hover{background-color:#AAA;}</style></head>
 <body class="webapp" a="" chromeextension:video-tape="true">
 	    
-	<link rel="stylesheet" href="../../static/userManagement/public/css/nav.css">
-    <script src="../../static/userManagement/setting/js/setting.js"> </script>
+	<link rel="stylesheet" href="{% static 'userManagement/public/css/nav.css' %}">
+    <script src="{% static 'userManagement/setting/js/setting.js' %}"> </script>
 		<div class="nav-wrap">
     <div class="nav-logo nav-logo-img">
         <h1>微信小程序</h1>
@@ -350,7 +351,7 @@
     <div class="nav-login">
         <div class="menu-one nav-center">
             <a href=""><img class="nav-img"
-                                                                                                   src="../../static/userManagement/myXcx/img/touxiang.png">
+                                                                                                   src="{% static 'userManagement/myXcx/img/touxiang.png' %}">
                 {{user.username }}
             </a>
             <ul is_designer="-1">
@@ -454,7 +455,7 @@
 			<div class="pack-content-2">
 				<div class="text-tip">打包中...</div>
 				<div class="loading">
-					<img src="../../static/userManagement/setting/img/sp-loading.gif">
+					<img src="{% static 'userManagement/setting/img/sp-loading.gif' %}">
 					<p>正在生成中...</p>
 				</div>
 			</div>
