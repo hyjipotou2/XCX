@@ -77,13 +77,14 @@ WSGI_APPLICATION = 'XCX.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+HOST=os.environ.get("HOST","127.0.0.1")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'XCX',
         'USER': "root",
         'PASSWORD': "1234569",
-        'HOST': '127.0.0.1',
+        'HOST': HOST,
         'PORT': '3306',
     }
 }
