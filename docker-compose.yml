@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  xcx:
+    image: xcx
+    ports:
+      - 80:80
+
+
+
+
