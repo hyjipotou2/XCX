@@ -10,7 +10,7 @@ import time
 from PIL import Image
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 
@@ -612,8 +612,8 @@ def help(request):
 
 def indexShow(request):
     articleCategorys = ArticleCategory.objects.all()[:4]
-    #TODO 硬编码此处
-    #articles = get_object_or_404(ArticleCategory, url="xcx").article_set.all()
+    # TODO 硬编码此处
+    # articles = get_object_or_404(ArticleCategory, url="xcx").article_set.all()
     return render(request, 'userManagement/indexshow.html', {"articleCategorys": articleCategorys})
 
 
@@ -804,9 +804,19 @@ def article(request, category, id):
         categoryName = ""
         if articleCategoryList.count() == 1:
             categoryName = articleCategoryList[0].name
+
+        try:
+            next = article.get_next_by_modDateTime()
+        except ObjectDoesNotExist:
+            next = None
+        try:
+            previous = article.get_previous_by_modDateTime()
+        except ObjectDoesNotExist:
+            previous = None
+
         return render(request, 'userManagement/article.html',
                       {"article": article, "category": category, "categoryName": categoryName,
-                       "allCategory": allCategory})
+                       "allCategory": allCategory, "next": next, "previous": previous})
 
 
 def category(request, category):

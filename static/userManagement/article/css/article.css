@@ -76,3 +76,20 @@ ul.arclist li p {
 {
     min-height: 240px;
 }
+.article-text
+{
+    text-align: center;
+
+}
+.next_previous
+{
+    text-align: center;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 4px;
+
+}
+.article-content
+{
+    min-height: 300px;
+}
