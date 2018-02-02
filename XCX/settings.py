@@ -28,7 +28,7 @@ DEBUG=False
 if "runserver" in sys.argv:
     DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
