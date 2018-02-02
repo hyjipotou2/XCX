@@ -65,7 +65,7 @@ li.active > a {
 .bannder {
     width: 100%;
 
-    background-image: url("../images/wxProcessImage/topImage.jpg");
+    background-image: url("../images/wxProcessImage/backgourd.jpg");
     background-size: 100% 100%;
 }
 
@@ -132,6 +132,7 @@ li.active > a {
     padding-left: 172px;
     color: #959595;
     z-index: 100;
+     margin-bottom: 27px;
 }
 
 #p1 {
@@ -141,7 +142,7 @@ li.active > a {
 }
 
 .mstar {
-    margin-bottom: 27px;
+
 }
 
 .mstar::before {
@@ -211,7 +212,7 @@ li.active > a {
 }
 
 ul.arclist {
-    width: 23.3%;
+    width: 46%;
     display: inline-block;
     margin: 0 0 0 1%;
     min-height: 220px;
@@ -243,6 +244,7 @@ ul.arclist {
     transition: all .3s ease-in-out;
 }
 
+
 ul.arclist a:link, ul.arclist a:visited {
 
     left: -5px;
@@ -252,7 +254,7 @@ ul.arclist a:link, ul.arclist a:visited {
     display: block;
     width: 94%;
     height: 100%;
-    background: url(/static/userManagement/indexShow/images/appImage/dot.gif) 3px 2px no-repeat;
+
     border-radius: 3px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -266,11 +268,4 @@ ul.arclist a:hover {
     color: #0c8bf1;
 }
 
-ul.arclist a:hover {
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.3s ease;
-    background: url(/static/userManagement/indexShow/images/appImage/dot.gif) 2px -28px no-repeat;
-}
+

@@ -103,7 +103,11 @@ box-shadow: 3px 2px 2px black;">一键生成</a>
         <div class="fourth">
             <h2>知识分享</h2>
             <p>
-                <strong><a href="/xcx/" title="小程序开发">小程序开发</a></strong>
+                {% for articleCategory in articleCategorys %}
+                <strong><a href="/{{ articleCategory.url }}/" title="{{ articleCategory.name }}">{{ articleCategory.name }}</a></strong>
+                {% endfor %}
+
+
             </p>
 
 
@@ -114,7 +118,7 @@ box-shadow: 3px 2px 2px black;">一键生成</a>
 
                 {% for article in articleCategory.article_set.all %}
                 <li>
-                    <a href="/article/{{ articleCategory.url }}/{{ article.id }}" title="{{ article.title }}">{{ article.title }}</a>
+                    <a class="mstar" href="/article/{{ articleCategory.url }}/{{ article.id }}" title="{{ article.title }}">{{ article.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
