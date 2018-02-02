@@ -35,7 +35,7 @@
             {% if article %}
                 <div class="main-content">
                     <h3 class="article-text">{{ article.title }}</h3>
-                    <h5 class="article-text">{{ article.modDateTime|date:"Y年n月j日" }} 作者:予丰科技 类目:<a
+                    <h5 class="article-text">{{ article.modDateTime|date:"Y年n月j日" }} 作者:{{ article.author }} 类目:<a
                             href="/article/{{ category }}/">{{ categoryName }}</a></h5>
                     <div class="article-content"> {{ article.content |safe }}</div>
                     <div class="next_previous"><span>上一篇:{% if next %}

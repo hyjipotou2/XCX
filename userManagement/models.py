@@ -212,6 +212,7 @@ class Article(models.Model):
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
     categoryForeign=models.ForeignKey(ArticleCategory)
+    author=models.CharField(u'作者',max_length=255,default=u'予丰科技')
     title = models.CharField(u'标题', max_length=255)
     content = UEditorField(u'内容', width=1000, height=400, toolbars="full",
                            upload_settings={"imageMaxSize": 1204000},
