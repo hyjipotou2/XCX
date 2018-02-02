@@ -22,7 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'w5agej_wqd-+3rpbc*9^l%w&5fb9xjikyj0!n^(%j0r-v&uvm$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import sys
+# python D:\MARK\temp.py m1 start 9090
+DEBUG=False
+if "runserver" in sys.argv:
+    DEBUG = True
 
 ALLOWED_HOSTS = []
 
