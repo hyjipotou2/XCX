@@ -197,10 +197,6 @@ class CarAppData(models.Model):
 class Phone(models.Model):
     phone = models.CharField(u"电话号码", max_length=18)
     name = models.CharField(u'姓名', max_length=255, blank=True)
-    occupation = models.CharField(u'职业', max_length=255, blank=True)
-    location = models.CharField(u'地区', max_length=255, blank=True)
-    remarks = models.CharField(u'备注', max_length=255, blank=True)
-    nextCallDate = models.DateField(u'下次提醒时间', blank=True, null=True)
     modDateTime = models.DateTimeField(u'最后修改日期', auto_now=True)
     createDateTime = models.DateTimeField(u'创建日期', auto_now_add=True)
 

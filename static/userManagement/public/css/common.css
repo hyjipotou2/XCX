@@ -139,9 +139,7 @@ pre{
 	color:#000;
 	background:#fff;
 }
-img{
-	width: 100%;
-}
+
 @media screen and (max-width: 1024px) {
 	.nav{
 		position: relative;

@@ -611,7 +611,10 @@ def help(request):
 
 
 def indexShow(request):
-    return render(request, 'userManagement/indexshow.html', {"User": request.user})
+    articleCategorys = ArticleCategory.objects.all()[:4]
+    #TODO 硬编码此处
+    #articles = get_object_or_404(ArticleCategory, url="xcx").article_set.all()
+    return render(request, 'userManagement/indexshow.html', {"articleCategorys": articleCategorys})
 
 
 def show(request):
@@ -795,14 +798,15 @@ def phoneCall(request):
 def article(request, category, id):
     # TODO 此处可优化到html中
     if request.method == "GET":
-        allCategory=ArticleCategory.objects.all()
+        allCategory = ArticleCategory.objects.all()
         article = get_object_or_404(Article, id=id)
         articleCategoryList = ArticleCategory.objects.filter(url=category)
         categoryName = ""
         if articleCategoryList.count() == 1:
             categoryName = articleCategoryList[0].name
         return render(request, 'userManagement/article.html',
-                      {"article": article, "category": category, "categoryName": categoryName,"allCategory":allCategory})
+                      {"article": article, "category": category, "categoryName": categoryName,
+                       "allCategory": allCategory})
 
 
 def category(request, category):
@@ -821,4 +825,5 @@ def category(request, category):
             # If page is out of range (e.g. 9999), deliver last page of results.
             contacts = paginator.page(paginator.num_pages)
         return render(request, 'userManagement/article.html',
-                      {"Len": paginator.num_pages, "categoryobjs": contacts, "category": category,"allCategory":allCategory})
+                      {"Len": paginator.num_pages, "categoryobjs": contacts, "category": category,
+                       "allCategory": allCategory})
