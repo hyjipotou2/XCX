@@ -12,7 +12,7 @@
 .c_left {
     background: white;
     width: 75%;
-    float: left;
+    display: inline-block;
     border-right: 1px dashed #ddd;
     overflow: hidden;
 
@@ -20,30 +20,34 @@
 
 .nright {
     width: 23%;
-    float: right;
+    display: inline-block;
+    vertical-align: top;
     padding-top: 39px;
 
 }
-.main-content
-{
+
+.main-content {
     padding-left: 8px;
-     padding-right: 8px;
+    padding-right: 8px;
 }
-ul.arclist{
+
+ul.arclist {
     text-align: left;
     width: 100%;
     padding: 45px 0 0;
 }
+
 ul.arclist li {
     width: 50%;
     float: left;
     height: 80px;
     overflow: hidden;
-    float: left;
+
     margin-bottom: 20px;
     padding-bottom: 14px;
     border-bottom: 1px dashed #ddd;
 }
+
 ul.arclist li span {
     font-size: 12px;
     font-style: italic;
@@ -56,10 +60,12 @@ ul.arclist li span {
     height: 30px;
     border-radius: 50%;
 }
+
 ul.arclist li a.title {
     text-align: left;
     color: #0c8bf1;
 }
+
 ul.arclist li p {
     margin: 0;
     color: #999;
@@ -72,24 +78,37 @@ ul.arclist li p {
     text-align: left;
 
 }
-.taglist,.article-all
-{
+
+.taglist, .article-all {
     min-height: 240px;
 }
-.article-text
-{
+
+.article-text {
     text-align: center;
 
 }
-.next_previous
-{
+
+.next_previous {
     text-align: center;
     font-size: 15px;
     margin-top: 5px;
     margin-bottom: 4px;
 
 }
-.article-content
-{
+
+.article-content {
     min-height: 300px;
+}
+
+@media screen  and (max-width: 1000px) {
+    .nright {
+        display: none
+    }
+    .c_left {
+
+    width: 100%;
+
+
+}
+
 }
