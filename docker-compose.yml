@@ -5,6 +5,17 @@ services:
     image: xcx
     ports:
       - 80:80
+    links:
+      - mysql:HOST
+    depends_on:
+      - mysql
+    environment:
+      - HOST=mysql
+  mysql:
+    image: mysql-utf8
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234569
+      - MYSQL_DATABASE=XCX
 
 
 

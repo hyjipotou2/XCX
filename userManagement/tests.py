@@ -10,12 +10,18 @@ from rest_framework.test import APIRequestFactory, APIClient
 
 from XCX.settings import STATICFILES_DIRS, BASE_DIR
 from models import *
-import views
+import manageViews
+from userManagement.apiViews.appletApiViews import addCartList, deleteCart, cartList
+from userManagement.manageViews.goodViews import imageUpApi
+from userManagement.userViews.userViews import userInfo
+from userManagement.util import getSession
+
+
 class XcxApiTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up data for the whole TestCase
-        cls.xcxSession=views.getSession()
+        cls.xcxSession=getSession()
         cls.user=User.objects.create_user(username="test",password="test")
         #cls.manageUser=ManageUser.objects.create(user=cls.user,name="name")
         cls.applet = Applet.objects.create(appletManageUser=cls.user.manageuser,name="d",description="dssfs")
@@ -26,24 +32,24 @@ class XcxApiTests(TestCase):
         cls.address=Address.objects.create(appletUserForeign=cls.appletUser,name="test")
         cls.APIclint = APIClient()
     def test_userInfo(self):
-        responsePost=self.client.post(reverse(views.userInfo), {"session_key": self.xcxSession,"gender":"ads"})
-        responseGet=self.client.get(reverse(views.userInfo),{"session_key":self.xcxSession})
+        responsePost=self.client.post(reverse(userInfo), {"session_key": self.xcxSession, "gender": "ads"})
+        responseGet=self.client.get(reverse(userInfo), {"session_key":self.xcxSession})
         self.assertEqual(responseGet.status_code, 200)
         self.assertEqual(responsePost.status_code, 200)
 
     def test_cartlist(self):
-        responsePost = self.client.post(reverse(views.addCartList),{"session_key": self.xcxSession, "goods_id": self.goods.id, "num": 2})
-        responsePostDelete = self.client.post(reverse(views.deleteCart),
-                                             {"session_key": self.xcxSession, "goods_id": self.goods.id})
+        responsePost = self.client.post(reverse(addCartList), {"session_key": self.xcxSession, "goods_id": self.goods.id, "num": 2})
+        responsePostDelete = self.client.post(reverse(deleteCart),
+                                              {"session_key": self.xcxSession, "goods_id": self.goods.id})
 
-        responseGet = self.client.get(reverse(views.cartList), {"session_key": self.xcxSession})
+        responseGet = self.client.get(reverse(cartList), {"session_key": self.xcxSession})
         self.assertEqual(responseGet.status_code, 200)
         self.assertEqual(responsePost.status_code, 200)
         self.assertEqual(responsePostDelete.status_code, 200)
     def test_imageup(self):
         imageuri=STATICFILES_DIRS[0]+"/userManagement/public/images/topLogo.jpg"
         with open(imageuri) as fp:
-            responsePost = self.client.post(reverse(views.imageUpApi),
+            responsePost = self.client.post(reverse(imageUpApi),
                                             {"image1":fp,"image2":fp})
             self.assertEqual(responsePost.status_code, 200)
     def test_address(self):

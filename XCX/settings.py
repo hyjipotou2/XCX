@@ -54,7 +54,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'userManagement.views.DisableCSRFCheck'
+    'middleware_class.DisableCSRFCheck.DisableCSRFCheck'
 )
 
 ROOT_URLCONF = 'XCX.urls'

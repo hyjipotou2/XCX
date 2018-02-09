@@ -4,8 +4,9 @@ from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from models import *
-import views
+import userManagement.util
+from userManagement.models import *
+import userManagement.manageViews
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -104,7 +105,7 @@ class OrderSerializers(serializers.ModelSerializer):
         totalPrice = 0.0
         goodsOrders = self.initial_data.get("orderGoods",None)
         session=self.initial_data.get("session_key",None)
-        appletUser = views.get_appleUser_or_permissionDenied(session)
+        appletUser = userManagement.util.get_appleUser_or_permissionDenied(session)
         order = Order.objects.create(userForeignKey=appletUser,**validated_data)
 
         if goodsOrders is None or len(goodsOrders)<=0:
@@ -135,7 +136,7 @@ class AddressSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
 
         session_key=self.initial_data.get("session_key",None)
-        appletUser=views.get_or_permissionDenied(AppletUser,xcxSession=session_key)
+        appletUser= userManagement.util.get_or_permissionDenied(AppletUser, xcxSession=session_key)
         address = Address.objects.create(appletUserForeign=appletUser,**validated_data)
         return address
     class Meta:

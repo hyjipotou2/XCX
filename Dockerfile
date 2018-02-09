@@ -49,10 +49,13 @@ RUN pip install -r /home/docker/code/app/requirements.txt
 
 # add (the rest of) our code
 COPY . /home/docker/code/
+RUN chmod 777 -R /home/docker/code/static
+
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log  && ln -sf /dev/stdout /var/log/uwsgi.log
 
 
 
 EXPOSE 80
-CMD ["supervisord", "-n"]
+
+CMD ["python","manage.py","migrate","supervisord", "-n"]
